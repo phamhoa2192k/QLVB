@@ -4,9 +4,9 @@ package edu.hust.document.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import edu.hust.document.model.User;
+import edu.hust.document.entity.UserEntity;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-	public User findUserByUsername(String username);
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
+	public UserEntity findUserByUserName(String username);
 }

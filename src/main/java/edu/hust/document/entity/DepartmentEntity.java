@@ -1,4 +1,4 @@
-package edu.hust.document.model;
+package edu.hust.document.entity;
 
 import java.util.Set;
 
@@ -21,7 +21,7 @@ import javax.persistence.GenerationType;
 @Setter
 @Entity
 @Table(name = "department")
-public class Department {
+public class DepartmentEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "department_id")
@@ -43,10 +43,10 @@ public class Department {
 	@JoinColumn(
 		name = "manager_id", unique = true, updatable = true, nullable = true
 	)
-	private User manager;
+	private UserEntity manager;
 
 	@OneToMany(fetch = FetchType.EAGER)
-	private Set<User> users;
+	private Set<UserEntity> users;
 
 	@Column(name = "phonenumber")
 	private String phonenumber;

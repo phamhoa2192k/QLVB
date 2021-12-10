@@ -9,8 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import edu.hust.document.model.Role;
-import edu.hust.document.model.User;
+import edu.hust.document.entity.RoleEntity;
+import edu.hust.document.entity.UserEntity;
 import edu.hust.document.repository.UserRepository;
 
 @Service
@@ -20,18 +20,18 @@ public class UserDetailServiceImp implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userRepository.findUserByUsername(username);
+		UserEntity user = userRepository.findUserByUserName(username);
 		if(user == null) {
 			throw new UsernameNotFoundException("Username not found!");
 		}
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<GrantedAuthority>();
-        Set<Role> roles = (Set<Role>)user.getRoles();
-        for (Role role : roles) {
+        Set<RoleEntity> roles = (Set<RoleEntity>)user.getRoles();
+        for (RoleEntity role : roles) {
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
         }
 
         return new org.springframework.security.core.userdetails.User(
-                user.getUsername(), user.getPassword(), grantedAuthorities);
+                user.getUserName(), user.getPassword(), grantedAuthorities);
 	}
 
 }
