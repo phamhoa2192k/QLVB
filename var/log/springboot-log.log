@@ -1,0 +1,51 @@
+2021-12-10 20:42:26.773  INFO 1904 --- [restartedMain] edu.hust.document.DocumentApplication    : Starting DocumentApplication using Java 14.0.2 on DESKTOP-7LS0FGV with PID 1904 (E:\Download\document\target\classes started by PhamHoa in E:\Download\document)
+2021-12-10 20:42:26.776  INFO 1904 --- [restartedMain] edu.hust.document.DocumentApplication    : No active profile set, falling back to default profiles: default
+2021-12-10 20:42:26.828  INFO 1904 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-12-10 20:42:26.828  INFO 1904 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-12-10 20:42:27.693  INFO 1904 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-10 20:42:27.774  INFO 1904 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 70 ms. Found 3 JPA repository interfaces.
+2021-12-10 20:42:28.577  INFO 1904 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-12-10 20:42:28.589  INFO 1904 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-10 20:42:28.589  INFO 1904 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-10 20:42:28.684  INFO 1904 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-12-10 20:42:28.685  INFO 1904 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1856 ms
+2021-12-10 20:42:28.936  INFO 1904 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-10 20:42:29.015  INFO 1904 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.1.Final
+2021-12-10 20:42:29.219  INFO 1904 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-12-10 20:42:29.362  INFO 1904 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-12-10 20:42:29.881  INFO 1904 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-12-10 20:42:29.903  INFO 1904 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MariaDB103Dialect
+2021-12-10 20:42:31.754  INFO 1904 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-10 20:42:31.763  INFO 1904 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-10 20:42:31.813  WARN 1904 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-10 20:42:32.960  INFO 1904 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@a588888, org.springframework.security.web.context.SecurityContextPersistenceFilter@4f5038d8, org.springframework.security.web.header.HeaderWriterFilter@5fbe5e22, org.springframework.security.web.authentication.logout.LogoutFilter@67de51aa, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@2a69a2d7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@36ccf428, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1c7b9728, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5324c032, org.springframework.security.web.session.SessionManagementFilter@225f00d3, org.springframework.security.web.access.ExceptionTranslationFilter@573995c9, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@573b246e]
+2021-12-10 20:42:33.634  INFO 1904 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-12-10 20:42:33.689  INFO 1904 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-10 20:42:33.701  INFO 1904 --- [restartedMain] edu.hust.document.DocumentApplication    : Started DocumentApplication in 7.329 seconds (JVM running for 8.392)
+2021-12-10 20:42:35.295  INFO 1904 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-12-10 20:42:35.296  INFO 1904 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-12-10 20:42:35.298  INFO 1904 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2021-12-10 20:51:28.043  INFO 1904 --- [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-12-10 20:51:28.045  INFO 1904 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-12-10 20:51:28.072  INFO 1904 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-12-10 20:51:28.153  INFO 1904 --- [restartedMain] edu.hust.document.DocumentApplication    : Starting DocumentApplication using Java 14.0.2 on DESKTOP-7LS0FGV with PID 1904 (E:\Download\document\target\classes started by PhamHoa in E:\Download\document)
+2021-12-10 20:51:28.153  INFO 1904 --- [restartedMain] edu.hust.document.DocumentApplication    : No active profile set, falling back to default profiles: default
+2021-12-10 20:51:28.405  INFO 1904 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-10 20:51:28.419  INFO 1904 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 14 ms. Found 3 JPA repository interfaces.
+2021-12-10 20:51:28.555  INFO 1904 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-12-10 20:51:28.556  INFO 1904 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-10 20:51:28.556  INFO 1904 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-10 20:51:28.578  INFO 1904 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-12-10 20:51:28.579  INFO 1904 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 424 ms
+2021-12-10 20:51:28.615  INFO 1904 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-10 20:51:28.620  INFO 1904 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2021-12-10 20:51:28.623  INFO 1904 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2021-12-10 20:51:28.623  INFO 1904 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MariaDB103Dialect
+2021-12-10 20:51:28.703  INFO 1904 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-10 20:51:28.703  INFO 1904 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-10 20:51:28.724  WARN 1904 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-10 20:51:28.830  INFO 1904 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6cbdaca1, org.springframework.security.web.context.SecurityContextPersistenceFilter@660eb9e6, org.springframework.security.web.header.HeaderWriterFilter@34a11ff2, org.springframework.security.web.authentication.logout.LogoutFilter@76317657, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6ed1e2e4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@375ae15f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@bb826c9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@11e8c716, org.springframework.security.web.session.SessionManagementFilter@61b1e08a, org.springframework.security.web.access.ExceptionTranslationFilter@154899a9, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@9ad06ad]
+2021-12-10 20:51:28.905  INFO 1904 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-12-10 20:51:28.914  INFO 1904 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-10 20:51:28.919  INFO 1904 --- [restartedMain] edu.hust.document.DocumentApplication    : Started DocumentApplication in 0.789 seconds (JVM running for 543.61)
+2021-12-10 20:51:28.921  INFO 1904 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
