@@ -1,4 +1,4 @@
-package edu.hust.document.DTO;
+package edu.hust.document.model;
 
 import java.util.Date;
 
