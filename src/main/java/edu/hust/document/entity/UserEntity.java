@@ -52,6 +52,7 @@ public class UserEntity extends BaseEntity {
 	@OneToMany(mappedBy = "user")
 	private Set<HandlingEntity> handlings;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
+	@JoinColumn(name = "department_id")
 	private DepartmentEntity department;
 }

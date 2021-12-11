@@ -7,5 +7,5 @@ import edu.hust.document.entity.RoleEntity;
 
 @Repository
 public interface RoleRepository extends JpaRepository<RoleEntity, Long>{
-
+	public RoleEntity findRoleByCode(String code);
 }

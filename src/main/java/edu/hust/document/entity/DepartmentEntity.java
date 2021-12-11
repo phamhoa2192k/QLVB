@@ -45,7 +45,7 @@ public class DepartmentEntity {
 	)
 	private UserEntity manager;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "department")
 	private Set<UserEntity> users;
 
 	@Column(name = "phonenumber")
