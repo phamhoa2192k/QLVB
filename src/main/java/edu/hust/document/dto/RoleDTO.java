@@ -1,4 +1,4 @@
-package edu.hust.document.model;
+package edu.hust.document.dto;
 
 public class RoleDTO extends BaseDTO{
 	private String name;

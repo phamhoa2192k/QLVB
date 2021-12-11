@@ -1,8 +1,5 @@
 package edu.hust.document.entity;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -10,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,7 +23,8 @@ public class RoleEntity extends BaseEntity {
 	
 	@Column(name = "code")
 	private String code;
-	
+
+	@JsonBackReference
 	@ManyToMany(mappedBy = "roles")
     private Set<UserEntity> users;
 }

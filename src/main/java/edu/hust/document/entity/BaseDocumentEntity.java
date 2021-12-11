@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -51,11 +53,12 @@ public class BaseDocumentEntity extends BaseEntity {
 	
 	@Column(name = "other_info")
 	private String otherInfo;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
-	
+
+	@JsonManagedReference
 	@OneToMany(mappedBy = "baseDocument")
 	private Set<HandlingEntity> handlings;
 	

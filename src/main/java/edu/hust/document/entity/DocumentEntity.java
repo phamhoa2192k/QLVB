@@ -18,26 +18,27 @@ import lombok.Setter;
 @Entity
 @Table(name = "document")
 public class DocumentEntity {
-	@Id
-	@Column(name = "id")
-	private String id;
-	
-	@OneToOne(fetch = FetchType.EAGER)
-  @PrimaryKeyJoinColumn
-  BaseDocumentEntity baseDocumentEntity;
-	@Column(name = "deadline")
-	private Timestamp deadline;
-	
-	@Column(name = "attached_document")
-	private String attachedDocument;
-	
-	@Column(name = "security_level")
-	private String securityLevel;
-	
-	@Column(name = "urgency_level")
-	private String urgencyLevel;
-	
-	@Column(name = "status")
-	private String status;
-	
+    @Id
+    @Column(name = "id")
+    private String id;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @PrimaryKeyJoinColumn
+    BaseDocumentEntity baseDocumentEntity;
+
+    @Column(name = "deadline")
+    private Timestamp deadline;
+
+    @Column(name = "attached_document")
+    private String attachedDocument;
+
+    @Column(name = "security_level")
+    private String securityLevel;
+
+    @Column(name = "urgency_level")
+    private String urgencyLevel;
+
+    @Column(name = "status")
+    private String status;
+
 }

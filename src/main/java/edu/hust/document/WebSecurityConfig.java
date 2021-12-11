@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			roleNames[i] = roles.get(i);
 		}
 		http.authorizeRequests()
-		 .antMatchers("/", "/login", "/dist/**", "/plugins/**").permitAll()
+		 .antMatchers("/", "/login", "/dist/**", "/plugins/**", "/api/**").permitAll()
 		 .antMatchers("/app/**").hasAnyAuthority(roleNames)
 		 .antMatchers("/admin/**").hasAuthority("ADMIN")
 		 .anyRequest().authenticated()

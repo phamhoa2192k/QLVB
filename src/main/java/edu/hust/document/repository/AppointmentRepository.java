@@ -7,5 +7,5 @@ import edu.hust.document.entity.AppointmentEntity;
 
 @Repository
 public interface AppointmentRepository extends JpaRepository<AppointmentEntity, Long>{
-	
+	AppointmentEntity findAppointmentEntityById(Long id);
 }

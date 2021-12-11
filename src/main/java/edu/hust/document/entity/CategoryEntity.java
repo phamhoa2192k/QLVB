@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,6 +27,7 @@ public class CategoryEntity extends BaseEntity {
 	@Column(name = "type")
 	private String type;
 
+	@JsonBackReference
 	@OneToMany(mappedBy = "category")
 	private Set<BaseDocumentEntity> baseDocuments;
 }
