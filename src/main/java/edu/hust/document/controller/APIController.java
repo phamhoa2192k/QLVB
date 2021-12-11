@@ -8,7 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.hust.document.DTO.UserDTO;
+import edu.hust.document.dto.UserDTO;
 import edu.hust.document.entity.UserEntity;
 import edu.hust.document.repository.UserRepository;
 
