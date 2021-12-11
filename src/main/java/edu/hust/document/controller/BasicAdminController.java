@@ -18,8 +18,7 @@ public class BasicAdminController {
 	private DepartmentRepository departmentRepository;
 
 	@GetMapping("/admin/index")
-	public String getAdminPage(Model model, Authentication authentication){
-		model.addAttribute("nameofuser", ((UserDetails) authentication.getPrincipal()).getUsername());
+	public String getAdminPage(){
 		return "admin/index";
 	}
 

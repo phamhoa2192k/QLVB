@@ -176,7 +176,7 @@
           <img src="/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block" th:text="${nameofuser}"></a>
+          <a href="#" class="d-block" id="currentUser"></a>
         </div>
       </div>
 
@@ -838,6 +838,17 @@
     })
 
     
+  })
+</script>
+<script>
+  $("body").ready(function () {
+    $.ajax({
+      url: "/api/test",
+      method: "GET",
+      dataType: "json"
+    }).done((data) => {
+      $("#currentUser").html(data.userName);
+    })
   })
 </script>
 </body>

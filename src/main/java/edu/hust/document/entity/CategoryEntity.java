@@ -1,7 +1,6 @@
 package edu.hust.document.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,5 +26,5 @@ public class CategoryEntity extends BaseEntity {
 	private String type;
 
 	@OneToMany(mappedBy = "category")
-	private List<BaseDocumentEntity> baseDocuments = new ArrayList<>();
+	private Set<BaseDocumentEntity> baseDocuments;
 }

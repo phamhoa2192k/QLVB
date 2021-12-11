@@ -1,8 +1,8 @@
 package edu.hust.document.entity;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -47,10 +47,10 @@ public class UserEntity extends BaseEntity {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), 
 				inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private List<RoleEntity> roles = new ArrayList<>();
+	private Set<RoleEntity> roles;
 	
 	@OneToMany(mappedBy = "user")
-	private List<HandlingEntity> handlings = new ArrayList<HandlingEntity>();
+	private Set<HandlingEntity> handlings;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	private DepartmentEntity department;
