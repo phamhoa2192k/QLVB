@@ -39,15 +39,9 @@ public class DepartmentEntity {
 	
 	@Column(name = "address")
 	private String address;
-	
-	@OneToOne(optional = true, fetch = FetchType.EAGER)
-	@JoinColumn(
-		name = "manager_id", unique = true, updatable = true, nullable = true
-	)
-	private UserEntity manager;
 
 	@JsonManagedReference
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "department")
 	private Set<UserEntity> users;
 
 	@Column(name = "phonenumber")

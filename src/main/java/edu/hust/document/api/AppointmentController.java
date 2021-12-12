@@ -1,4 +1,4 @@
-package edu.hust.document.controller;
+package edu.hust.document.api;
 
 import com.google.gson.Gson;
 import edu.hust.document.dto.AppointmentDTO;
@@ -24,7 +24,7 @@ public class AppointmentController {
 
     @GetMapping(value = "/findAll")
     public ResponseEntity<Object> findAll() {
-        List<AppointmentDTO> appointmentDTOS = appointmentService.findAll();
+        List<AppointmentEntity> appointmentDTOS = appointmentService.findAll();
         return ResponseEntity.ok(appointmentDTOS);
     }
 

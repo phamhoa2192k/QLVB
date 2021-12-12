@@ -18,7 +18,6 @@ public class DepartmentMapper {
         departmentDTO.setNumberOfStaff(departmentEntity.getNumberOfStaff());
 
         ModelMapper modelMapper = new ModelMapper();
-        departmentDTO.setManager(modelMapper.map(departmentEntity.getManager(), UserDTO.class));
         return departmentDTO;
 
     }

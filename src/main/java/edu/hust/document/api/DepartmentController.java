@@ -1,4 +1,4 @@
-package edu.hust.document.controller;
+package edu.hust.document.api;
 
 import com.google.gson.Gson;
 import edu.hust.document.dto.DepartmentDTO;
@@ -26,7 +26,7 @@ public class DepartmentController {
 
     @GetMapping(value = "/findAll")
     public ResponseEntity<Object> findAll() {
-        List<DepartmentDTO> departmentDTOList = departmentService.findAll();
+        List<DepartmentEntity> departmentDTOList = departmentService.findAll();
         return ResponseEntity.ok(departmentDTOList);
     }
 
@@ -40,12 +40,12 @@ public class DepartmentController {
     @PostMapping(value = "/insert")
     public ResponseEntity<Object> insertDepartment(@RequestBody DepartmentForm departmentForm) {
         DepartmentEntity departmentEntity = departmentService.insert(departmentForm);
-        if (departmentEntity != null) {
-            UserEntity user = departmentEntity.getManager();
-            user.setDepartment(departmentEntity);
-            userService.updateUserEntity(user);
-            return ResponseEntity.ok(DepartmentMapper.departmentEntityToDTO(departmentEntity));
-        }
+//        if (departmentEntity != null) {
+//            UserEntity user = departmentEntity.getManager();
+//            user.setDepartment(departmentEntity);
+//            userService.updateUserEntity(user);
+//            return ResponseEntity.ok(DepartmentMapper.departmentEntityToDTO(departmentEntity));
+//        }
 
         String s = "Không thể chọn người này làm trưởng phòng";
         return new ResponseEntity<>(new Gson().toJson(s), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -54,12 +54,12 @@ public class DepartmentController {
     @PutMapping(value = "/update")
     public ResponseEntity<Object> updateDepartment(@RequestBody DepartmentForm departmentForm) {
         DepartmentEntity departmentEntity = departmentService.update(departmentForm);
-        if (departmentEntity != null) {
-            UserEntity user = departmentEntity.getManager();
-            user.setDepartment(departmentEntity);
-            userService.updateUserEntity(user);
-            return ResponseEntity.ok(DepartmentMapper.departmentEntityToDTO(departmentEntity));
-        }
+//        if (departmentEntity != null) {
+//            UserEntity user = departmentEntity.getManager();
+//            user.setDepartment(departmentEntity);
+//            userService.updateUserEntity(user);
+//            return ResponseEntity.ok(DepartmentMapper.departmentEntityToDTO(departmentEntity));
+//        }
 
         String s = "Không thể update";
         return new ResponseEntity<>(new Gson().toJson(s), HttpStatus.INTERNAL_SERVER_ERROR);

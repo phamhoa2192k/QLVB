@@ -56,6 +56,7 @@ public class UserEntity extends BaseEntity {
 	private Set<HandlingEntity> handlings;
 
 	@JsonBackReference
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
+	@JoinColumn(name = "department_id")
 	private DepartmentEntity department;
 }

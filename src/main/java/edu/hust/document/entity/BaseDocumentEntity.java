@@ -51,6 +51,9 @@ public class BaseDocumentEntity extends BaseEntity {
 	@Column(name = "other_info")
 	private String otherInfo;
 
+	@Column(name = "status")
+	private String status;
+
 	@JsonBackReference
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")

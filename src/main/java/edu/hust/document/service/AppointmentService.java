@@ -18,13 +18,13 @@ public class AppointmentService {
     @Autowired
     private AppointmentRepository appointmentRepository;
 
-    public List<AppointmentDTO> findAll() {
+    public List<AppointmentEntity> findAll() {
         List<AppointmentEntity> appointmentEntityList = appointmentRepository.findAll();
-        List<AppointmentDTO> appointmentDTOList = new ArrayList<>();
-        for (AppointmentEntity appointmentEntity: appointmentEntityList) {
-            appointmentDTOList.add(AppointmentMapper.appointmentEntityToDTO(appointmentEntity));
-        }
-        return  appointmentDTOList;
+//        List<AppointmentDTO> appointmentDTOList = new ArrayList<>();
+//        for (AppointmentEntity appointmentEntity: appointmentEntityList) {
+//            appointmentDTOList.add(AppointmentMapper.appointmentEntityToDTO(appointmentEntity));
+//        }
+        return  appointmentEntityList;
     }
 
     public AppointmentEntity delete(Long id){

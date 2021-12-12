@@ -23,13 +23,13 @@ public class DepartmentService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<DepartmentDTO> findAll() {
+    public List<DepartmentEntity> findAll() {
         List<DepartmentEntity> departmentEntityList = departmentRepository.findAll();
-        List<DepartmentDTO> departmentDTOList = new ArrayList<>();
-        for (DepartmentEntity departmentEntity: departmentEntityList) {
-            departmentDTOList.add(DepartmentMapper.departmentEntityToDTO(departmentEntity));
-        }
-        return  departmentDTOList;
+//        List<DepartmentDTO> departmentDTOList = new ArrayList<>();
+//        for (DepartmentEntity departmentEntity: departmentEntityList) {
+//            departmentDTOList.add(DepartmentMapper.departmentEntityToDTO(departmentEntity));
+//        }
+        return  departmentEntityList;
     }
 
     public List<DepartmentDTO> findByNameLike(String name) {
@@ -49,11 +49,11 @@ public class DepartmentService {
         departmentEntity.setPhonenumber(departmentForm.getPhonenumber());
         departmentEntity.setNumberOfStaff(1L);
         UserEntity user = userRepository.findUserEntityById(departmentForm.getManager_id());
-        departmentEntity.setManager(user);
+        //departmentEntity.setManager(user);
 
         Set<UserEntity> userEntitySet = new HashSet<UserEntity>();
         userEntitySet.add(user);
-        departmentEntity.setUsers(userEntitySet);
+        //departmentEntity.setUsers(userEntitySet);
 
         DepartmentEntity departmentEntity1 = null;
         try {
@@ -92,10 +92,10 @@ public class DepartmentService {
             return null;
         }
 
-        UserEntity user = departmentEntity.getManager();
-        user.setDepartment(null);
-        user = userRepository.save(user);
-        departmentRepository.delete(departmentEntity);
+//        UserEntity user = departmentEntity.getManager();
+//        user.setDepartment(null);
+//        user = userRepository.save(user);
+//        departmentRepository.delete(departmentEntity);
 
         return departmentEntity;
     }
