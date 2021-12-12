@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class DepartmentService {
@@ -49,6 +51,10 @@ public class DepartmentService {
         UserEntity user = userRepository.findUserEntityById(departmentForm.getManager_id());
         departmentEntity.setManager(user);
 
+        Set<UserEntity> userEntitySet = new HashSet<UserEntity>();
+        userEntitySet.add(user);
+        departmentEntity.setUsers(userEntitySet);
+
         DepartmentEntity departmentEntity1 = null;
         try {
             departmentEntity1 = departmentRepository.save(departmentEntity);
@@ -61,15 +67,12 @@ public class DepartmentService {
     }
 
     public DepartmentEntity update(DepartmentForm departmentForm){
-        DepartmentEntity departmentEntity = new DepartmentEntity();
+        DepartmentEntity departmentEntity = departmentRepository.findDepartmentEntityById(departmentForm.getId());
         departmentEntity.setId(departmentForm.getId());
         departmentEntity.setAddress(departmentForm.getAddress());
         departmentEntity.setCode(departmentForm.getCode());
         departmentEntity.setName(departmentForm.getName());
         departmentEntity.setPhonenumber(departmentForm.getPhonenumber());
-        departmentEntity.setNumberOfStaff(1L);
-        UserEntity user = userRepository.findUserEntityById(departmentForm.getManager_id());
-        departmentEntity.setManager(user);
 
         DepartmentEntity departmentEntity1 = null;
         try {

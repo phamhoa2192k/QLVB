@@ -9,9 +9,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AppointmentDTO extends BaseDTO{
+public class AppointmentDTO{
 
-    BaseDocumentEntity baseDocumentEntity;
+    private Long id;
+
+    BaseDocumentDTO baseDocumentDTO;
 
     private String securityLevel;
 

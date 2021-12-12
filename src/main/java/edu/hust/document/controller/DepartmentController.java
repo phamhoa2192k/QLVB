@@ -33,6 +33,7 @@ public class DepartmentController {
     @GetMapping(value = "/search")
     public ResponseEntity<Object> findByNameLike(@RequestParam(name = "name") String name) {
         List<DepartmentDTO> departmentDTOList = departmentService.findByNameLike(name);
+        if (departmentDTOList.size() == 0) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         return ResponseEntity.ok(departmentDTOList);
     }
 

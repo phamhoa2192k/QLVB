@@ -6,9 +6,10 @@ import edu.hust.document.entity.AppointmentEntity;
 public class AppointmentMapper {
     public static AppointmentDTO appointmentEntityToDTO(AppointmentEntity appointmentEntity) {
         AppointmentDTO appointmentDTO = new AppointmentDTO();
-        appointmentDTO.setBaseDocumentEntity(appointmentEntity.getBaseDocumentEntity());
+        appointmentDTO.setId(appointmentEntity.getId());
         appointmentDTO.setSecurityLevel(appointmentEntity.getSecurityLevel());
         appointmentDTO.setUrgencyLevel(appointmentEntity.getUrgencyLevel());
+        appointmentDTO.setBaseDocumentDTO(BaseDocumentMapper.baseDocumentEntityToBasicDTO(appointmentEntity.getBaseDocumentEntity()));
 
         return appointmentDTO;
     }

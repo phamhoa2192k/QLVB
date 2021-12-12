@@ -1,8 +1,5 @@
 package edu.hust.document.entity;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -54,6 +51,7 @@ public class BaseDocumentEntity extends BaseEntity {
 	@Column(name = "other_info")
 	private String otherInfo;
 
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
