@@ -1,5 +1,9 @@
 package edu.hust.document.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -12,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "handling")
 public class HandlingEntity {
@@ -28,11 +34,13 @@ public class HandlingEntity {
 	
 	@Column(name = "action")
 	private String action;
-	
+
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
 	private UserEntity user;
-	
+
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "base_document_id")
 	private BaseDocumentEntity baseDocument;

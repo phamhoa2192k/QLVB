@@ -1,7 +1,7 @@
 package edu.hust.document.dto;
 
-import java.sql.Date;
 
+import java.util.Set;
 import org.springframework.stereotype.Component;
 
 import lombok.Getter;
@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserDTO extends BaseDTO {
-	
+
 	private String userName;
 	private String password;
 	private String fullName;
@@ -21,5 +21,4 @@ public class UserDTO extends BaseDTO {
 	private String position;
 	private String departmentCode;
 	private String[] roleCodes;
-	
 }

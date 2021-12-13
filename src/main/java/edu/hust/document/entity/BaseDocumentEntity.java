@@ -1,8 +1,5 @@
 package edu.hust.document.entity;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -13,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -51,11 +50,16 @@ public class BaseDocumentEntity extends BaseEntity {
 	
 	@Column(name = "other_info")
 	private String otherInfo;
-	
+
+	@Column(name = "status")
+	private String status;
+
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
-	
+
+	@JsonManagedReference
 	@OneToMany(mappedBy = "baseDocument")
 	private Set<HandlingEntity> handlings;
 	
