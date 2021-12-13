@@ -7,10 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DepartmentForm {
+public class AppointmentForm {
     private Long id;
-    private String address;
-    private String code;
-    private String name;
-    private String phonenumber;
+
+    private String securityLevel;
+
+    private String urgencyLevel;
 }
