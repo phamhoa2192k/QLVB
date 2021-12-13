@@ -1,6 +1,7 @@
 package edu.hust.document.dto;
 
 
+import java.sql.Date;
 import java.util.Set;
 import org.springframework.stereotype.Component;
 
