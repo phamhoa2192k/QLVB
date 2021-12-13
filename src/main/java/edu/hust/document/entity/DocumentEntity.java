@@ -37,6 +37,6 @@ public class DocumentEntity {
 
     @Column(name = "urgency_level")
     private String urgencyLevel;
-    
+
 
 }
