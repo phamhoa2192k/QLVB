@@ -1,7 +1,12 @@
 package edu.hust.document.service.impl;
 
 import edu.hust.document.dto.AppointmentDTO;
+import edu.hust.document.dto.BaseDocumentDTO;
+import edu.hust.document.dto.HandlingDTO;
+import edu.hust.document.dto.UserDTO;
 import edu.hust.document.entity.AppointmentEntity;
+import edu.hust.document.entity.BaseDocumentEntity;
+import edu.hust.document.entity.HandlingEntity;
 import edu.hust.document.form.AppointmentForm;
 import edu.hust.document.repository.AppointmentRepository;
 import edu.hust.document.service.IAppointmentService;
@@ -11,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class AppointmentService implements IAppointmentService {
@@ -25,7 +31,12 @@ public class AppointmentService implements IAppointmentService {
         List<AppointmentEntity> appointmentEntityList = appointmentRepository.findAll();
         List<AppointmentDTO> appointmentDTOList = new ArrayList<>();
         for (AppointmentEntity appointmentEntity: appointmentEntityList) {
-            appointmentDTOList.add(modelMapper.map(appointmentEntity, AppointmentDTO.class));
+            AppointmentDTO appointmentDTO = modelMapper.map(appointmentEntity, AppointmentDTO.class);
+            BaseDocumentDTO baseDocumentDTO = modelMapper.map(appointmentEntity.getBaseDocumentEntity(),
+                    BaseDocumentDTO.class);
+            baseDocumentDTO.setType(appointmentEntity.getBaseDocumentEntity().getCategory().getType());
+            appointmentDTO.setBaseDocumentDTO(baseDocumentDTO);
+            appointmentDTOList.add(appointmentDTO);
         }
         return  appointmentDTOList;
     }
@@ -36,7 +47,33 @@ public class AppointmentService implements IAppointmentService {
         if (appointmentEntity == null){
             return null;
         }
-        return  modelMapper.map(appointmentEntity, AppointmentDTO.class);
+
+        BaseDocumentEntity baseDocumentEntity = appointmentEntity.getBaseDocumentEntity();
+        AppointmentDTO appointmentDTO = modelMapper.map(appointmentEntity, AppointmentDTO.class);
+        BaseDocumentDTO baseDocumentDTO = modelMapper.map(baseDocumentEntity, BaseDocumentDTO.class);
+
+        Set<HandlingEntity> handlingEntitySet = baseDocumentEntity.getHandlings();
+        List<HandlingDTO> handlingDTOList = new ArrayList<>();
+        for (HandlingEntity handlingEntity:
+                handlingEntitySet) {
+            HandlingDTO handlingDTO = modelMapper.map(handlingEntity, HandlingDTO.class);
+            UserDTO userDTO = modelMapper.map(handlingEntity.getUser(), UserDTO.class);
+            userDTO.setDepartmentName(handlingEntity.getUser().getDepartment().getName());
+            handlingDTO.setUserDTO(userDTO);
+            handlingDTOList.add(handlingDTO);
+        }
+        baseDocumentDTO.setType(appointmentEntity.getBaseDocumentEntity().getCategory().getType());
+        baseDocumentDTO.setHandlingDTO(handlingDTOList);
+
+        appointmentDTO.setBaseDocumentDTO(baseDocumentDTO);
+
+        return  appointmentDTO;
+    }
+
+    @Override
+    public AppointmentEntity findEntityById(Long id) {
+        AppointmentEntity appointmentEntity = appointmentRepository.findAppointmentEntityById(id);
+        return appointmentEntity;
     }
 
     @Override
@@ -50,7 +87,6 @@ public class AppointmentService implements IAppointmentService {
         }catch (Exception e) {
             return null;
         }
-
 
         return modelMapper.map(appointmentEntity1, AppointmentDTO.class);
     }

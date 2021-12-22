@@ -1,21 +1,24 @@
 package edu.hust.document.dto;
 
-import edu.hust.document.entity.BaseDocumentEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AppointmentDTO{
+public class HandlingDTO {
 
     private Long id;
 
-    private BaseDocumentDTO baseDocumentDTO;
+    private Timestamp time;
 
-    private String securityLevel;
+    private String note;
 
-    private String urgencyLevel;
+    private String action;
+
+    private UserDTO userDTO;
+
 }

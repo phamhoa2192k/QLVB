@@ -1,9 +1,9 @@
 package edu.hust.document.api;
 
 import edu.hust.document.dto.AppointmentDTO;
+import edu.hust.document.entity.AppointmentEntity;
 import edu.hust.document.form.AppointmentForm;
 import edu.hust.document.service.IAppointmentService;
-import edu.hust.document.service.impl.HandlingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +17,6 @@ public class AppointmentAPI {
     @Autowired
     private IAppointmentService appointmentService;
 
-    @Autowired
-    private HandlingService handlingService;
-
     @GetMapping(value = "/findAll")
     public ResponseEntity<Object> findAll() {
         List<AppointmentDTO> appointmentDTOS = appointmentService.findAll();
@@ -27,10 +24,17 @@ public class AppointmentAPI {
     }
 
     @GetMapping(value = "/search/{id}")
-    public ResponseEntity<Object> findByNameLike(@PathVariable Long id) {
+    public ResponseEntity<Object> findById(@PathVariable Long id) {
         AppointmentDTO appointmentDTO = appointmentService.findById(id);
         if (appointmentDTO == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         return ResponseEntity.ok(appointmentDTO);
+    }
+
+    @GetMapping(value = "/search1/{id}")
+    public ResponseEntity<Object> findById1(@PathVariable Long id) {
+        AppointmentEntity appointmentEntity = appointmentService.findEntityById(id);
+        if (appointmentEntity == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return ResponseEntity.ok(appointmentEntity);
     }
 
     @PostMapping(value = "/insert")

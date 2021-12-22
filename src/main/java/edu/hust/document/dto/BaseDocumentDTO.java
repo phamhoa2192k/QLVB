@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,5 +32,9 @@ public class BaseDocumentDTO extends BaseDTO{
     private String otherInfo;
 
     private String type;
+
+    private String status;
+
+    private List<HandlingDTO> handlingDTO;
 
 }

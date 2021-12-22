@@ -22,4 +22,5 @@ public class UserDTO extends BaseDTO {
 	private String position;
 	private String departmentCode;
 	private String[] roleCodes;
+	private String departmentName;
 }
