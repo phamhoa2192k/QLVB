@@ -31,16 +31,12 @@ public class DepartmentAPI {
     @GetMapping(value = "/search/{id}")
     public ResponseEntity<Object> findById(@PathVariable Long id) {
         DepartmentDTO departmentDTO = departmentService.findById(id);
-        if (departmentDTO == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         return ResponseEntity.ok(departmentDTO);
     }
 
     @PostMapping(value = "/insert")
     public ResponseEntity<Object> insertDepartment(@RequestBody DepartmentForm departmentForm) {
         DepartmentDTO departmentDTO = departmentService.insert(departmentForm);
-        if (departmentDTO == null) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
 
         return ResponseEntity.ok(departmentDTO);
     }
@@ -48,20 +44,12 @@ public class DepartmentAPI {
     @PutMapping(value = "/update")
     public ResponseEntity<Object> updateDepartment(@RequestBody DepartmentForm departmentForm) {
         DepartmentDTO departmentDTO = departmentService.update(departmentForm);
-        if (departmentDTO == null) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
         return ResponseEntity.ok(departmentDTO);
     }
 
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<Object> deleteDepartment(@PathVariable Long id) {
         DepartmentDTO departmentDTO = departmentService.delete(id);
-        if (departmentDTO == null) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
         return ResponseEntity.ok(departmentDTO);
     }
 }

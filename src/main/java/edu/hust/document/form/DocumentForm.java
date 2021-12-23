@@ -4,11 +4,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
+import java.sql.Timestamp;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AppointmentForm {
+public class DocumentForm {
     private Long id;
+
+    private Timestamp deadline;
+
+    private String attachedDocument;
 
     private String securityLevel;
 
@@ -39,5 +46,4 @@ public class AppointmentForm {
     private String otherInfo;
 
     private Long category_id;
-
 }

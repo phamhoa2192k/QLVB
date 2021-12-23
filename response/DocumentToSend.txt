@@ -1,0 +1,133 @@
+
+***1***Tìm tất cả các văn bản đi
+GET /api/documenttosend/findAll
+response
+[
+    {
+        "id": "4",
+        "baseDocumentDTO": {
+            "id": 4,
+            "createdDate": ...,
+            "modifedDate": ...,
+            "createdBy": ...,
+            "modifedBy": ...,
+            "code": "vanbandi01",
+            "name": "vanbandi01",
+            "content": "vanbandi01",
+            "agencyCode": "vanbandi01",
+            "number": "vanbandi01",
+            "signerName": ...,
+            "signerPosition": ...,
+            "issuanceTime": ...,
+            "forwardTime": ...,
+            "otherInfo": "vanbandi01",
+            "type": "vanbandi",
+            "status": "Vừa tạo",
+            "handlingDTO": null -- để null
+        },
+        "deadline": null,
+        "attachedDocument": "vanbandi01",
+        "securityLevel": "4",
+        "urgencyLevel": "4"
+    },
+...
+...
+]
+
+
+
+***2***Tìm các văn bản đi bằng tên
+GET /api/documenttosend/search?name=...
+response
+[
+    {
+        "id": "4",
+        "baseDocumentDTO": {
+            "id": 4,
+            "createdDate": ...,
+            "modifedDate": ...,
+            "createdBy": ...,
+            "modifedBy": ...,
+            "code": "vanbandi01",
+            "name": "vanbandi01",
+            "content": "vanbandi01",
+            "agencyCode": "vanbandi01",
+            "number": "vanbandi01",
+            "signerName": ...,
+            "signerPosition": ...,
+            "issuanceTime": ...,
+            "forwardTime": ...,
+            "otherInfo": "vanbandi01",
+            "type": "vanbandi",
+            "status": "Vừa tạo",
+            "handlingDTO": null  -- để null
+        },
+        "deadline": null,
+        "attachedDocument": "vanbandi01",
+        "securityLevel": "4",
+        "urgencyLevel": "4"
+    },
+...
+...
+]
+
+
+***3***Tìm văn bản đi bằng id để xem chi tiết nó
+GET /api/documenttosend/search/{id}
+response -- null nếu không tìm thấy
+{
+    "id": "4",
+    "baseDocumentDTO": {
+        "id": 4,
+        "createdDate": ...,
+        "modifedDate": ...,
+        "createdBy": ...,
+        "modifedBy": ...,
+        "code": "vanbandi01",
+        "name": "vanbandi01",
+        "content": "vanbandi01",
+        "agencyCode": "vanbandi01",
+        "number": "vanbandi01",
+        "signerName": ...,
+        "signerPosition": ...,
+        "issuanceTime": ...,
+        "forwardTime": ...,
+        "otherInfo": "vanbandi01",
+        "type": "vanbandi",
+        "status": "Vừa tạo",
+        "handlingDTO": [
+            {
+                "id": 1,
+                "time": ...,
+                "note": "giaymoi01 lần 1",
+                "action": "giaymoi01 lần 1",
+                "userDTO": {
+                    "id": 3,
+                    "createdDate": ...,
+                    "modifedDate": ...,
+                    "createdBy": ...,
+                    "modifedBy": ...,
+                    "userName": "user1",
+                    "password": "user1",
+                    "fullName": ...,
+                    "status": ...,
+                    "gender": ...,
+                    "dob": ...,
+                    "position": "Trưởng phòng",
+                    "departmentCode": "pb01",
+                    "roleCodes": null, -- để null
+                    "departmentName": "pb01"
+                }
+            },
+            ...
+            ...
+        ]
+    },
+    "deadline": ...,
+    "attachedDocument": "vanbandi01",
+    "securityLevel": "4",
+    "urgencyLevel": "4"
+}
+
+
+
