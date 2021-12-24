@@ -8,6 +8,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,7 +25,7 @@ public class RoleEntity extends BaseEntity {
 	@Column(name = "code")
 	private String code;
 
-	@JsonBackReference
 	@ManyToMany(mappedBy = "roles")
+	@JsonIgnore
     private Set<UserEntity> users;
 }

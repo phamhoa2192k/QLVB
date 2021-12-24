@@ -1,5 +1,7 @@
 package edu.hust.document.api;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -8,44 +10,45 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.hust.document.api.output.UserOutput;
 import edu.hust.document.dto.UserDTO;
+import edu.hust.document.entity.UserEntity;
 import edu.hust.document.service.IUserService;
 
 @CrossOrigin
 @RestController
+@RequestMapping("/api/user")
 public class UserAPI {
 	
 	@Autowired
 	private IUserService userService;
 	
-	@GetMapping(value = "/api/user")
-	public UserOutput getUsers() {
-		UserOutput users = new UserOutput();
-//		users.setPage(page);
-//		Pageable pageable = new PageRequest(page - 1, limit);
-//		users.setUsers(userService.findAll(pageable));
-		users.setUsers(userService.findAll());
-//		users.setTotalPage((int) Math.ceil((double) (userService.totalItem()) / limit));
-		return users;
+	@GetMapping
+	public List<UserEntity> getAllUsers() {
+		return userService.findAll();
 	}
 	
-	@PostMapping(value = "/api/user")
-	public UserDTO createUser(@RequestBody UserDTO model) {
-		return userService.save(model);
+	@GetMapping(params = {"userId"})
+	public UserEntity getAllUserById(@RequestParam Long userId) {
+		return userService.findUserById(userId);
 	}
 	
-	@PutMapping(value = "/api/user/{id}")
-	public UserDTO updateUser(@RequestBody UserDTO model, @PathVariable("id") long id) {
-		model.setId(id);
-		return userService.save(model);
+	@PostMapping
+	public UserEntity createUser(@RequestBody UserDTO userDTO) {
+		return userService.createUser(userDTO);
 	}
 	
-	@DeleteMapping(value = "/api/user")
+	@PutMapping(value = "/{userId}")
+	public UserEntity updateUser(@RequestBody UserDTO userDTO, @PathVariable("userId") Long userId) {
+		return userService.updateUser(userDTO, userId);
+	}
+	
+	@DeleteMapping
 	public void deleteUser(@RequestBody long[] ids) {
 		userService.delete(ids);
 	}
-
 }

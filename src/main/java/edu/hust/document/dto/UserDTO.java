@@ -1,8 +1,8 @@
 package edu.hust.document.dto;
 
 
-import java.sql.Date;
-import java.util.Set;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import lombok.Getter;
@@ -18,9 +18,8 @@ public class UserDTO extends BaseDTO {
 	private String fullName;
 	private Integer status;
 	private Integer gender;
-	private Date dob;
+	private String dob;
 	private String position;
 	private String departmentCode;
-	private String[] roleCodes;
-	private String departmentName;
+	private List<String> roleCodes;
 }

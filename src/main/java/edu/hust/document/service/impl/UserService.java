@@ -14,6 +14,8 @@ import edu.hust.document.dto.UserDTO;
 import edu.hust.document.entity.DepartmentEntity;
 import edu.hust.document.entity.RoleEntity;
 import edu.hust.document.entity.UserEntity;
+import edu.hust.document.exception.ResourceNotFoundException;
+import edu.hust.document.mapper.UserMapper;
 import edu.hust.document.repository.DepartmentRepository;
 import edu.hust.document.repository.RoleRepository;
 import edu.hust.document.repository.UserRepository;
@@ -32,11 +34,14 @@ public class UserService implements IUserService {
 	private DepartmentRepository departmentRepository;
 	
 	@Autowired
-	private ModelMapper modelMapper;
-
+	private UserMapper userMapper;
+	
 	@Override
-	public UserDTO save(UserDTO userDTO) {
-		UserEntity userEntity = modelMapper.map(userDTO, UserEntity.class);
+	public UserEntity createUser(UserDTO userDTO) {
+		UserEntity userEntity = userMapper.toEntity(userDTO);
+		
+		DepartmentEntity departmentEntity = departmentRepository.findDepartmentByCode(userDTO.getDepartmentCode());
+		userEntity.setDepartment(departmentEntity);
 		
 		Set<RoleEntity> roleEntities = new HashSet<RoleEntity>();
 		for (String roleCode: userDTO.getRoleCodes()) {
@@ -45,13 +50,34 @@ public class UserService implements IUserService {
 		}
 		userEntity.setRoles(roleEntities);
 		
-		DepartmentEntity departmentEntity = departmentRepository.findDepartmentByCode(userDTO.getDepartmentCode());
-		userEntity.setDepartment(departmentEntity);
-		
-		userEntity = userRepository.save(userEntity);
-		
-		return modelMapper.map(userEntity, UserDTO.class);
+		return userRepository.save(userEntity);	
 	}
+	
+	@Override
+	public UserEntity updateUser(UserDTO userDTO, Long userId) {
+		DepartmentEntity departmentEntity = departmentRepository.findDepartmentByCode(userDTO.getDepartmentCode());
+
+		
+		Set<RoleEntity> roleEntities = new HashSet<RoleEntity>();
+		for (String roleCode: userDTO.getRoleCodes()) {
+			RoleEntity roleEntity = roleRepository.findRoleByCode(roleCode);
+			roleEntities.add(roleEntity);
+		}
+		
+		return userRepository.findById(userDTO.getId())
+				.map(oldUser -> {
+					oldUser = userMapper.toEntity(userDTO);
+					oldUser.setDepartment(departmentEntity);
+					oldUser.getRoles().clear();
+					oldUser.setRoles(roleEntities);
+					
+					return userRepository.save(oldUser);
+				})
+				.orElseThrow(() -> {
+					return new ResourceNotFoundException(userId, UserEntity.class);
+				});
+	}
+	
 
 	@Override
 	public void delete(long[] ids) {
@@ -61,30 +87,16 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public List<UserDTO> findAll(Pageable pageable) {
-		List<UserDTO> users = new ArrayList<>();
-		List<UserEntity> entities = userRepository.findAll(pageable).getContent();
-		for (UserEntity user: entities) {
-			UserDTO userDTO = modelMapper.map(user, UserDTO.class);
-			users.add(userDTO);
-		}
-		return users;
+	public List<UserEntity> findAll() {
+		return userRepository.findAll();
 	}
 
 	@Override
-	public int totalItem() {
-		return (int) userRepository.count();
-	}
-
-	@Override
-	public List<UserDTO> findAll() {
-		List<UserDTO> users = new ArrayList<>();
-		List<UserEntity> entities = userRepository.findAll();
-		for (UserEntity user: entities) {
-			UserDTO userDTO = modelMapper.map(user, UserDTO.class);
-			users.add(userDTO);
-		}
-		return users;
+	public UserEntity findUserById(Long id) {
+		return userRepository.findById(id)
+				.orElseThrow(() -> {
+					return new ResourceNotFoundException(id, UserEntity.class);
+				});
 	}
 
 }
