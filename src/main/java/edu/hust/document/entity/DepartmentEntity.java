@@ -10,6 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
@@ -40,8 +41,8 @@ public class DepartmentEntity {
 	@Column(name = "address")
 	private String address;
 
-	@JsonManagedReference
 	@OneToMany(mappedBy = "department")
+	@JsonIgnore
 	private Set<UserEntity> users;
 
 	@Column(name = "phonenumber")

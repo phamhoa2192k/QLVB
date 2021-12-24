@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
@@ -51,11 +52,10 @@ public class UserEntity extends BaseEntity {
 				inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<RoleEntity> roles;
 
-	@JsonManagedReference
 	@OneToMany(mappedBy = "user")
+	@JsonIgnore
 	private Set<HandlingEntity> handlings;
 
-	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "department_id")
 	private DepartmentEntity department;
