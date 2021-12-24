@@ -1,0 +1,227 @@
+
+***1***Tìm tất cả các giấy mời
+GET /api/appointment/findAll
+response
+[
+    {
+        "id": 1,
+        "baseDocumentDTO": {
+            "id": 1,
+            "createdDate": ...,
+            "modifedDate": ...,
+            "createdBy": ...,
+            "modifedBy": ...,
+            "code": "giaymoi01",
+            "name": "giaymoi01",
+            "content": "giaymoi01",
+            "agencyCode": "giaymoi01",
+            "number": "giaymoi01",
+            "signerName": ...,
+            "signerPosition": ...,
+            "issuanceTime": ...,
+            "forwardTime": ...,
+            "otherInfo": "giaymoi01",
+            "type": "giaymoi",
+            "status": "Hoàn thành",
+            "handlingDTO": null    -- để null
+        },
+        "securityLevel": "1",
+        "urgencyLevel": "1"
+    },
+...
+...
+]
+
+
+
+***2***Tìm các giấy mời bằng tên
+GET /api/appointment/search?name=...
+response
+[
+    [
+        {
+            "id": 1,
+            "baseDocumentDTO": {
+                "id": 1,
+                "createdDate": ...,
+                "modifedDate": ...,
+                "createdBy": ...,
+                "modifedBy": ...,
+                "code": "giaymoi01",
+                "name": "giaymoi01",
+                "content": "giaymoi01",
+                "agencyCode": "giaymoi01",
+                "number": "giaymoi01",
+                "signerName": null,
+                "signerPosition": ...,
+                "issuanceTime": ...,
+                "forwardTime": ...,
+                "otherInfo": "giaymoi01",
+                "type": "giaymoi",
+                "status": "Hoàn thành",
+                "handlingDTO": null    -- để null
+            },
+            "securityLevel": "1",
+            "urgencyLevel": "1"
+        },
+...
+...
+]
+
+
+***3***Tìm giấy mời bằng id để xem chi tiết nó
+GET /api/appointment/search/{id}
+response -- trả về đầy đủ thông tin và danh sách lịch sử xử lý (gồm cả bởi user nào)
+{
+    "id": 1,
+    "baseDocumentDTO": {
+        "id": 1,
+        "createdDate": ...,
+        "modifedDate": ...,
+        "createdBy": ...,
+        "modifedBy": ...,
+        "code": "giaymoi01",
+        "name": "giaymoi01",
+        "content": "giaymoi01",
+        "agencyCode": "giaymoi01",
+        "number": "giaymoi01",
+        "signerName": ...,
+        "signerPosition": ...,
+        "issuanceTime": ...,
+        "forwardTime": ...,
+        "otherInfo": "giaymoi01",
+        "type": "giaymoi",
+        "status": "Hoàn thành",
+        "handlingDTO": [
+            {
+                "id": 1,
+                "time": ...,
+                "note": "giaymoi01 lần 1",
+                "action": "giaymoi01 lần 1",
+                "userDTO": {
+                    "id": 3,
+                    "createdDate": ...,
+                    "modifedDate": ...,
+                    "createdBy": ...,
+                    "modifedBy": ...,
+                    "userName": "user1",
+                    "password": "user1",
+                    "fullName": ...,
+                    "status": ...,
+                    "gender": ...,
+                    "dob": ...,
+                    "position": "Trưởng phòng",
+                    "departmentCode": "pb01",
+                    "roleCodes": null, -- để null
+                    "departmentName": "pb01"
+                }
+            },
+        ...
+        ...
+        ]
+    },
+    "securityLevel": "1",
+    "urgencyLevel": "1"
+}
+
+
+
+***4***Thêm một giấy mời mới
+POST /api/appointment/insert
+request
+{
+    "securityLevel": "3",
+    "urgencyLevel": "3",
+    "created_by": "user1", -- tên user muốn tạo giấy mời
+    "code": "giaymoi4",
+    "name": "giaymoi4",
+    "content": "giaymoi4",
+    "agencyCode": "giaymoi4",
+    "number": "giaymoi4",
+    "signerName": "user1",
+    "signerPosition": "Trưởng phòng",
+    "issuanceTime": "1/12/2022",
+    "forwardTime": "1/1/2022",
+    "otherInfo": "giaymoi4",
+    "category_id": 1  -- id loại giấy mời
+}
+
+response  --- trả lại thông tin giấy mời vừa thêm được (null nếu thêm lỗi)
+{
+    "id": 9,
+    "baseDocumentDTO": {
+        "id": 9,
+        "createdDate": "2021-12-23",
+        "modifedDate": null,
+        "createdBy": "user1",
+        "modifedBy": null,
+        "code": "giaymoi4",
+        "name": "giaymoi4",
+        "content": "giaymoi4",
+        "agencyCode": "giaymoi4",
+        "number": "giaymoi4",
+        "signerName": "user1",
+        "signerPosition": "Trưởng phòng",
+        "issuanceTime": "1/12/2022",
+        "forwardTime": "1/1/2022",
+        "otherInfo": "giaymoi4",
+        "type": null,
+        "status": "Vừa tạo",
+        "handlingDTO": null -- để null
+    },
+    "securityLevel": "3",
+    "urgencyLevel": "3"
+}
+
+
+
+***5***Update một giấy mời mới
+PUT /api/appointment/update
+request
+{
+    "id": 9,
+    "securityLevel": "3",
+    "urgencyLevel": "3",
+    "modifed_by": "user2", -- tên user muốn sửa
+    "code": "giaymoi4",
+    "name": "giaymoi4",
+    "content": "giaymoi4",
+    "agencyCode": "giaymoi4",
+    "number": "giaymoi4",
+    "signerName": "user1",
+    "signerPosition": "Trưởng phòng",
+    "issuanceTime": "1/12/2022",
+    "forwardTime": "1/1/2022",
+    "otherInfo": "giaymoi4",
+    "category_id": 1
+}
+
+response  --- trả lại thông tin giấy mời vừa sửa được (null nếu không tìm thấy hoặc sai thông tin)
+{
+    "id": 9,
+    "baseDocumentDTO": {
+        "id": 9,
+        "createdDate": "2021-12-23",
+        "modifedDate": "2021-12-23",
+        "createdBy": "user1",
+        "modifedBy": "user2",
+        "code": "giaymoi4",
+        "name": "giaymoi4",
+        "content": "giaymoi4",
+        "agencyCode": "giaymoi4",
+        "number": "giaymoi4",
+        "signerName": "user1",
+        "signerPosition": "Trưởng phòng",
+        "issuanceTime": "1/12/2022",
+        "forwardTime": "1/1/2022",
+        "otherInfo": "giaymoi4",
+        "type": null,
+        "status": "Vừa tạo",
+        "handlingDTO": null -- để null
+    },
+    "securityLevel": "3",
+    "urgencyLevel": "3"
+}
+
+
+

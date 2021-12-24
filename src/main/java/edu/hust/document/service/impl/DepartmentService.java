@@ -4,7 +4,6 @@ import edu.hust.document.dto.DepartmentDTO;
 import edu.hust.document.entity.DepartmentEntity;
 import edu.hust.document.form.DepartmentForm;
 import edu.hust.document.repository.DepartmentRepository;
-import edu.hust.document.repository.UserRepository;
 import edu.hust.document.service.IDepartmentService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +54,7 @@ public class DepartmentService implements IDepartmentService {
     public DepartmentDTO insert(DepartmentForm departmentForm){
         DepartmentEntity departmentEntity = new DepartmentEntity();
         setDepartmentFormForEntity(departmentForm, departmentEntity);
+        departmentEntity.setNumberOfStaff(0L);
 
         DepartmentEntity departmentEntity1;
         try {
@@ -70,6 +70,7 @@ public class DepartmentService implements IDepartmentService {
     @Override
     public DepartmentDTO update(DepartmentForm departmentForm){
         DepartmentEntity departmentEntity = departmentRepository.findDepartmentEntityById(departmentForm.getId());
+        if (departmentEntity == null)   return null;
         setDepartmentFormForEntity(departmentForm, departmentEntity);
         departmentEntity.setId(departmentForm.getId());
 

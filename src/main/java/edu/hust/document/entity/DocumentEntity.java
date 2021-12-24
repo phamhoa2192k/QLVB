@@ -20,7 +20,7 @@ import lombok.Setter;
 public class DocumentEntity {
     @Id
     @Column(name = "id")
-    private String id;
+    private Long id;
 
     @OneToOne(fetch = FetchType.EAGER)
     @PrimaryKeyJoinColumn

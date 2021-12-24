@@ -5,15 +5,22 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+import java.sql.Timestamp;
+
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AppointmentDTO{
+public class DocumentDTO {
 
-    private Long id;
+    private String id;
 
     private BaseDocumentDTO baseDocumentDTO;
+
+    private Timestamp deadline;
+
+    private String attachedDocument;
 
     private String securityLevel;
 

@@ -1,15 +1,29 @@
-package edu.hust.document.dto;
+package edu.hust.document.form;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import javax.persistence.Column;
+import java.sql.Timestamp;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BaseDocumentDTO extends BaseDTO{
+public class DocumentForm {
+    private Long id;
+
+    private Timestamp deadline;
+
+    private String attachedDocument;
+
+    private String securityLevel;
+
+    private String urgencyLevel;
+
+    private String created_by;
+
+    private String modifed_by;
 
     private String code;
 
@@ -31,10 +45,5 @@ public class BaseDocumentDTO extends BaseDTO{
 
     private String otherInfo;
 
-    private String type;
-
-    private String status;
-
-    private List<HandlingDTO> handlingDTO;
-
+    private Long category_id;
 }
