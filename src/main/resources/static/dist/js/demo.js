@@ -10,7 +10,7 @@
 (function ($) {
   'use strict'
 
-
+  getCurrentUser();
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1)
   }
@@ -685,3 +685,15 @@
     $brand_variants.removeClass().addClass('custom-select mb-3 text-light border-0 ').addClass(active_brand_color)
   }
 })(jQuery)
+
+
+async function getCurrentUser(){
+  var user = await fetch("/api/currentuser").then(data => data.json()).catch(console.log)
+  $("#currentUser").text(user.fullName);
+  return user;
+}
+
+async function getAllDepartment(){
+  var departments = await fetch("/api/department/findAll").then(data => data.json()).catch(console.log)
+  return departments;
+}

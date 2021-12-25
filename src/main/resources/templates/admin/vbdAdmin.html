@@ -6,16 +6,25 @@
   <title>Admin|Quản lí văn bản</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+   <!-- Google Font: Source Sans Pro -->
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+   <!-- Font Awesome -->
+   <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+   <!-- SweetAlert2 -->
+   <link rel="stylesheet" href="/plugins/sweetalert2/sweetalert2.min.css">
+   <!-- Toastr -->
+   <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
+   <!-- Theme style -->
+   <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+   <link rel="stylesheet" href="/plugins/datatables/jquery.dataTables.min.js">
+   <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
   <!-- Navbar -->
-
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+  </div>
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -23,10 +32,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="indexAdmin.html" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="/admin/index" class="nav-link">Home</a>
       </li>
     </ul>
 
@@ -53,91 +59,6 @@
           </form>
         </div>
       </li>
-      <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  John Pierce
-                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Nora Silvester
-                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-        </div>
-      </li>
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
-      </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
@@ -157,21 +78,9 @@
           <img src="/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">My name</a>
+          <a href="#" class="d-block" id="currentUser"></a>
         </div>
-      </div>
-
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
-        </div>
-      </div>
+      </div>  
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
@@ -179,11 +88,10 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="./indexAdmin.html" class="nav-link">
+            <a href="/admin/index" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <!-- <ul class="nav nav-treeview">
@@ -196,7 +104,7 @@
             </ul> -->
           </li>
           <li class="nav-item">
-            <a href="qlpbAdmin.html" class="nav-link">
+            <a href="/admin/qlpbAdmin" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Quản lí phòng ban
@@ -205,12 +113,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="vbdAdmin.html" class="nav-link active">
+            <a href="/admin/vbdAdmin" class="nav-link active">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Văn bản đến
-                <i class="fas fa-angle-left right"></i>
-                <!-- <span class="badge badge-info right">6</span> -->
               </p>
             </a>
             <!-- <ul class="nav nav-treeview">
@@ -226,11 +132,10 @@
             </ul> -->
           </li>
           <li class="nav-item">
-            <a href="vbphAdmin.html" class="nav-link">
+            <a href="/admin/vbphAdmin" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Văn bản phát hành
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             
@@ -240,7 +145,6 @@
               <i class="nav-icon fas fa-tree"></i>
               <p>
                 Hồ sơ một cửa
-                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             
@@ -249,78 +153,18 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
+                Giấy mời
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
                 Công việc nội bộ
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <!-- <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>General Elements</p>
-                </a>
-              </li>
-              
-            </ul> -->
-          </li>
-          
-          <li class="nav-header">EXAMPLES</li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-calendar-alt"></i>
-              <p>
-                Calendar
-                <span class="badge badge-info right">2</span>
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Gallery
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-columns"></i>
-              <p>
-                Kanban Board
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-envelope"></i>
-              <p>
-                Mailbox
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inbox</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Compose</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Read</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          
-
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -340,8 +184,8 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Simple Tables</li>
+              <li class="breadcrumb-item"><a href="/admin/index">Home</a></li>
+              <li class="breadcrumb-item active">Văn bản đến</li>
             </ol>
           </div>
         </div>
@@ -357,24 +201,15 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <!-- <h3 class="card-title">Responsive Hover Table</h3> -->
-
-                <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                    <div class="input-group-append">
-                      <button type="submit" class="btn btn-default">
-                        <i class="fas fa-search"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                <button type="button" class="btn btn-default"  data-toggle="modal" data-target="#modal-themvanban">
+                  <i class="fas fa-edit"></i>Thêm mới văn bản
+                </button>
               </div>
               <!-- /.card-header -->
-              <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap">
-                  <thead>
+              <div class="card-body">
+                <table id="listDocuments" class="table"></table>
+                <!-- <table class="table table-hover text-nowrap">
+                 <thead>
                     <tr>
                       <th>ID</th>
                       <th>Tên văn bản</th>
@@ -382,6 +217,7 @@
                       <th>Ngày tạo</th>
                       <th>Trạng thái</th>
                       <th></th>
+                      <th></th> 
                       <th></th>
 
                     </tr>
@@ -394,8 +230,13 @@
                       <th>16/1/2021</th>
                       <td><span class="tag tag-success">Vừa tiếp nhận</span></td>
                       <td>                                
-                        <button style="padding: 0; cursor: pointer;" type="button" class="btn" data-toggle="modal" data-target="#modal-chitietvanban">
-                          chi tiết
+                        <button style="padding: 0; cursor: pointer;" type="text" class="btn">
+                          <a href="documentDetail.html">chi tiết</a> 
+                        </button>
+                      </td>
+                      <td>                                
+                        <button style="padding: 0; cursor: pointer;" type="button" class="btn" data-toggle="modal" data-target="#modal-phanxuli">
+                          Phân xử lí
                         </button>
                       </td>
                       <td>                                
@@ -406,7 +247,7 @@
                     </tr>
                     
                   </tbody>
-                </table>
+                </table>-->
               </div>
               <!-- /.card-body -->
             </div>
@@ -435,168 +276,134 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
+<div class="modal fade" id="modal-themvanban">
+  <div class="modal-dialog" style="max-width: 900px;">
+    <div class="modal-content">
+      <form action="#" method="post">
 
-<div class="modal fade" id="modal-chitietvanban">
-  <div class="modal-dialog" style="max-width: 1100px;">
-    <div class="modal-content row">
-      <div class="row">
-        <div class="col-sm-6">
-          <form action="/document-update" method="post">
-  
-            <div class="modal-header">
-              <h4 class="modal-title">Thông tin chi tiết văn bản</h4>
-              <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button> -->
-            </div>
-            <div class="modal-body">
-              <div class="card card-primary">
-    
-                <!-- /.card-header -->
-    
-                  <div class=" table-responsive">
-                    <table class="table table-hover text-nowrap">
-                      <tr>
-                        <th>Tên văn bản</th>
-                        <th>Quyết định thăng chức</th>
-                      </tr>
-                      <tr>
-                        <th>Mã định danh CQ/TC phát hành </th>
-                        <th>000.00.00.G15</th>
-                      </tr>
-                      <tr>
-                        <th>Mã định danh văn bản</th>
-                        <th>Quyết định thăng chức</th>
-                      </tr>
-                      <tr>
-                        <th>Kí hiệu văn bản</th>
-                        <th>Quyết định thăng chức</th>
-                      </tr>
-                      <tr>
-                        <th>Loại văn bản</th>
-                        <th>Quyết định thăng chức</th>
-                      </tr>
-                      <tr>
-                        <th>Số trang</th>
-                        <th>Quyết định thăng chức</th>
-                      </tr>
-                      <tr>
-                        <th>Ngày phát hành</th>
-                        <th>Quyết định thăng chức</th>
-                      </tr>
-                      <tr>
-                        <th>Têp văn bản</th>
-                        <th>Quyết định thăng chức</th>
-                      </tr>
-                      <tr>
-                        <th>Trích yếu nội dung</th>
-                        <th>Quyết định thăng chức</th>
-                      </tr>
-                      <tr>
-                        <th>Hồ sơ gửi kèm</th>
-                        <th>Quyết định thăng chức</th>
-                      </tr>
-                      <tr>
-                        <th>Thời hạn xử lí</th>
-                        <th>Quyết định thăng chức</th>
-                      </tr>
-                      
-                    </table>
-                                                  
-                    <!-- <div class="form-check">
-                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div> -->
-                  </div>
-                  <!-- /.card-body -->
-    
-                  <!-- <button type="submit" class="btn btn-primary">Add new</button> -->
-    
-              </div>
-            </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Sửa</button>
-            </div>
-          </form>
+        <div class="modal-header">
+          <h4 class="modal-title">Thêm mới văn bản</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        
-  
-        <div class="col-sm-6">
-          <!-- <form action="/add-department" method="post"> -->
-  
-            <div class="modal-header">
-              <h4 class="modal-title">Lịch sử xử lí văn bản</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="row">
-                <div class="col-md-12">
-                  <!-- The time line -->
-                  <div class="timeline">
-                    <!-- timeline time label -->
-                    <div class="time-label">
-                      <span class="bg-red">10 Feb. 2014</span>
-                    </div>
-                    <!-- /.timeline-label -->
-                    <!-- timeline item -->
-                    <div>
-                      <i class="fas fa-envelope bg-blue"></i>
-                      <div class="timeline-item">
-                        <span class="time"><i class="fas fa-clock"></i> 12:05</span>
-                        <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-      
-                        <div class="timeline-body">
-                          Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                          weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                          jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                          quora plaxo ideeli hulu weebly balihoo...
-                        </div>
-                        <!-- <div class="timeline-footer">
-                          <a class="btn btn-primary btn-sm">Read more</a>
-                          <a class="btn btn-danger btn-sm">Delete</a>
-                        </div> -->
+        <div class="modal-body">
+          <div class="card card-primary">
+
+            <!-- /.card-header -->
+            <!-- form start -->
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Tên văn bản</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nhập tên phòng ban">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Mã định danh cơ quan tổ chức phát hành </label>
+                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Nhập mã phòng ban">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Mã định danh văn bản</label>
+                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Nhập số điện thoại">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Kí hiệu văn bản</label>
+                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Nhập địa chỉ">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Loại văn bản</label>
+                  <select class="form-select" aria-label="Default select example">
+                    <option selected>Chọn loại văn bản</option>
+                    <option value="loai1">Quyết định</option>
+                    <option value="2">Thông báo</option>
+                    <option value="3">Nghị quyết</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Ngày phát hành</label>
+                  <input type="datetime" class="form-control" id="exampleInputPassword1" placeholder="Nhập ngày phát hành">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Số trang</label>
+                  <input type="text" class="" id="exampleInputPassword1" placeholder="Nhập số trang">
+                </div>
+                
+                <div class="row">
+                  <div class="col-sm-6">
+                    <!-- radio -->
+                    <div class="form-group">
+                      <label>Độ mật</label>
+
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radio2">
+                        <label class="form-check-label">Mật</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radio2" checked>
+                        <label class="form-check-label">Tối mật</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radio2">
+                        <label class="form-check-label">Tuyệt mật</label>
                       </div>
                     </div>
-                    <!-- END timeline item -->
-                    <!-- timeline item -->
-                    <div>
-                      <i class="fas fa-user bg-green"></i>
-                      <div class="timeline-item">
-                        <span class="time"><i class="fas fa-clock"></i> 5 mins ago</span>
-                        <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request</h3>
+                  </div>
+                  <div class="col-sm-6">
+                    <!-- radio -->
+                    <div class="form-group">
+                      <label>Độ khẩn</label>
+
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radio1">
+                        <label class="form-check-label">Khẩn</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radio1" checked>
+                        <label class="form-check-label">Thượng khẩn</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radio1">
+                        <label class="form-check-label">Hỏa tốc</label>
                       </div>
                     </div>
-                    <!-- END timeline item -->
-                    <!-- timeline item -->
-                    
-                    <!-- END timeline item -->
-                    <!-- timeline time label -->
-                   
-                    <!-- END timeline item -->
-                    <div>
-                      <i class="fas fa-clock bg-gray"></i>
+                  </div>
+
+                </div>
+                
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Trích yếu nội dung</label>
+                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Nhập địa chỉ">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputFile">Tài liệu</label>
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="exampleInputFile">
+                      <label class="custom-file-label" for="exampleInputFile">Chọn file</label>
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text">Tải lên</span>
                     </div>
                   </div>
                 </div>
-                <!-- /.col -->
               </div>
-            </div>
-            <!-- <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Add new</button> -->
-            <!--</div> -->
-          <!-- </form> -->
+              <!-- /.card-body -->
+
+              <!-- <button type="submit" class="btn btn-primary">Add new</button> -->
+
+          </div>
         </div>
-      </div>
-      
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+          <button type="submit" class="btn btn-primary">Thêm mới</button>
+        </div>
+      </form>
+
     </div>
     <!-- /.modal-content -->
   </div>
   <!-- /.modal-dialog -->
 </div>
+
 
 <div class="modal fade" id="modal-delete">
   <div class="modal-dialog">
@@ -610,19 +417,10 @@
           </button>
         </div>
         <div class="modal-body">
-          <!-- <div class="card card-primary"> -->
+         
+          <p>Bạn có chắc chắn muốn xóa ?</p>
 
-            <!-- /.card-header -->
-            <!-- form start -->
-              <!-- <div class="card-body"> -->
-                <p>Bạn có chắc chắn muốn xóa ?</p>
-
-              <!-- </div> -->
-              <!-- /.card-body -->
-
-              <!-- <button type="submit" class="btn btn-primary">Add new</button> -->
-
-          <!-- </div> -->
+              
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -635,14 +433,22 @@
   </div>
   <!-- /.modal-dialog -->
 </div>
-
 <!-- jQuery -->
 <script src="/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/dist/js/adminlte.min.js"></script>
+<!-- bs-custom-file-input -->
+<script src="/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<script src="/plugins//datatables/jquery.dataTables.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/dist/js/demo.js"></script>
+<script src="/dist/js/pages/admin/vbdAdmin.js"></script>
+<script>
+  $(function () {
+    bsCustomFileInput.init();
+  });
+  </script>
 </body>
 </html>

@@ -67,8 +67,9 @@ public class UserService implements IUserService {
 		return userRepository.findById(userDTO.getId())
 				.map(oldUser -> {
 					oldUser = userMapper.toEntity(userDTO);
+					oldUser.setId(userDTO.getId());
 					oldUser.setDepartment(departmentEntity);
-					oldUser.getRoles().clear();
+					//oldUser.getRoles().clear();
 					oldUser.setRoles(roleEntities);
 					
 					return userRepository.save(oldUser);

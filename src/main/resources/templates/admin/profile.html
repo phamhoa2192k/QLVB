@@ -28,9 +28,6 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="indexAdmin.html" class="nav-link">Home</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
     </ul>
 
     <!-- Right navbar links -->
@@ -56,91 +53,6 @@
           </form>
         </div>
       </li>
-      <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  John Pierce
-                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Nora Silvester
-                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-        </div>
-      </li>
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
-      </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
@@ -160,21 +72,10 @@
           <img src="/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">My name</a>
+          <a href="#" class="d-block" id="currentUser"></a>
         </div>
       </div>
 
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
-        </div>
-      </div>
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
@@ -182,11 +83,10 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="./indexAdmin.html" class="nav-link">
+            <a href="/admin/index" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <!-- <ul class="nav nav-treeview">
@@ -199,41 +99,26 @@
             </ul> -->
           </li>
           <li class="nav-item">
-            <a href="qlpbAdmin.html" class="nav-link active">
+            <a href="/admin/qlpbAdmin" class="nav-link active">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Quản lí phòng ban
-                <!-- <span class="right badge badge-danger">New</span> -->
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="vbdAdmin.html" class="nav-link">
+            <a href="/admin/vbdAdmin" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Văn bản đến
-                <i class="fas fa-angle-left right"></i>
-                <!-- <span class="badge badge-info right">6</span> -->
               </p>
             </a>
-            <!-- <ul class="nav nav-treeview">
-
-              <li class="nav-item">
-                <a href="simple.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Văn bản đã xử lí</p>
-                </a>
-              </li>
-
-
-            </ul> -->
           </li>
           <li class="nav-item">
-            <a href="vbphAdmin.html" class="nav-link">
+            <a href="/admin/vbphAdmin" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Văn bản phát hành
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             
@@ -243,7 +128,6 @@
               <i class="nav-icon fas fa-tree"></i>
               <p>
                 Hồ sơ một cửa
-                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             
@@ -252,78 +136,18 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
+                Giấy mời
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
                 Công việc nội bộ
-                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            <!-- <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>General Elements</p>
-                </a>
-              </li>
-              
-            </ul> -->
-          </li>
-          
-          <li class="nav-header">EXAMPLES</li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-calendar-alt"></i>
-              <p>
-                Calendar
-                <span class="badge badge-info right">2</span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Gallery
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-columns"></i>
-              <p>
-                Kanban Board
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-envelope"></i>
-              <p>
-                Mailbox
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inbox</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Compose</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Read</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          
-
+          </li>            
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -338,6 +162,8 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
+            <a href="/admin/qlpbAdmin">Trở lại</a>
+
             <h1>
               Thông tin chi tiết
               <!-- <small>new</small> -->
@@ -345,8 +171,8 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Navbar & Tabs</li>
+              <li class="breadcrumb-item"><a href="/admin/index">Home</a></li>
+              <li class="breadcrumb-item active">Quản lý phòng ban</li>
             </ol>
           </div>
         </div>
@@ -356,24 +182,66 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-                
-        <!-- /.row -->
-        <div class="card card-primary card-outline">
-          
-          <div class="card-body">
-                
-                <form method="post" action="/update-member">
-                  <div class="row">
-                    <div class="col-sm-6 card card-primary">
+        <div class="row">
+          <div class="col-sm-3 ">
+            <div class="card card-primary card-outline">
+              <div class="card-body box-profile">
+                <div class="text-center">
+                  <img class="profile-user-img img-fluid img-circle"
+                       src="/dist/img/user4-128x128.jpg"
+                       alt="User profile picture">
+                </div>
+    
+                <h3 class="profile-username text-center" id="userName"></h3>
+    
+                <p class="text-muted text-center " id="userPosition"></p>
+    
+                <!-- <ul class="list-group list-group-unbordered mb-3">
+                  <li class="list-group-item">
+                    <b>Followers</b> <a class="float-right">1,322</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Following</b> <a class="float-right">543</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Friends</b> <a class="float-right">13,287</a>
+                  </li>
+                </ul> -->
+    
+                <!-- <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a> -->
+              </div>
+            </div>
+          </div>
+                  
+          <!-- /.row -->
+          <div class="col-sm-9 " id="form">
+            <div class="card card-primary card-outline">
+              <div class="card-body">
+                  
+                <form id="formFixUser">
+                  <div class="modal-body">
+                    <div class="card card-primary">
           
                       <!-- /.card-header -->
                       <!-- form start -->
                         <div class="card-body">
           
                           <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-2 col-form-label">Họ và tên</label>
+                            <label for="formNewUserFullName" class="col-sm-2 col-form-label">Họ và tên</label>
                             <div class="col-sm-10">
-                              <input type="email" class="form-control" id="inputEmail3" placeholder="Nhập họ và tên ...">
+                              <input type="text" class="form-control" id="formNewUserFullName" placeholder="Nhập họ và tên ..." required>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="formNewUserUserName" class="col-sm-2 col-form-label">Tên đăng nhập</label>
+                            <div class="col-sm-10">
+                              <input type="email" class="form-control" id="formNewUserUserName" placeholder="Nhập tên đăng nhập ..." required>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="formNewUserPassword" class="col-sm-2 col-form-label">Mật khẩu</label>
+                            <div class="col-sm-10">
+                              <input type="password" class="form-control" id="formNewUserPassword" placeholder="Mật khẩu ..." required>
                             </div>
                           </div>
                           <hr/>
@@ -387,15 +255,15 @@
                                   <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                   </div>
-                                  <input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                                  <input type="date" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask id="formNewUserDOB">
                                 </div>
                                 <!-- /.input group -->
                               </div>
                               <div class="form-group">
                                 <label>Giới tính</label>
-                                <select class="form-control select2" style="width: 100%;">
-                                  <option selected="selected">Nữ</option>
-                                  <option>Nam</option>
+                                <select class="form-control select2" style="width: 100%;" required id="formNewUserGender">
+                                  <option selected="selected" value="0">Nữ</option>
+                                  <option value="1">Nam</option>
                                 
                                 </select>
                               </div>
@@ -406,65 +274,39 @@
                                   <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                   </div>
-                                  <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask>
+                                  <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask required id="formNewUserPhonenumber">
                                 </div>
                                 <!-- /.input group -->
                               </div>
-                              <!-- <div class="form-group">
-                                <label>Địa chỉ email</label>
-                                <input type="text" class="form-control" placeholder="Enter ...">
-                              </div> -->
                             </div>
                             
                             <div class="col-sm-6">
                               <!-- text input -->
                               <div class="form-group">
                                 <label>Đơn vị công tác</label>
-                                <select class="form-control select2" style="width: 100%;">
-                                  <option selected="selected">Phòng Hành chính tổ chức</option>
-                                                      
-                                  <option>Văn phòng UBND tỉnh</option>
-                                  <option>Văn phòng UBND huyện</option>
+                                <select class="form-control select2" style="width: 100%;" required id="formNewUserDepartment">
                                 </select>
                               </div>
                               
                               <div class="form-group">
                                 <label>Chức vụ</label>
-                                <input type="text" class="form-control" placeholder="Nhập tên phòng ban">
+                                <input type="text" class="form-control" placeholder="Nhập chức vụ" required id="formNewUserPosition">
                               </div>
+          
+                              <label>Quyền sử dụng hệ thống</label>
+                              <select class="form-select form-control select2 " style="width: 100%;" id="formNewUserRole" required multiple>
+                                <option value="ADMIN">Admin</option>
+                                <option value="USER">Người dùng</option>
+                              </select>
                             </div>
-                          </div>
-                          <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
                           </div>
                         </div>
                         <!-- /.card-body -->
           
                         
                     </div>
-                    <div class="col-sm-6 card card-primary">
-                      <div class="card-body">
-                        <h6>Thông tin tài khoản</h6>
-                        <div class="form-group row">
-                          <label for="inputEmail3" class="col-sm-2 col-form-label">Tên đăng nhập</label>
-                          <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputEmail3" placeholder="Nhập email...">
-                          </div>
-                          
-                        </div>
-                        <div class="form-group row">
-                          <label for="inputEmail3" class="col-sm-2 col-form-label">Mật khẩu</label>
-                          <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputEmail3" placeholder="Mật khẩu ...">
-                          </div>
-                        </div>
-            
-                      </div>
-                      
-                    </div>
                   </div>
-                  <div class="modal-footer justify-content-right">
+                  <div class="modal-footer justify-content-between">
                     <button type="submit" class="btn btn-primary">Sửa</button>
                   </div>
               </form>
@@ -472,8 +314,12 @@
               <!-- /.modal-content -->
             <!-- /.modal-dialog -->
           </div>
-          <!-- /.card -->
+            </div>
+           
+            <!-- /.card -->
+          </div>
         </div>
+        
         <!-- /.card -->
         
         <!-- /.card -->
@@ -500,148 +346,6 @@
 <!-- modal phongban-->
 
 <!-- /.modal -->
-<div class="modal fade" id="modal-thanhvien">
-  <div class="modal-dialog" style="max-width: 800px;">
-    <div class="modal-content" style="width: 800px;">
-      <div class="modal-header">
-        <h4 class="modal-title">Thêm thành viên</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form method="post" action="/add-member">
-        <div class="modal-body">
-          <div class="card card-primary">
-
-            <!-- /.card-header -->
-            <!-- form start -->
-              <div class="card-body">
-
-                <div class="form-group row">
-                  <label for="inputEmail3" class="col-sm-2 col-form-label">Họ và tên</label>
-                  <div class="col-sm-10">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="Nhập họ và tên ...">
-                  </div>
-                </div>
-                <hr/>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <!-- text input -->
-                    <div class="form-group">
-                      <label>Ngày sinh :</label>
-    
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                        </div>
-                        <input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
-                      </div>
-                      <!-- /.input group -->
-                    </div>
-                    <div class="form-group">
-                      <label>Giới tính</label>
-                      <select class="form-control select2" style="width: 100%;">
-                        <option selected="selected">Nữ</option>
-                        <option>Nam</option>
-                      
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label>Số điện thoại liên lạc :</label>
-    
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                        </div>
-                        <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                      </div>
-                      <!-- /.input group -->
-                    </div>
-                    <div class="form-group">
-                      <label>Địa chỉ email</label>
-                      <input type="text" class="form-control" placeholder="Enter ...">
-                    </div>
-                  </div>
-                  
-                  <div class="col-sm-6">
-                    <!-- text input -->
-                    <div class="form-group">
-                      <label>Đơn vị công tác</label>
-                      <select class="form-control select2" style="width: 100%;">
-                        <option selected="selected">Phòng Hành chính tổ chức</option>
-                                            
-                        <option>Văn phòng UBND tỉnh</option>
-                        <option>Văn phòng UBND huyện</option>
-                      </select>
-                    </div>
-                    
-                    <div class="form-group">
-                      <label>Chức vụ</label>
-                      <input type="text" class="form-control" placeholder="Nhập tên phòng ban">
-                    </div>
-                  </div>
-                </div>
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-              </div>
-              <!-- /.card-body -->
-
-              
-          </div>
-        </div>
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Thêm</button>
-        </div>
-    </form>
-
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
-
-
-
-<div class="modal fade" id="modal-delete">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form action="/delete" method="post">
-
-        <div class="modal-header">
-          <h4 class="modal-title">Xóa</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <!-- <div class="card card-primary"> -->
-
-            <!-- /.card-header -->
-            <!-- form start -->
-              <!-- <div class="card-body"> -->
-                <p>Bạn có chắc chắn muốn xóa ?</p>
-
-              <!-- </div> -->
-              <!-- /.card-body -->
-
-              <!-- <button type="submit" class="btn btn-primary">Add new</button> -->
-
-          <!-- </div> -->
-        </div>
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-danger">Delete</button>
-        </div>
-      </form>
-
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
 
 <!-- /.modal -->
 <!-- jQuery -->
@@ -652,5 +356,6 @@
 <script src="/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/dist/js/demo.js"></script>
+<script src="/dist/js/pages/admin/profile.js"></script>
 </body>
 </html>
