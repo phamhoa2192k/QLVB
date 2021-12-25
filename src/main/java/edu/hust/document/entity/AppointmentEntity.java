@@ -11,13 +11,13 @@ import lombok.Setter;
 @Table(name = "appointment")
 public class AppointmentEntity {
 
-    @Id
-    @Column(name = "id")
+	@Id
+    @GeneratedValue
     private Long id;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @PrimaryKeyJoinColumn
-    BaseDocumentEntity baseDocumentEntity;
+	@OneToOne
+    @JoinColumn(name = "id")
+	BaseDocumentEntity baseDocumentEntity;
 
     @Column(name = "security_level")
     private String securityLevel;

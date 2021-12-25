@@ -1,22 +1,16 @@
 package edu.hust.document.dto;
 
-import edu.hust.document.entity.BaseDocumentEntity;
+import java.sql.Timestamp;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
-import java.sql.Timestamp;
 
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DocumentDTO {
-
-    private String id;
-
-    private BaseDocumentDTO baseDocumentDTO;
+public class DocumentDTO extends BaseDocumentDTO {
 
     private Timestamp deadline;
 
