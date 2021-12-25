@@ -36,34 +36,14 @@ public class DocumentToSendService implements IDocumentToSendService {
     public List<DocumentDTO> findAll() {
         List<DocumentEntity> documentEntityList =
                 documentRepository.findDocumentEntityByCategaryName("Văn bản đi");
-        List<DocumentDTO> documentDTOList = new ArrayList<>();
-
-        for (DocumentEntity documentEntity: documentEntityList) {
-            DocumentDTO documentDTO = modelMapper.map(documentEntity, DocumentDTO.class);
-            BaseDocumentEntity baseDocumentEntity = documentEntity.getBaseDocumentEntity();
-            BaseDocumentDTO baseDocumentDTO = modelMapper.map(baseDocumentEntity, BaseDocumentDTO.class);
-            baseDocumentDTO.setType(baseDocumentEntity.getCategory().getType());
-            documentDTO.setBaseDocumentDTO(baseDocumentDTO);
-            documentDTOList.add(documentDTO);
-        }
-        return  documentDTOList;
+        return  setListDTO(documentEntityList);
     }
 
     @Override
     public List<DocumentDTO> findLikeByName(String name) {
         List<DocumentEntity> documentEntityList =
                 documentRepository.findDocumentEntityByCategaryNameAndDocumentName("Văn bản đi", name);
-        List<DocumentDTO> documentDTOList = new ArrayList<>();
-
-        for (DocumentEntity documentEntity: documentEntityList) {
-            DocumentDTO documentDTO = modelMapper.map(documentEntity, DocumentDTO.class);
-            BaseDocumentEntity baseDocumentEntity = documentEntity.getBaseDocumentEntity();
-            BaseDocumentDTO baseDocumentDTO = modelMapper.map(baseDocumentEntity, BaseDocumentDTO.class);
-            baseDocumentDTO.setType(baseDocumentEntity.getCategory().getType());
-            documentDTO.setBaseDocumentDTO(baseDocumentDTO);
-            documentDTOList.add(documentDTO);
-        }
-        return  documentDTOList;
+        return  setListDTO(documentEntityList);
     }
 
     @Override
@@ -124,6 +104,34 @@ public class DocumentToSendService implements IDocumentToSendService {
         return documentDTO;
     }
 
+    @Override
+    public DocumentDTO update(DocumentForm documentForm) {
+        DocumentEntity documentEntity = documentRepository.findDocumentEntityById(documentForm.getId());
+        if (documentEntity == null) return null;
+        BaseDocumentEntity baseDocumentEntity = documentEntity.getBaseDocumentEntity();
+        setDocumentFormForEntity(documentForm, documentEntity, baseDocumentEntity);
+
+        baseDocumentEntity.setModifedBy(documentForm.getModifed_by());
+        long millis=System.currentTimeMillis();
+        java.sql.Date date=new java.sql.Date(millis);
+        baseDocumentEntity.setModifedDate(date);
+
+        DocumentEntity documentEntity1;
+        BaseDocumentEntity baseDocumentEntity1;
+        try {
+            baseDocumentEntity1 = baseDocumentRepository.save(baseDocumentEntity);
+            documentEntity1 = documentRepository.save(documentEntity);
+        }catch (Exception e) {
+            return null;
+        }
+
+        BaseDocumentDTO baseDocumentDTO = modelMapper.map(baseDocumentEntity1, BaseDocumentDTO.class);
+        DocumentDTO documentDTO = modelMapper.map(documentEntity1, DocumentDTO.class);
+        documentDTO.setBaseDocumentDTO(baseDocumentDTO);
+
+        return documentDTO;
+    }
+
     void setDocumentFormForEntity(DocumentForm documentForm, DocumentEntity documentEntity,
                                      BaseDocumentEntity baseDocumentEntity){
 
@@ -146,5 +154,19 @@ public class DocumentToSendService implements IDocumentToSendService {
         CategoryEntity categoryEntity = categoryRepository.findCategoryEntityById(documentForm.getCategory_id());
 
         baseDocumentEntity.setCategory(categoryEntity);
+    }
+
+    private List<DocumentDTO> setListDTO(List<DocumentEntity> documentEntityList){
+        List<DocumentDTO> documentDTOList = new ArrayList<>();
+
+        for (DocumentEntity documentEntity: documentEntityList) {
+            DocumentDTO documentDTO = modelMapper.map(documentEntity, DocumentDTO.class);
+            BaseDocumentEntity baseDocumentEntity = documentEntity.getBaseDocumentEntity();
+            BaseDocumentDTO baseDocumentDTO = modelMapper.map(baseDocumentEntity, BaseDocumentDTO.class);
+            baseDocumentDTO.setType(baseDocumentEntity.getCategory().getType());
+            documentDTO.setBaseDocumentDTO(baseDocumentDTO);
+            documentDTOList.add(documentDTO);
+        }
+        return  documentDTOList;
     }
 }

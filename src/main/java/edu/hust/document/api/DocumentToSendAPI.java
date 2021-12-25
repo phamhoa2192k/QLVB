@@ -1,9 +1,9 @@
 package edu.hust.document.api;
 
 import edu.hust.document.dto.DocumentDTO;
+import edu.hust.document.form.DocumentForm;
 import edu.hust.document.service.IDocumentToSendService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +31,18 @@ public class DocumentToSendAPI {
     @GetMapping(value = "/search/{id}")
     public ResponseEntity<Object> findById(@PathVariable Long id) {
         DocumentDTO documentDTO = documentToSendService.findById(id);
+        return ResponseEntity.ok(documentDTO);
+    }
+
+    @PostMapping(value = "/inseart}")
+    public ResponseEntity<Object> insert(@PathVariable DocumentForm documentForm) {
+        DocumentDTO documentDTO = documentToSendService.insert(documentForm);
+        return ResponseEntity.ok(documentDTO);
+    }
+
+    @PostMapping(value = "/update}")
+    public ResponseEntity<Object> update(@PathVariable DocumentForm documentForm) {
+        DocumentDTO documentDTO = documentToSendService.update(documentForm);
         return ResponseEntity.ok(documentDTO);
     }
 }

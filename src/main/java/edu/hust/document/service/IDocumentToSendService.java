@@ -13,4 +13,6 @@ public interface IDocumentToSendService {
     DocumentDTO findById(Long id);
 
     DocumentDTO insert(DocumentForm documentForm);
+
+    DocumentDTO update(DocumentForm documentForm);
 }

@@ -38,31 +38,13 @@ public class AppointmentService implements IAppointmentService {
     @Override
     public List<AppointmentDTO> findAll() {
         List<AppointmentEntity> appointmentEntityList = appointmentRepository.findAll();
-        List<AppointmentDTO> appointmentDTOList = new ArrayList<>();
-        for (AppointmentEntity appointmentEntity: appointmentEntityList) {
-            AppointmentDTO appointmentDTO = modelMapper.map(appointmentEntity, AppointmentDTO.class);
-            BaseDocumentDTO baseDocumentDTO = modelMapper.map(appointmentEntity.getBaseDocumentEntity(),
-                    BaseDocumentDTO.class);
-            baseDocumentDTO.setType(appointmentEntity.getBaseDocumentEntity().getCategory().getType());
-            appointmentDTO.setBaseDocumentDTO(baseDocumentDTO);
-            appointmentDTOList.add(appointmentDTO);
-        }
-        return  appointmentDTOList;
+        return  setListDTO(appointmentEntityList);
     }
 
     @Override
     public List<AppointmentDTO> findLikeByName(String name) {
         List<AppointmentEntity> appointmentEntityList = appointmentRepository.findAppointmentEntitiesByNameLike(name);
-        List<AppointmentDTO> appointmentDTOList = new ArrayList<>();
-        for (AppointmentEntity appointmentEntity: appointmentEntityList) {
-            AppointmentDTO appointmentDTO = modelMapper.map(appointmentEntity, AppointmentDTO.class);
-            BaseDocumentDTO baseDocumentDTO = modelMapper.map(appointmentEntity.getBaseDocumentEntity(),
-                    BaseDocumentDTO.class);
-            baseDocumentDTO.setType(appointmentEntity.getBaseDocumentEntity().getCategory().getType());
-            appointmentDTO.setBaseDocumentDTO(baseDocumentDTO);
-            appointmentDTOList.add(appointmentDTO);
-        }
-        return  appointmentDTOList;
+        return  setListDTO(appointmentEntityList);
     }
 
     @Override
@@ -186,5 +168,18 @@ public class AppointmentService implements IAppointmentService {
         CategoryEntity categoryEntity = categoryRepository.findCategoryEntityById(appointmentForm.getCategory_id());
 
         baseDocumentEntity.setCategory(categoryEntity);
+    }
+
+    private List<AppointmentDTO> setListDTO(List<AppointmentEntity> appointmentEntityList){
+        List<AppointmentDTO> appointmentDTOList = new ArrayList<>();
+        for (AppointmentEntity appointmentEntity: appointmentEntityList) {
+            AppointmentDTO appointmentDTO = modelMapper.map(appointmentEntity, AppointmentDTO.class);
+            BaseDocumentDTO baseDocumentDTO = modelMapper.map(appointmentEntity.getBaseDocumentEntity(),
+                    BaseDocumentDTO.class);
+            baseDocumentDTO.setType(appointmentEntity.getBaseDocumentEntity().getCategory().getType());
+            appointmentDTO.setBaseDocumentDTO(baseDocumentDTO);
+            appointmentDTOList.add(appointmentDTO);
+        }
+        return  appointmentDTOList;
     }
 }
