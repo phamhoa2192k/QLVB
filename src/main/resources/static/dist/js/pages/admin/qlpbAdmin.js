@@ -5,7 +5,7 @@ function guiDuLieuPhongBan(phongban) {
 			"Content-Type": "application/json"
 		},
 		body: JSON.stringify(phongban)
-	}).then(console.log)
+	}).then(window.location.reload()).catch(console.log);
 }
 
 function guiDuLieuNhanVienMoi(user) {
@@ -15,7 +15,29 @@ function guiDuLieuNhanVienMoi(user) {
 			"Content-Type": "application/json"
 		},
 		body: JSON.stringify(user)
-	}).then(console.log)
+	}).then(window.location.reload()).catch(console.log);
+}
+
+function sendUpdateDepartment(department) {
+	console.log(department)
+	fetch("/api/department/update", {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(department)
+	})
+		.then(window.location.reload())
+		.catch(console.log);
+}
+
+function sendDeleteDepartment() {
+	var id = $("#fixIdPhongBan").val();
+	fetch(`/api/department/delete/${id}`, {
+		method: "DELETE"
+	})
+		.then(window.location.reload())
+		.catch(console.log)
 }
 
 async function layUserCuaPhongBan(id) {
@@ -50,10 +72,33 @@ function setDanhSachNhanVien(danhSachNhanVien) {
 			},
 			{
 				title: "Xoá",
-				render: function () {
-					return `<button style="padding: 0;" type="button" class="btn" data-toggle="modal" data-target="#modal-delete">
-									<i class="fas fa-trash"></i>
-									</button>`
+				render: function (data, type, row) {
+					return `<div>
+										<button style="padding: 0;" type="button" class="btn" data-toggle="modal" data-target="#modal-delete-${row.id}">
+											<i class="fas fa-trash"></i>
+										</button>
+									<div class="modal fade" id="modal-delete-${row.id}">
+											<div class="modal-dialog">
+												<div class="modal-content">
+														<div class="modal-header">
+															<h4 class="modal-title">Xóa</h4>
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<div class="modal-body">
+															<p>Bạn có chắc chắn muốn xóa ?</p>
+														</div>
+														<div class="modal-footer justify-content-between">
+															<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+															<button type="button" onclick="handleDeleteUser(${row.id})" class="btn btn-danger">Xoá</button>
+														</div>
+												</div>
+												<!-- /.modal-content -->
+											</div>
+											<!-- /.modal-dialog -->
+										</div> 
+									</div>`
 				}
 			},
 		]
@@ -71,6 +116,22 @@ function setThongTinPhongBan(phongban) {
 	$("#soNhanVien").text(soNhanVien);
 	$("#soDienThoaiLienHe").text(soDienThoaiLienHe);
 	$("#diaChiTruSo").text(diaChiTruSo);
+
+	$("#fixIdPhongBan").val(phongban.id)
+	$("#fixTenPhongBan").val(tenPhongBan);
+	$("#fixMaPhongBan").val(maPhongBan);
+	$("#fixSoDienThoai").val(soDienThoaiLienHe);
+	$("#fixDiaChi").val(diaChiTruSo);
+}
+
+function handleDeleteUser(id) {
+	fetch("/api/user", {
+		method: "DELETE",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify([id])
+	}).then(window.location.reload()).catch(console.log);
 }
 
 function handleSendNewDepartment() {
@@ -99,7 +160,7 @@ function setDanhSachPhongBan(phongban) {
 	});
 }
 
-function setDropDownDepartmentList(phongbans){
+function setDropDownDepartmentList(phongbans) {
 	phongbans.forEach(element => {
 		let tenPhongBan = element.name;
 		let code = element.code;
@@ -108,7 +169,7 @@ function setDropDownDepartmentList(phongbans){
 	});
 }
 
-function handleNewUserFormValue(){
+function handleNewUserFormValue() {
 	var user = {
 		"userName": $("#formNewUserUserName").val(),
 		"password": $("#formNewUserPassword").val(),
@@ -119,10 +180,34 @@ function handleNewUserFormValue(){
 		"departmentCode": $("#formNewUserDepartment").val(),
 		"roleCodes": $("#formNewUserRole").val(),
 	}
+	console.log(user);
 	return user;
 }
 
+function getFixDepartmentInfomation() {
+	var department = {};
+	department.id = $("#fixIdPhongBan").val();
+	department.name = $("#fixTenPhongBan").val();
+	department.code = $("#fixMaPhongBan").val();
+	department.phonenumber = $("#fixSoDienThoai").val();
+	department.address = $("#fixDiaChi").val();
+	return department;
+}
 
+async function handleOpenModalDeleteDepartment() {
+	var id = $("#fixIdPhongBan").val();
+	var user = await layUserCuaPhongBan(id);
+	console.log(user);
+	if (user.length > 0) {
+		$("#modalBodyDepartment").empty();
+		$("#modalBodyDepartment").append("<p> Phòng này còn user nên không thể xoá được.");
+	}
+	else {
+		$("#modalBodyDepartment").empty();
+		$("#modalBodyDepartment").append("<p>Bạn có chắc muốn xoá chứ?");
+		$("#btnDeleteDepartment").attr("disabled", false);
+	}
+}
 $(document).ready(async function () {
 	var phongbans = await getAllDepartment();
 	setThongTinPhongBan(phongbans[0]);
@@ -135,7 +220,6 @@ $("#formNewDepartment").on('submit', function (e) {
 	e.preventDefault();
 	var phongban = handleSendNewDepartment();
 	guiDuLieuPhongBan(phongban);
-	window.location.reload();
 	return false;
 });
 
@@ -143,5 +227,12 @@ $("#formNewUser").on('submit', function (e) {
 	e.preventDefault();
 	var newUser = handleNewUserFormValue();
 	guiDuLieuNhanVienMoi(newUser);
-	window.location.reload();
+	return false;
 })
+
+$("#formFixDepartment").on('submit', function (e) {
+	e.preventDefault();
+	var department = getFixDepartmentInfomation();
+	sendUpdateDepartment(department);
+	return false;
+});

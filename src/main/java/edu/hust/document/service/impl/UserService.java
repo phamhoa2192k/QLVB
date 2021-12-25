@@ -41,7 +41,7 @@ public class UserService implements IUserService {
 	public UserEntity createUser(UserDTO userDTO) {
 		UserEntity userEntity = userMapper.toEntity(userDTO);
 		
-		DepartmentEntity departmentEntity = departmentRepository.findDepartmentByCode(userDTO.getDepartmentCode());
+		DepartmentEntity departmentEntity = departmentRepository.findByCode(userDTO.getDepartmentCode()).get(0);
 		userEntity.setDepartment(departmentEntity);
 		
 		Set<RoleEntity> roleEntities = new HashSet<RoleEntity>();
@@ -57,7 +57,7 @@ public class UserService implements IUserService {
 	
 	@Override
 	public UserEntity updateUser(UserDTO userDTO, Long userId) {
-		DepartmentEntity departmentEntity = departmentRepository.findDepartmentByCode(userDTO.getDepartmentCode());
+		DepartmentEntity departmentEntity = departmentRepository.findByCode(userDTO.getDepartmentCode()).get(0);
 		Set<RoleEntity> roleEntities = new HashSet<RoleEntity>();
 		for (String roleCode: userDTO.getRoleCodes()) {
 			RoleEntity roleEntity = roleRepository.findRoleByCode(roleCode);

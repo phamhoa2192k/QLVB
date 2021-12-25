@@ -48,6 +48,16 @@ function handleFixUserFormValue(id){
 	return user;
 }
 
+function handleDeleteUser(id){
+	fetch("/api/user", {
+		method:"DELETE",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body:JSON.stringify([id])
+	}).then(console.log).then(window.location.href = "/admin/qlpbAdmin");
+}
+
 function setUserInformation(user){
 	var roleCode = user.roles.map(value => value.code);
 	$("#formNewUserUserName").val(user.userName);
@@ -78,3 +88,8 @@ $("#formFixUser").on('submit', function (e) {
 	putUser(fixUser);
 	window.location.reload();
 })
+
+$("#btnDeleteUser").click(function (e) { 
+	e.preventDefault();
+	handleDeleteUser(getId());
+});
