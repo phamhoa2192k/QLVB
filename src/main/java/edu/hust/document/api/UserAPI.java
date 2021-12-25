@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.hust.document.api.output.UserOutput;
 import edu.hust.document.dto.UserDTO;
 import edu.hust.document.entity.UserEntity;
 import edu.hust.document.service.IUserService;

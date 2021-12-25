@@ -83,7 +83,7 @@ public class DocumentToSendService implements IDocumentToSendService {
                 handlingEntitySet) {
             HandlingDTO handlingDTO = modelMapper.map(handlingEntity, HandlingDTO.class);
             UserDTO userDTO = modelMapper.map(handlingEntity.getUser(), UserDTO.class);
-            userDTO.setDepartmentName(handlingEntity.getUser().getDepartment().getName());
+            userDTO.setDepartmentCode(handlingEntity.getUser().getDepartment().getCode());
             handlingDTO.setUserDTO(userDTO);
             handlingDTOList.add(handlingDTO);
         }
