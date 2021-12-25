@@ -26,11 +26,11 @@ public class APIController {
 	}
 
 	@GetMapping(path = "/api/currentuser")
-	public String getCurrentUser(Authentication authentication){
+	public UserDTO getCurrentUser(Authentication authentication){
 		String username = authentication.getName();
 		UserEntity u = userRepository.findUserByUserName(username);
 		ModelMapper mapper = new ModelMapper();
 		UserDTO userDTO = mapper.map(u, UserDTO.class);
-		return new Gson().toJson(userDTO);
+		return userDTO;
 	}
 }

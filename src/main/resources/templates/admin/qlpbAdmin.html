@@ -242,13 +242,20 @@
                                 <th id="diaChiTruSo"></th>
                               </tr>
                             </table>
+                            <hr/>
+                            <div class="row justify-content-between">
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-phongban-fix">Sửa</button>
+                              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-department" onclick="handleOpenModalDeleteDepartment()">
+                                Xoá
+                              </button>
+                            </div>
                           </div>  
                       </div><!-- /.card -->
                       <div class="card card-success">
                         <div class="card-header">
                           <h3 class="card-title">Danh sách nhân viên</h3>
                         </div>
-                        
+            
                         <div class="card-body">
                           <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-thanhvien" style="margin-bottom: 15px;">
                             <i class="fas fa-edit"></i>Thêm thành viên
@@ -259,14 +266,6 @@
                       </div>
                       <!-- /.card-body -->
                     </div>
-                  </div>
-                  <div class="tab-pane fade" id="vert-tabs-profile" role="tabpanel" aria-labelledby="vert-tabs-profile-tab">
-
-
-                  </div>
-                  <div class="tab-pane fade" id="vert-tabs-messages" role="tabpanel" aria-labelledby="vert-tabs-messages-tab">
-
-               
                   </div>
                   
                 </div>
@@ -343,6 +342,56 @@
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
           <button type="submit" class="btn btn-primary" id="sendNewDepartment">Thêm mới</button>
+        </div>
+      </form>
+
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+
+<div class="modal fade" id="modal-phongban-fix">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="formFixDepartment">
+
+        <div class="modal-header">
+          <h4 class="modal-title">Sửa thông tin</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="card card-primary">
+
+            <!-- /.card-header -->
+            <!-- form start -->
+              <div class="card-body">
+                <input type="text" class="form-control" id="fixIdPhongBan"placeholder="Nhập tên phòng ban" hidden>
+                <div class="form-group">
+                  <label for="newTenPhongBan">Tên phòng ban</label>
+                  <input type="text" class="form-control" id="fixTenPhongBan"placeholder="Nhập tên phòng ban" required>
+                </div>
+                <div class="form-group">
+                  <label for="newMaPhongBan">Mã phòng ban</label>
+                  <input type="text" class="form-control" id="fixMaPhongBan" placeholder="Nhập mã phòng ban" required>
+                </div>
+                <div class="form-group">
+                  <label for="newSoDienThoai">Số điện thoại liên lạc</label>
+                  <input type="text" class="form-control" id="fixSoDienThoai" placeholder="Nhập số điện thoại" required>
+                </div>
+                <div class="form-group">
+                  <label for="newDiaChi">Địa chỉ</label>
+                  <input type="text" class="form-control" id="fixDiaChi"  placeholder="Nhập địa chỉ" required>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+          <button type="submit" class="btn btn-primary">Sửa</button>
         </div>
       </form>
 
@@ -461,35 +510,28 @@
   <!-- /.modal-dialog -->
 </div>
 
-
-
-<div class="modal fade" id="modal-delete">
+<div class="modal fade" id="modal-delete-department">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form action="/delete" method="post">
-
         <div class="modal-header">
           <h4 class="modal-title">Xóa</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-         
-          <p>Bạn có chắc chắn muốn xóa ?</p>
-              
+        <div class="modal-body" id="modalBodyDepartment">
         </div>
         <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-danger">Delete</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+          <button type="button" class="btn btn-danger" id="btnDeleteDepartment" onclick="sendDeleteDepartment()" disabled>Xoá</button>
         </div>
-      </form>
-
     </div>
     <!-- /.modal-content -->
   </div>
   <!-- /.modal-dialog -->
-</div>
+</div> 
+
+
 <!-- /.modal -->
 <!-- jQuery -->
 <script src="/plugins/jquery/jquery.min.js"></script>

@@ -22,4 +22,14 @@ public class BasicAdminController {
 		return "/admin/profile";
 	}
 
+	@GetMapping("/admin/vbdAdmin")
+	public String getVBDPage(){
+		return "/admin/vbdAdmin";
+	}
+
+	@GetMapping("/admin/documentDetail")
+	public String getDocumentDetailPage(){
+		return "/admin/documentDetail";
+	}
+
 }
