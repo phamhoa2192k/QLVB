@@ -21,5 +21,16 @@ public class UserMapper {
 		userEntity.setPosition(userDTO.getPosition());
 		return userEntity;
 	}
+	
+	public UserEntity toEntity(UserEntity userEntity, UserDTO userDTO) {
+		userEntity.setUserName(userDTO.getUserName());
+		userEntity.setPassword(userDTO.getPassword());
+		userEntity.setFullName(userDTO.getFullName());
+		userEntity.setStatus(userDTO.getStatus());
+		userEntity.setGender(userDTO.getGender());
+		userEntity.setDob(Date.valueOf(userDTO.getDob()));
+		userEntity.setPosition(userDTO.getPosition());
+		return userEntity;
+	}
 
 }

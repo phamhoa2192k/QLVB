@@ -32,7 +32,7 @@ public class UserAPI {
 	}
 	
 	@GetMapping(params = {"userId"})
-	public UserEntity getAllUserById(@RequestParam Long userId) {
+	public UserEntity getUserById(@RequestParam Long userId) {
 		return userService.findUserById(userId);
 	}
 	

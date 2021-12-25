@@ -36,5 +36,7 @@ public class BaseDocumentDTO extends BaseDTO{
     private String status;
 
     private List<HandlingDTO> handlingDTO;
+    
+    private String categoryCode;
 
 }
