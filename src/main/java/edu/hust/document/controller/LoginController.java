@@ -25,17 +25,14 @@ public class LoginController {
 			if(role.equals("ADMIN")){
 				return "redirect:/admin/index";
 			}
-			else if(role.equals("MANAGER")){
-				return "redirect:/manager/index";
+			else if(role.equals("USER")){
+				return "redirect:/user/vbdUser";
 			}
-			else if(role.equals("STAFF")){
-				return "redirect:/staff/index";
-			}
-			else 
-				return "redirect:/login";
+			else
+				return "redirect:/error";
 		}
 		else {
-			return "redirect:/error";
+			return "redirect:/403";
 		}
 	}
 }

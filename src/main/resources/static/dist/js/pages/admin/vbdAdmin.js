@@ -5,7 +5,6 @@ async function getListIncomingDocument(){
 
 function setIncomingDocuments(incomingDocuments){
 	$("#listDocuments").DataTable({
-		"language": DATATABLE_CONFIG.language,
 		data: incomingDocuments,
 		columnDefs: [
 			{

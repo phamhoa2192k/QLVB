@@ -14,7 +14,7 @@ public class DocumentMapper {
 		documentEntity.setAttachedDocument(documentDTO.getAttachedDocument());
 		documentEntity.setSecurityLevel(documentDTO.getSecurityLevel());
 		documentEntity.setUrgencyLevel(documentDTO.getUrgencyLevel());
-		documentEntity.setStatus(documentDTO.getStatus());
+		//documentEntity.setStatus(documentDTO.getStatus());
 		
 		return documentEntity;
 	}
@@ -24,7 +24,7 @@ public class DocumentMapper {
 		documentEntity.setAttachedDocument(documentDTO.getAttachedDocument());
 		documentEntity.setSecurityLevel(documentDTO.getSecurityLevel());
 		documentEntity.setUrgencyLevel(documentDTO.getUrgencyLevel());
-		documentEntity.setStatus(documentDTO.getStatus());
+	//	documentEntity.setStatus(documentDTO.getStatus());
 		
 		return documentEntity;
 	}

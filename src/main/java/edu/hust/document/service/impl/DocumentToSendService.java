@@ -43,7 +43,7 @@ public class DocumentToSendService implements IDocumentToSendService {
             BaseDocumentEntity baseDocumentEntity = documentEntity.getBaseDocumentEntity();
             BaseDocumentDTO baseDocumentDTO = modelMapper.map(baseDocumentEntity, BaseDocumentDTO.class);
             baseDocumentDTO.setType(baseDocumentEntity.getCategory().getType());
-            documentDTO.setBaseDocumentDTO(baseDocumentDTO);
+            //documentDTO.setBaseDocumentDTO(baseDocumentDTO);
             documentDTOList.add(documentDTO);
         }
         return  documentDTOList;
@@ -60,7 +60,7 @@ public class DocumentToSendService implements IDocumentToSendService {
             BaseDocumentEntity baseDocumentEntity = documentEntity.getBaseDocumentEntity();
             BaseDocumentDTO baseDocumentDTO = modelMapper.map(baseDocumentEntity, BaseDocumentDTO.class);
             baseDocumentDTO.setType(baseDocumentEntity.getCategory().getType());
-            documentDTO.setBaseDocumentDTO(baseDocumentDTO);
+            //documentDTO.setBaseDocumentDTO(baseDocumentDTO);
             documentDTOList.add(documentDTO);
         }
         return  documentDTOList;
@@ -90,7 +90,7 @@ public class DocumentToSendService implements IDocumentToSendService {
         baseDocumentDTO.setType(documentEntity.getBaseDocumentEntity().getCategory().getType());
         baseDocumentDTO.setHandlingDTO(handlingDTOList);
 
-        documentDTO.setBaseDocumentDTO(baseDocumentDTO);
+        //documentDTO.setBaseDocumentDTO(baseDocumentDTO);
 
         return  documentDTO;
     }
@@ -119,7 +119,7 @@ public class DocumentToSendService implements IDocumentToSendService {
 
         BaseDocumentDTO baseDocumentDTO = modelMapper.map(baseDocumentEntity1, BaseDocumentDTO.class);
         DocumentDTO documentDTO = modelMapper.map(documentEntity1, DocumentDTO.class);
-        documentDTO.setBaseDocumentDTO(baseDocumentDTO);
+        //documentDTO.setBaseDocumentDTO(baseDocumentDTO);
 
         return documentDTO;
     }
