@@ -38,6 +38,5 @@ public class AppointmentForm {
 
     private String otherInfo;
 
-    private Long category_id;
 
 }

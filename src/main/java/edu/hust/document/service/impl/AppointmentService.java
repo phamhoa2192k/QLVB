@@ -89,7 +89,7 @@ public class AppointmentService implements IAppointmentService {
         setAppointmentFormForEntity(appointmentForm, appointmentEntity, baseDocumentEntity);
 
         baseDocumentEntity.setCreatedBy(appointmentForm.getCreated_by());
-        baseDocumentEntity.setStatus("Vừa tạo");
+        baseDocumentEntity.setStatus("Tiếp nhận");
         long millis=System.currentTimeMillis();
         java.sql.Date date=new java.sql.Date(millis);
         baseDocumentEntity.setCreatedDate(date);
@@ -105,6 +105,8 @@ public class AppointmentService implements IAppointmentService {
         }
 
         BaseDocumentDTO baseDocumentDTO = modelMapper.map(baseDocumentEntity1, BaseDocumentDTO.class);
+        System.out.println(baseDocumentEntity1.getCategory().getType() + "123");
+        baseDocumentDTO.setType(baseDocumentEntity1.getCategory().getType());
         AppointmentDTO appointmentDTO = modelMapper.map(appointmentEntity1, AppointmentDTO.class);
         appointmentDTO.setBaseDocumentDTO(baseDocumentDTO);
 
@@ -133,6 +135,8 @@ public class AppointmentService implements IAppointmentService {
         }
 
         BaseDocumentDTO baseDocumentDTO = modelMapper.map(baseDocumentEntity1, BaseDocumentDTO.class);
+        System.out.println(baseDocumentEntity1.getCategory().getType() + "123");
+        baseDocumentDTO.setType(baseDocumentEntity1.getCategory().getType());
         AppointmentDTO appointmentDTO = modelMapper.map(appointmentEntity1, AppointmentDTO.class);
         appointmentDTO.setBaseDocumentDTO(baseDocumentDTO);
 
@@ -165,7 +169,8 @@ public class AppointmentService implements IAppointmentService {
         baseDocumentEntity.setForwardTime(appointmentForm.getForwardTime());
         baseDocumentEntity.setOtherInfo(appointmentForm.getOtherInfo());
 
-        CategoryEntity categoryEntity = categoryRepository.findCategoryEntityById(appointmentForm.getCategory_id());
+        CategoryEntity categoryEntity = categoryRepository.findCategoryEntityByNameAndType("Giấy mời", "Giấy mời");
+        System.out.println(categoryEntity.getType());
 
         baseDocumentEntity.setCategory(categoryEntity);
     }

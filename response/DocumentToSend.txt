@@ -131,3 +131,104 @@ response -- null nếu không tìm thấy
 
 
 
+***4***Thêm một văn bản đi mới
+POST /api/appointment/insert
+request
+{
+    "deadline": "1/1/2022",
+    "attachedDocument": "vanbandi01",
+    "securityLevel": "3",
+    "urgencyLevel": "3",
+    "created_by": "user1", -- tên user tạo giấy mời
+    "code": "giaymoi4",
+    "name": "giaymoi4",
+    "content": "giaymoi4",
+    "agencyCode": "giaymoi4",
+    "number": "giaymoi4",
+    "signerName": "user1",
+    "signerPosition": "Trưởng phòng",
+    "issuanceTime": "1/12/2021",
+    "forwardTime": "1/1/2022",
+    "otherInfo": "giaymoi4",
+    "type": "Nghị quyết" --- type trong danh sách 28 loại
+}
+
+response  --- trả lại thông tin giấy mời vừa thêm được (null nếu thêm lỗi)
+{
+    "id": 9,
+    "baseDocumentDTO": {
+        "id": 9,
+        "createdDate": "2021-12-23",
+        "modifedDate": null,
+        "createdBy": "user1",
+        "modifedBy": null,
+        "code": "giaymoi4",
+        "name": "giaymoi4",
+        "content": "giaymoi4",
+        "agencyCode": "giaymoi4",
+        "number": "giaymoi4",
+        "signerName": "user1",
+        "signerPosition": "Trưởng phòng",
+        "issuanceTime": "1/12/2022",
+        "forwardTime": "1/1/2022",
+        "otherInfo": "giaymoi4",
+        "type": null,
+        "status": "Vừa tạo",
+        "handlingDTO": null -- để null
+    },
+    "securityLevel": "3",
+    "urgencyLevel": "3"
+}
+
+
+
+***5***Update một văn bản đi
+PUT /api/appointment/update
+request
+{
+    "id": 9,
+    "securityLevel": "3",
+    "urgencyLevel": "3",
+    "modifed_by": "user2", -- tên user muốn sửa
+    "code": "giaymoi4",
+    "name": "giaymoi4",
+    "content": "giaymoi4",
+    "agencyCode": "giaymoi4",
+    "number": "giaymoi4",
+    "signerName": "user1",
+    "signerPosition": "Trưởng phòng",
+    "issuanceTime": "1/12/2022",
+    "forwardTime": "1/1/2022",
+    "otherInfo": "giaymoi4",
+    "category_id": 1
+}
+
+response  --- trả lại thông tin giấy mời vừa sửa được (null nếu không tìm thấy hoặc sai thông tin)
+{
+    "id": 9,
+    "baseDocumentDTO": {
+        "id": 9,
+        "createdDate": "2021-12-23",
+        "modifedDate": "2021-12-23",
+        "createdBy": "user1",
+        "modifedBy": "user2",
+        "code": "giaymoi4",
+        "name": "giaymoi4",
+        "content": "giaymoi4",
+        "agencyCode": "giaymoi4",
+        "number": "giaymoi4",
+        "signerName": "user1",
+        "signerPosition": "Trưởng phòng",
+        "issuanceTime": "1/12/2022",
+        "forwardTime": "1/1/2022",
+        "otherInfo": "giaymoi4",
+        "type": null,
+        "status": "Vừa tạo",
+        "handlingDTO": null -- để null
+    },
+    "securityLevel": "3",
+    "urgencyLevel": "3"
+}
+
+
+

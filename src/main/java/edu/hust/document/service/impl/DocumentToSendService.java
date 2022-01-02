@@ -33,16 +33,16 @@ public class DocumentToSendService implements IDocumentToSendService {
     private ModelMapper modelMapper;
 
     @Override
-    public List<DocumentDTO> findAll() {
+    public List<DocumentDTO> findAll(String categoryName) {
         List<DocumentEntity> documentEntityList =
-                documentRepository.findDocumentEntityByCategaryName("Văn bản đi");
+                documentRepository.findDocumentEntityByCategaryName(categoryName);
         return  setListDTO(documentEntityList);
     }
 
     @Override
-    public List<DocumentDTO> findLikeByName(String name) {
+    public List<DocumentDTO> findLikeByName(String name, String categoryName) {
         List<DocumentEntity> documentEntityList =
-                documentRepository.findDocumentEntityByCategaryNameAndDocumentName("Văn bản đi", name);
+                documentRepository.findDocumentEntityByCategaryNameAndDocumentName(categoryName, name);
         return  setListDTO(documentEntityList);
     }
 
@@ -76,13 +76,18 @@ public class DocumentToSendService implements IDocumentToSendService {
     }
 
     @Override
-    public DocumentDTO insert(DocumentForm documentForm) {
+    public DocumentDTO insert(DocumentForm documentForm, String categoryName) {
         DocumentEntity documentEntity = new DocumentEntity();
         BaseDocumentEntity baseDocumentEntity = new BaseDocumentEntity();
-        setDocumentFormForEntity(documentForm, documentEntity, baseDocumentEntity);
+        setDocumentFormForEntity(documentForm, documentEntity, baseDocumentEntity, categoryName);
 
         baseDocumentEntity.setCreatedBy(documentForm.getCreated_by());
-        baseDocumentEntity.setStatus("Vừa tạo");
+        if(categoryName.equals("Văn bản đi")){
+            baseDocumentEntity.setStatus("Chờ cấp số");
+        }else {
+            baseDocumentEntity.setStatus("Tiếp nhận");
+        }
+
         long millis=System.currentTimeMillis();
         java.sql.Date date=new java.sql.Date(millis);
         baseDocumentEntity.setCreatedDate(date);
@@ -98,6 +103,7 @@ public class DocumentToSendService implements IDocumentToSendService {
         }
 
         BaseDocumentDTO baseDocumentDTO = modelMapper.map(baseDocumentEntity1, BaseDocumentDTO.class);
+        baseDocumentDTO.setType(baseDocumentEntity1.getCategory().getType());
         DocumentDTO documentDTO = modelMapper.map(documentEntity1, DocumentDTO.class);
         documentDTO.setBaseDocumentDTO(baseDocumentDTO);
 
@@ -105,11 +111,11 @@ public class DocumentToSendService implements IDocumentToSendService {
     }
 
     @Override
-    public DocumentDTO update(DocumentForm documentForm) {
+    public DocumentDTO update(DocumentForm documentForm, String categoryName) {
         DocumentEntity documentEntity = documentRepository.findDocumentEntityById(documentForm.getId());
         if (documentEntity == null) return null;
         BaseDocumentEntity baseDocumentEntity = documentEntity.getBaseDocumentEntity();
-        setDocumentFormForEntity(documentForm, documentEntity, baseDocumentEntity);
+        setDocumentFormForEntity(documentForm, documentEntity, baseDocumentEntity, categoryName);
 
         baseDocumentEntity.setModifedBy(documentForm.getModifed_by());
         long millis=System.currentTimeMillis();
@@ -126,6 +132,7 @@ public class DocumentToSendService implements IDocumentToSendService {
         }
 
         BaseDocumentDTO baseDocumentDTO = modelMapper.map(baseDocumentEntity1, BaseDocumentDTO.class);
+        baseDocumentDTO.setType(baseDocumentEntity1.getCategory().getType());
         DocumentDTO documentDTO = modelMapper.map(documentEntity1, DocumentDTO.class);
         documentDTO.setBaseDocumentDTO(baseDocumentDTO);
 
@@ -133,7 +140,7 @@ public class DocumentToSendService implements IDocumentToSendService {
     }
 
     void setDocumentFormForEntity(DocumentForm documentForm, DocumentEntity documentEntity,
-                                     BaseDocumentEntity baseDocumentEntity){
+                                     BaseDocumentEntity baseDocumentEntity, String categoryName){
 
         documentEntity.setDeadline(documentForm.getDeadline());
         documentEntity.setAttachedDocument(documentForm.getAttachedDocument());
@@ -151,7 +158,8 @@ public class DocumentToSendService implements IDocumentToSendService {
         baseDocumentEntity.setForwardTime(documentForm.getForwardTime());
         baseDocumentEntity.setOtherInfo(documentForm.getOtherInfo());
 
-        CategoryEntity categoryEntity = categoryRepository.findCategoryEntityById(documentForm.getCategory_id());
+        CategoryEntity categoryEntity =
+                categoryRepository.findCategoryEntityByNameAndType(categoryName, documentForm.getType());
 
         baseDocumentEntity.setCategory(categoryEntity);
     }

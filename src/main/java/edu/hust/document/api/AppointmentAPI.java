@@ -47,7 +47,7 @@ public class AppointmentAPI {
         return ResponseEntity.ok(appointmentDTO);
     }
 
-    @PostMapping(value = "/update")
+    @PutMapping(value = "/update")
     public ResponseEntity<Object> updateAppointment(@RequestBody AppointmentForm appointmentForm) {
         AppointmentDTO appointmentDTO = appointmentService.update(appointmentForm);
 

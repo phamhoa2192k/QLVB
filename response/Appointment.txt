@@ -143,7 +143,6 @@ request
     "issuanceTime": "1/12/2022",
     "forwardTime": "1/1/2022",
     "otherInfo": "giaymoi4",
-    "category_id": 1  -- id loại giấy mời
 }
 
 response  --- trả lại thông tin giấy mời vừa thêm được (null nếu thêm lỗi)
@@ -165,7 +164,7 @@ response  --- trả lại thông tin giấy mời vừa thêm được (null n�
         "issuanceTime": "1/12/2022",
         "forwardTime": "1/1/2022",
         "otherInfo": "giaymoi4",
-        "type": null,
+        "type": "Giấy mời",
         "status": "Vừa tạo",
         "handlingDTO": null -- để null
     },
@@ -175,7 +174,7 @@ response  --- trả lại thông tin giấy mời vừa thêm được (null n�
 
 
 
-***5***Update một giấy mời mới
+***5***Update một giấy mời
 PUT /api/appointment/update
 request
 {
@@ -193,7 +192,6 @@ request
     "issuanceTime": "1/12/2022",
     "forwardTime": "1/1/2022",
     "otherInfo": "giaymoi4",
-    "category_id": 1
 }
 
 response  --- trả lại thông tin giấy mời vừa sửa được (null nếu không tìm thấy hoặc sai thông tin)
@@ -215,7 +213,7 @@ response  --- trả lại thông tin giấy mời vừa sửa được (null n�
         "issuanceTime": "1/12/2022",
         "forwardTime": "1/1/2022",
         "otherInfo": "giaymoi4",
-        "type": null,
+        "type": "Giấy mời",
         "status": "Vừa tạo",
         "handlingDTO": null -- để null
     },

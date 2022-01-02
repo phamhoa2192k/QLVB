@@ -6,13 +6,13 @@ import edu.hust.document.form.DocumentForm;
 import java.util.List;
 
 public interface IDocumentToSendService {
-    List<DocumentDTO> findAll();
+    List<DocumentDTO> findAll(String categoryName);
 
-    List<DocumentDTO> findLikeByName(String name);
+    List<DocumentDTO> findLikeByName(String name, String categoryName);
 
     DocumentDTO findById(Long id);
 
-    DocumentDTO insert(DocumentForm documentForm);
+    DocumentDTO insert(DocumentForm documentForm, String categoryName);
 
-    DocumentDTO update(DocumentForm documentForm);
+    DocumentDTO update(DocumentForm documentForm, String categoryName);
 }
