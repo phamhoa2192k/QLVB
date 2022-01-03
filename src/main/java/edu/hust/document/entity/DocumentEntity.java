@@ -20,7 +20,6 @@ import lombok.Setter;
 public class DocumentEntity {
 	
 	@Id
-    @GeneratedValue
     private Long id;
 
 	@OneToOne
