@@ -15,8 +15,9 @@ class BasicUserController {
 		return "user/vbphUser";
 	} 
 
-	@GetMapping("/user/documentDetail")
+	@GetMapping("/user/documentDetail**")
 	public String getdocumentDetail(){
 		return "user/documentDetail";
 	}
+
 }

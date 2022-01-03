@@ -266,17 +266,12 @@
                                   <option value="1">Nam</option>
                                 
                                 </select>
-                              </div>
-                              <div class="form-group">
-                                <label>Số điện thoại liên lạc :</label>
-              
-                                <div class="input-group">
-                                  <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                  </div>
-                                  <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask required id="formNewUserPhonenumber">
-                                </div>
-                                <!-- /.input group -->
+                                <br>
+                                <label>Quyền sử dụng hệ thống</label>
+                                <select class="form-select form-control select2 " style="width: 100%;" id="formNewUserRole" required multiple>
+                                  <option value="ADMIN">Admin</option>
+                                  <option value="USER">Người dùng</option>
+                                </select>
                               </div>
                             </div>
                             
@@ -292,12 +287,7 @@
                                 <label>Chức vụ</label>
                                 <input type="text" class="form-control" placeholder="Nhập chức vụ" required id="formNewUserPosition">
                               </div>
-          
-                              <label>Quyền sử dụng hệ thống</label>
-                              <select class="form-select form-control select2 " style="width: 100%;" id="formNewUserRole" required multiple>
-                                <option value="ADMIN">Admin</option>
-                                <option value="USER">Người dùng</option>
-                              </select>
+        
                             </div>
                           </div>
                         </div>

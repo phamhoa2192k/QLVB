@@ -3,6 +3,7 @@ package edu.hust.document.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.hust.document.dto.BaseDocumentDTO;
 import edu.hust.document.dto.DocumentDTO;
 import edu.hust.document.entity.BaseDocumentEntity;
 import edu.hust.document.entity.CategoryEntity;

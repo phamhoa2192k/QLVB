@@ -10,7 +10,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DocumentDTO extends BaseDocumentDTO {
+public class DocumentDTO extends BaseDocumentDTO{
+
+    private BaseDocumentDTO baseDocumentDTO;
 
     private Timestamp deadline;
 

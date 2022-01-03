@@ -105,12 +105,13 @@ function setDanhSachNhanVien(danhSachNhanVien) {
 	})
 }
 
-function setThongTinPhongBan(phongban) {
+async function setThongTinPhongBan(phongban) {
 	var tenPhongBan = phongban.name;
 	var maPhongBan = phongban.code;
-	var soNhanVien = phongban.numberOfStaff;
 	var soDienThoaiLienHe = phongban.phonenumber;
 	var diaChiTruSo = phongban.address;
+	var users = await layUserCuaPhongBan(phongban.id);
+	var soNhanVien = users.length;
 	$("#tenPhongBan").text(tenPhongBan);
 	$("#maPhongBan").text(maPhongBan);
 	$("#soNhanVien").text(soNhanVien);
