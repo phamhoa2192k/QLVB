@@ -9,5 +9,5 @@ import edu.hust.document.entity.CategoryEntity;
 public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> {
     CategoryEntity findByName(String name);
     CategoryEntity findCategoryEntityById(Long id);
-    CategoryEntity findCategoryEntityByNameAndType(String name, String type);
+    public CategoryEntity findCategoryByCode(String code);
 }

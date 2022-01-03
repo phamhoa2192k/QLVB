@@ -8,9 +8,11 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
@@ -62,5 +64,13 @@ public class BaseDocumentEntity extends BaseEntity {
 	@JsonManagedReference
 	@OneToMany(mappedBy = "baseDocument")
 	private Set<HandlingEntity> handlings;
+	
+	@OneToOne(mappedBy = "baseDocumentEntity")
+	@JsonIgnore
+    private DocumentEntity documentEntity;
+	
+	@OneToOne(mappedBy = "baseDocumentEntity")
+	@JsonIgnore
+    private AppointmentEntity appointmentEntity;
 	
 }

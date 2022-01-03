@@ -15,8 +15,13 @@
   <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="/plugins/datatables/jquery.dataTables.min.js">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+  </div>
 <div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -26,10 +31,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="indexAdmin.html" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="/admin/index" class="nav-link">Home</a>
       </li>
     </ul>
 
@@ -56,91 +58,7 @@
           </form>
         </div>
       </li>
-      <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  John Pierce
-                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Nora Silvester
-                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-        </div>
-      </li>
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
-      </li>
+      
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
@@ -160,22 +78,9 @@
           <img src="/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block" th:text="${nameofuser}"></a>
+          <a href="#" class="d-block" id="currentUser"></a>
         </div>
       </div>
-
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -188,17 +93,10 @@
                 Dashboard
               </p>
             </a>
-            <!-- <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./index.html" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v1</p>
-                </a>
-              </li>
-            </ul> -->
+            
           </li>
           <li class="nav-item">
-            <a href="/admin/departmentmanager" class="nav-link active">
+            <a href="/admin/qlpbAdmin" class="nav-link active">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Quản lí phòng ban
@@ -207,32 +105,19 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="vbdAdmin.html" class="nav-link">
+            <a href="/admin/vbdAdmin" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Văn bản đến
-                <i class="fas fa-angle-left right"></i>
-                <!-- <span class="badge badge-info right">6</span> -->
               </p>
             </a>
-            <!-- <ul class="nav nav-treeview">
-
-              <li class="nav-item">
-                <a href="simple.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Văn bản đã xử lí</p>
-                </a>
-              </li>
-
-
-            </ul> -->
+            
           </li>
           <li class="nav-item">
-            <a href="vbphAdmin.html" class="nav-link">
+            <a href="/admin/vbphAdmin" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Văn bản phát hành
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             
@@ -242,7 +127,6 @@
               <i class="nav-icon fas fa-tree"></i>
               <p>
                 Hồ sơ một cửa
-                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             
@@ -251,78 +135,18 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
+                Giấy mời
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
                 Công việc nội bộ
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <!-- <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>General Elements</p>
-                </a>
-              </li>
-              
-            </ul> -->
-          </li>
-          
-          <li class="nav-header">EXAMPLES</li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-calendar-alt"></i>
-              <p>
-                Calendar
-                <span class="badge badge-info right">2</span>
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Gallery
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-columns"></i>
-              <p>
-                Kanban Board
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-envelope"></i>
-              <p>
-                Mailbox
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inbox</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Compose</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Read</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          
-
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -344,8 +168,8 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Navbar & Tabs</li>
+              <li class="breadcrumb-item"><a href="/admin/index">Home</a></li>
+              <li class="breadcrumb-item active">Quản lý phòng ban</li>
             </ol>
           </div>
         </div>
@@ -369,107 +193,81 @@
               <div class="col-5 col-sm-3">
                 <div class="flex-row">
                   <h4>Phòng ban</h4>
-                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-phongban" style="margin-bottom : 15px">
+                  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-phongban" style="margin-bottom : 15px">
                     <i class="fas fa-edit"></i> Thêm
                   </button>
                   <!-- <br/> -->
                 </div>
                 
-                <div class="nav flex-column nav-tabs" id="vert-tabs-tab" role="tablist" aria-orientation="vertical">
-                  <!--<a class="nav-link" id="vert-tabs-home-tab" data-toggle="pill" href="#vert-tabs-home" role="tab" aria-controls="vert-tabs-home" aria-selected="false">UBND Tỉnh </a>
-                  <a class="nav-link" id="vert-tabs-profile-tab" data-toggle="pill" href="#vert-tabs-profile" role="tab" aria-controls="vert-tabs-profile" aria-selected="false">Văn phòng UBND tỉnh</a>
-                  <a class="nav-link" id="vert-tabs-messages-tab" data-toggle="pill" href="#vert-tabs-messages" role="tab" aria-controls="vert-tabs-messages" aria-selected="false">Phòng Hành chính tổ chức</a> -->
-                  <a class="nav-link"  th:each="department: ${allDepartments}" th:id="${department.code}+'-tab'" data-toggle="pill" th:href="'#'+${department.code}" role="tab" aria-controls="${department.code}" aria-selected="false" th:text="${department.name}"></a>
+                <div class="nav flex-column nav-tabs h-100" id="danhSachPhongBan" role="tablist" aria-orientation="vertical">
                 </div>
               </div>
               <div class="col-7 col-sm-9">
-
                 <!-- danh sách thành viên-->
                 <!-- <h4>Danh sách thành viên</h4> -->
                 
 
                 <div class="tab-content" id="vert-tabs-tabContent">
-                  <div  th:each="department : ${allDepartments}" class="tab-pane text-left" th:id="${department.code}" role="tabpanel" th:attr="aria-labelledby=${department.code}+'-tab'">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-thanhvien" style="margin-bottom: 15px;">
-                      <i class="fas fa-edit"></i>Thêm thành viên
-                    </button> 
+                  <div class="tab-pane text-left fade show active">
                     <div class="card">
-                      <div class="card card-primary card-outline">
-                        <div class="">
-                          
-                          <div class="">
+                      <div class="card card-primary">
+                          <div class="card-header">
+                            <h3 class="card-title">Phòng ban</h3>
+                          </div>
+                          <div class="card-body">
                             <table class="table">
                               <tr>
                                 <th>Tên phòng ban : </th>
-                                <th th:text="${department.name}"></th>
+                                <th id="tenPhongBan"></th>
                               </tr>
                               <tr>
                                 <th>Mã phòng ban : </th>
-                                <th th:text="${department.code}"></th>
+                                <th id="maPhongBan"></th>
                               </tr>
                               <tr>
                                 <th>Thủ trưởng : </th>
-                                <th th:text="${department.manager?.name}"></th>  
+                                <th id="thuTruong"></th>
                               </tr>
                               
                               <tr>
                                 <th>Số nhân viên : </th>
-                                <th th:text="${department.numberOfStaff}"></th>
+                                <th id="soNhanVien"></th>
                               </tr>
                               <tr>
                                 <th>SĐT liên hệ : </th>
-                                <th th:text="${department.phonenumber}"></th>
+                                <th id="soDienThoaiLienHe"></th>
                               </tr>
                               <tr>
                                 <th>Địa chỉ trụ sở : </th>
-                                <th th:text="${department.address}"></th>
+                                <th id="diaChiTruSo"></th>
                               </tr>
                             </table>
-                          </div>
-                          <!-- <br/> -->
-                          
-                          
-                          <!-- <hr/> -->
-                        </div>
+                            <hr/>
+                            <div class="row justify-content-between">
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-phongban-fix">Sửa</button>
+                              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-department" onclick="handleOpenModalDeleteDepartment()">
+                                Xoá
+                              </button>
+                            </div>
+                          </div>  
                       </div><!-- /.card -->
-                      
-                      
-                      <!-- /.card-header -->
-                      <div class="card-body p-0">
-                        <table class="table table-striped">
-                          <thead>
-                            <tr>
-                              <th style="width: 10px">#</th>
-                              <th>Tên thành viên</th>
-                              <th>Chức vụ</th>
-                              <th style="width: 40px"></th>
-                              <th style="width: 40px"></th>
-
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr th:each="user: ${department.users}">
-                              <td th:text="${user.id}"></td>
-                              <td th:text="${user.name}"></td>
-                              <td th:text="${user.office}"></td>
-                              <td>
-                                <button style="padding: 0;" type="button" class="btn" data-toggle="modal" data-target="#modal-thongtinthanhvien">
-                                  <i class="fas fa-edit"></i>
-                                </button>
-                              </td>
-                              <td>
-                                <button style="padding: 0;" type="button" class="btn" data-toggle="modal" data-target="#modal-delete">
-                                  <i class="fas fa-trash"></i>
-                                </button>
-                              </td>
-                            </tr>
-                           
-                          </tbody>
-                        </table>
+                      <div class="card card-success">
+                        <div class="card-header">
+                          <h3 class="card-title">Danh sách nhân viên</h3>
+                        </div>
+            
+                        <div class="card-body">
+                          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-thanhvien" style="margin-bottom: 15px;">
+                            <i class="fas fa-edit"></i>Thêm thành viên
+                          </button>
+                          <table class="table table-striped" id="danhSachNhanVien">
+                          </table>
+                        </div>
                       </div>
                       <!-- /.card-body -->
                     </div>
                   </div>
+                  
                 </div>
               </div>
             </div>
@@ -501,10 +299,10 @@
 </div>
 <!-- ./wrapper -->
 <!-- modal phongban-->
-<div class="modal fade" id="modal-phongban" >
+<div class="modal fade" id="modal-phongban">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form action="/admin/departmentmanager/add-department" method="post" th:object="${adddepartment}">
+      <form id="formNewDepartment">
 
         <div class="modal-header">
           <h4 class="modal-title">Thêm phòng ban</h4>
@@ -514,29 +312,86 @@
         </div>
         <div class="modal-body">
           <div class="card card-primary">
+
+            <!-- /.card-header -->
+            <!-- form start -->
               <div class="card-body">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Tên phòng ban</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nhập tên phòng ban" th:field="*{name}"/>
+                  <label for="newTenPhongBan">Tên phòng ban</label>
+                  <input type="text" class="form-control" id="newTenPhongBan"placeholder="Nhập tên phòng ban" required>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Mã phòng ban</label>
-                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Nhập mã phòng ban" th:field="*{code}"/>
+                  <label for="newMaPhongBan">Mã phòng ban</label>
+                  <input type="text" class="form-control" id="newMaPhongBan" placeholder="Nhập mã phòng ban" required>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword2">Số điện thoại liên lạc</label>
-                  <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Nhập số điện thoại" th:field="*{phonenumber}"/>
+                  <label for="newSoDienThoai">Số điện thoại liên lạc</label>
+                  <input type="text" class="form-control" id="newSoDienThoai" placeholder="Nhập số điện thoại" required>
                 </div>
-                <div class="form-group">  
-                  <label for="exampleInputPassword3">Địa chỉ</label>
-                  <input type="text" class="form-control" id="exampleInputPassword3" placeholder="Nhập địa chỉ" th:field="*{address}"/>
+                <div class="form-group">
+                  <label for="newDiaChi">Địa chỉ</label>
+                  <input type="text" class="form-control" id="newDiaChi"  placeholder="Nhập địa chỉ" required>
+                </div>
+              </div>
+              <!-- /.card-body -->
+
+              <!-- <button type="submit" class="btn btn-primary">Add new</button> -->
+
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+          <button type="submit" class="btn btn-primary" id="sendNewDepartment">Thêm mới</button>
+        </div>
+      </form>
+
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+
+<div class="modal fade" id="modal-phongban-fix">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="formFixDepartment">
+
+        <div class="modal-header">
+          <h4 class="modal-title">Sửa thông tin</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="card card-primary">
+
+            <!-- /.card-header -->
+            <!-- form start -->
+              <div class="card-body">
+                <input type="text" class="form-control" id="fixIdPhongBan"placeholder="Nhập tên phòng ban" hidden>
+                <div class="form-group">
+                  <label for="newTenPhongBan">Tên phòng ban</label>
+                  <input type="text" class="form-control" id="fixTenPhongBan"placeholder="Nhập tên phòng ban" required>
+                </div>
+                <div class="form-group">
+                  <label for="newMaPhongBan">Mã phòng ban</label>
+                  <input type="text" class="form-control" id="fixMaPhongBan" placeholder="Nhập mã phòng ban" required>
+                </div>
+                <div class="form-group">
+                  <label for="newSoDienThoai">Số điện thoại liên lạc</label>
+                  <input type="text" class="form-control" id="fixSoDienThoai" placeholder="Nhập số điện thoại" required>
+                </div>
+                <div class="form-group">
+                  <label for="newDiaChi">Địa chỉ</label>
+                  <input type="text" class="form-control" id="fixDiaChi"  placeholder="Nhập địa chỉ" required>
                 </div>
               </div>
           </div>
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-          <button type="submit" class="btn btn-primary">Thêm mới</button>
+          <button type="submit" class="btn btn-primary">Sửa</button>
         </div>
       </form>
 
@@ -555,7 +410,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form method="post" action="/add-member">
+      <form id="formNewUser">
         <div class="modal-body">
           <div class="card card-primary">
 
@@ -564,9 +419,21 @@
               <div class="card-body">
 
                 <div class="form-group row">
-                  <label for="inputEmail3" class="col-sm-2 col-form-label">Họ và tên</label>
+                  <label for="formNewUserFullName" class="col-sm-2 col-form-label">Họ và tên</label>
                   <div class="col-sm-10">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="Nhập họ và tên ...">
+                    <input type="text" class="form-control" id="formNewUserFullName" placeholder="Nhập họ và tên ..." required>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="formNewUserUserName" class="col-sm-2 col-form-label">Tên đăng nhập</label>
+                  <div class="col-sm-10">
+                    <input type="email" class="form-control" id="formNewUserUserName" placeholder="Nhập tên đăng nhập ..." required>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="formNewUserPassword" class="col-sm-2 col-form-label">Mật khẩu</label>
+                  <div class="col-sm-10">
+                    <input type="password" class="form-control" id="formNewUserPassword" placeholder="Mật khẩu ..." required>
                   </div>
                 </div>
                 <hr/>
@@ -580,15 +447,15 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                         </div>
-                        <input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                        <input type="date" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask id="formNewUserDOB">
                       </div>
                       <!-- /.input group -->
                     </div>
                     <div class="form-group">
                       <label>Giới tính</label>
-                      <select class="form-control select2" style="width: 100%;">
-                        <option selected="selected">Nữ</option>
-                        <option>Nam</option>
+                      <select class="form-control select2" style="width: 100%;" required id="formNewUserGender">
+                        <option selected="selected" value="0">Nữ</option>
+                        <option value="1">Nam</option>
                       
                       </select>
                     </div>
@@ -599,13 +466,9 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-phone"></i></span>
                         </div>
-                        <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask>
+                        <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask required id="formNewUserPhonenumber">
                       </div>
                       <!-- /.input group -->
-                    </div>
-                    <div class="form-group">
-                      <label>Địa chỉ email</label>
-                      <input type="text" class="form-control" placeholder="Enter ...">
                     </div>
                   </div>
                   
@@ -613,23 +476,21 @@
                     <!-- text input -->
                     <div class="form-group">
                       <label>Đơn vị công tác</label>
-                      <select class="form-control select2" style="width: 100%;">
-                        <option selected="selected">Phòng Hành chính tổ chức</option>
-                                            
-                        <option>Văn phòng UBND tỉnh</option>
-                        <option>Văn phòng UBND huyện</option>
+                      <select class="form-control select2" style="width: 100%;" required id="formNewUserDepartment">
                       </select>
                     </div>
                     
                     <div class="form-group">
                       <label>Chức vụ</label>
-                      <input type="text" class="form-control" placeholder="Nhập tên phòng ban">
+                      <input type="text" class="form-control" placeholder="Nhập chức vụ" required id="formNewUserPosition">
                     </div>
+
+                    <label>Quyền sử dụng hệ thống</label>
+                    <select class="form-select form-control select2 " style="width: 100%;" id="formNewUserRole" required multiple>
+                      <option value="ADMIN">Admin</option>
+                      <option value="USER">Người dùng</option>
+                    </select>
                   </div>
-                </div>
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
                 </div>
               </div>
               <!-- /.card-body -->
@@ -638,7 +499,7 @@
           </div>
         </div>
         <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
           <button type="submit" class="btn btn-primary">Thêm</button>
         </div>
     </form>
@@ -649,166 +510,27 @@
   <!-- /.modal-dialog -->
 </div>
 
-<div class="modal fade" id="modal-thongtinthanhvien">
-  <div class="modal-dialog" style="max-width: 800px;">
-    <div class="modal-content" style="width: 800px;">
-      <div class="modal-header">
-        <h4 class="modal-title">Thông tin thành viên</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form method="post" action="/update-member">
-        <div class="modal-body">
-          <div class="card card-primary">
-
-            <!-- /.card-header -->
-            <!-- form start -->
-              <div class="card-body">
-
-                <div class="form-group row">
-                  <label for="inputEmail3" class="col-sm-2 col-form-label">Họ và tên</label>
-                  <div class="col-sm-10">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="Nhập họ và tên ...">
-                  </div>
-                </div>
-                <hr/>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <!-- text input -->
-                    <div class="form-group">
-                      <label>Ngày sinh :</label>
-    
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                        </div>
-                        <input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
-                      </div>
-                      <!-- /.input group -->
-                    </div>
-                    <div class="form-group">
-                      <label>Giới tính</label>
-                      <select class="form-control select2" style="width: 100%;">
-                        <option selected="selected">Nữ</option>
-                        <option>Nam</option>
-                      
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label>Số điện thoại liên lạc :</label>
-    
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                        </div>
-                        <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask>
-                      </div>
-                      <!-- /.input group -->
-                    </div>
-                    <!-- <div class="form-group">
-                      <label>Địa chỉ email</label>
-                      <input type="text" class="form-control" placeholder="Enter ...">
-                    </div> -->
-                  </div>
-                  
-                  <div class="col-sm-6">
-                    <!-- text input -->
-                    <div class="form-group">
-                      <label>Đơn vị công tác</label>
-                      <select class="form-control select2" style="width: 100%;">
-                        <option selected="selected">Phòng Hành chính tổ chức</option>
-                                            
-                        <option>Văn phòng UBND tỉnh</option>
-                        <option>Văn phòng UBND huyện</option>
-                      </select>
-                    </div>
-                    
-                    <div class="form-group">
-                      <label>Chức vụ</label>
-                      <input type="text" class="form-control" placeholder="Nhập tên phòng ban">
-                    </div>
-                  </div>
-                </div>
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-              </div>
-              <!-- /.card-body -->
-
-              
-          </div>
-          <div class="card card-primary">
-            <div class="card-body">
-              <h6>Thông tin tài khoản</h6>
-              <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Tên đăng nhập</label>
-                <div class="col-sm-10">
-                  <input type="email" class="form-control" id="inputEmail3" placeholder="Nhập email...">
-                </div>
-                
-              </div>
-              <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Mật khẩu</label>
-                <div class="col-sm-10">
-                  <input type="email" class="form-control" id="inputEmail3" placeholder="Mật khẩu ...">
-                </div>
-              </div>
-  
-            </div>
-            
-          </div>
-        </div>
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Sửa</button>
-        </div>
-    </form>
-
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
-
-<div class="modal fade" id="modal-delete">
+<div class="modal fade" id="modal-delete-department">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form action="/delete" method="post">
-
         <div class="modal-header">
           <h4 class="modal-title">Xóa</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          <!-- <div class="card card-primary"> -->
-
-            <!-- /.card-header -->
-            <!-- form start -->
-              <!-- <div class="card-body"> -->
-                <p>Bạn có chắc chắn muốn xóa ?</p>
-
-              <!-- </div> -->
-              <!-- /.card-body -->
-
-              <!-- <button type="submit" class="btn btn-primary">Add new</button> -->
-
-          <!-- </div> -->
+        <div class="modal-body" id="modalBodyDepartment">
         </div>
         <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-danger">Delete</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+          <button type="button" class="btn btn-danger" id="btnDeleteDepartment" onclick="sendDeleteDepartment()" disabled>Xoá</button>
         </div>
-      </form>
-
     </div>
     <!-- /.modal-content -->
   </div>
   <!-- /.modal-dialog -->
-</div>
+</div> 
+
 
 <!-- /.modal -->
 <!-- jQuery -->
@@ -817,7 +539,10 @@
 <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/dist/js/adminlte.min.js"></script>
+<script src="/plugins/datatables/jquery.dataTables.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="/dist/js/demo.js"></script>
+<script src="/dist/js/demo.js">
+</script>
+<script type="text/javascript" src="/dist/js/pages/admin/qlpbAdmin.js"></script>
 </body>
 </html>

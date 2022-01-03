@@ -1,19 +1,19 @@
 package edu.hust.document.service.impl;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import edu.hust.document.dto.UserDTO;
 import edu.hust.document.entity.DepartmentEntity;
 import edu.hust.document.entity.RoleEntity;
 import edu.hust.document.entity.UserEntity;
+import edu.hust.document.exception.ResourceNotFoundException;
+import edu.hust.document.mapper.UserMapper;
 import edu.hust.document.repository.DepartmentRepository;
 import edu.hust.document.repository.RoleRepository;
 import edu.hust.document.repository.UserRepository;
@@ -32,11 +32,17 @@ public class UserService implements IUserService {
 	private DepartmentRepository departmentRepository;
 	
 	@Autowired
-	private ModelMapper modelMapper;
-
+	private UserMapper userMapper;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	@Override
-	public UserDTO save(UserDTO userDTO) {
-		UserEntity userEntity = modelMapper.map(userDTO, UserEntity.class);
+	public UserEntity createUser(UserDTO userDTO) {
+		UserEntity userEntity = userMapper.toEntity(userDTO);
+		
+		DepartmentEntity departmentEntity = departmentRepository.findByCode(userDTO.getDepartmentCode()).get(0);
+		userEntity.setDepartment(departmentEntity);
 		
 		Set<RoleEntity> roleEntities = new HashSet<RoleEntity>();
 		for (String roleCode: userDTO.getRoleCodes()) {
@@ -44,14 +50,34 @@ public class UserService implements IUserService {
 			roleEntities.add(roleEntity);
 		}
 		userEntity.setRoles(roleEntities);
+		userEntity.setPassword(passwordEncoder.encode(userDTO.getPassword()));
 		
-		DepartmentEntity departmentEntity = departmentRepository.findDepartmentByCode(userDTO.getDepartmentCode());
-		userEntity.setDepartment(departmentEntity);
-		
-		userEntity = userRepository.save(userEntity);
-		
-		return modelMapper.map(userEntity, UserDTO.class);
+		return userRepository.save(userEntity);	
 	}
+	
+	@Override
+	public UserEntity updateUser(UserDTO userDTO, Long userId) {
+		DepartmentEntity departmentEntity = departmentRepository.findByCode(userDTO.getDepartmentCode()).get(0);
+		Set<RoleEntity> roleEntities = new HashSet<RoleEntity>();
+		for (String roleCode: userDTO.getRoleCodes()) {
+			RoleEntity roleEntity = roleRepository.findRoleByCode(roleCode);
+			roleEntities.add(roleEntity);
+		}
+		
+		UserEntity userEntity = userRepository.findById(userId)
+				.orElseThrow(() -> {
+					return new ResourceNotFoundException(userId, UserEntity.class);
+				});
+		
+		userEntity = userMapper.toEntity(userEntity, userDTO);
+		userEntity.setDepartment(departmentEntity);
+		userEntity.setRoles(roleEntities);
+		userEntity.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+		
+		return userRepository.save(userEntity);
+				
+	}
+	
 
 	@Override
 	public void delete(long[] ids) {
@@ -61,30 +87,16 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public List<UserDTO> findAll(Pageable pageable) {
-		List<UserDTO> users = new ArrayList<>();
-		List<UserEntity> entities = userRepository.findAll(pageable).getContent();
-		for (UserEntity user: entities) {
-			UserDTO userDTO = modelMapper.map(user, UserDTO.class);
-			users.add(userDTO);
-		}
-		return users;
+	public List<UserEntity> findAll() {
+		return userRepository.findAll();
 	}
 
 	@Override
-	public int totalItem() {
-		return (int) userRepository.count();
-	}
-
-	@Override
-	public List<UserDTO> findAll() {
-		List<UserDTO> users = new ArrayList<>();
-		List<UserEntity> entities = userRepository.findAll();
-		for (UserEntity user: entities) {
-			UserDTO userDTO = modelMapper.map(user, UserDTO.class);
-			users.add(userDTO);
-		}
-		return users;
+	public UserEntity findUserById(Long id) {
+		return userRepository.findById(id)
+				.orElseThrow(() -> {
+					return new ResourceNotFoundException(id, UserEntity.class);
+				});
 	}
 
 }

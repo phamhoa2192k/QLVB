@@ -10,7 +10,7 @@
 (function ($) {
   'use strict'
 
-
+  getCurrentUser();
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1)
   }
@@ -673,15 +673,17 @@
   }, true).append($clear_btn)
   $container.append($brand_variants)
 
-  var active_brand_color = null
-  $('.brand-link')[0].classList.forEach(function (className) {
-    if (logo_skins.indexOf(className) > -1 && active_brand_color === null) {
-      active_brand_color = className.replace('navbar-', 'bg-')
-    }
-  })
-
-  if (active_brand_color) {
-    $brand_variants.find('option.' + active_brand_color).prop('selected', true)
-    $brand_variants.removeClass().addClass('custom-select mb-3 text-light border-0 ').addClass(active_brand_color)
-  }
 })(jQuery)
+
+
+async function getCurrentUser(){
+  var user = await fetch("/api/currentuser").then(data => data.json()).catch(console.log)
+  $("#currentUser").text(user.fullName);
+  console.log("Current user", user);
+  return user;
+}
+
+async function getAllDepartment(){
+  var departments = await fetch("/api/department/findAll").then(data => data.json()).catch(console.log)
+  return departments;
+}
