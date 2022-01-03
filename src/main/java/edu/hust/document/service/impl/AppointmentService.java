@@ -93,19 +93,22 @@ public class AppointmentService implements IAppointmentService {
         long millis=System.currentTimeMillis();
         java.sql.Date date=new java.sql.Date(millis);
         baseDocumentEntity.setCreatedDate(date);
-
         AppointmentEntity appointmentEntity1;
         BaseDocumentEntity baseDocumentEntity1;
         try {
             baseDocumentEntity1 = baseDocumentRepository.save(baseDocumentEntity);
             appointmentEntity.setId(baseDocumentEntity1.getId());
+            System.out.println("*********");
+            System.out.println(appointmentEntity.getId());
+            System.out.println(appointmentEntity.getSecurityLevel());
+            System.out.println(appointmentEntity.getUrgencyLevel());
             appointmentEntity1 = appointmentRepository.save(appointmentEntity);
+            System.out.println(appointmentEntity1.getId());
         }catch (Exception e) {
             return null;
         }
 
         BaseDocumentDTO baseDocumentDTO = modelMapper.map(baseDocumentEntity1, BaseDocumentDTO.class);
-        System.out.println(baseDocumentEntity1.getCategory().getType() + "123");
         baseDocumentDTO.setType(baseDocumentEntity1.getCategory().getType());
         AppointmentDTO appointmentDTO = modelMapper.map(appointmentEntity1, AppointmentDTO.class);
         appointmentDTO.setBaseDocumentDTO(baseDocumentDTO);
@@ -117,14 +120,13 @@ public class AppointmentService implements IAppointmentService {
     public AppointmentDTO update(AppointmentForm appointmentForm) {
         AppointmentEntity appointmentEntity = appointmentRepository.findAppointmentEntityById(appointmentForm.getId());
         if (appointmentEntity == null)  return null;
+        
         BaseDocumentEntity baseDocumentEntity = appointmentEntity.getBaseDocumentEntity();
         setAppointmentFormForEntity(appointmentForm, appointmentEntity, baseDocumentEntity);
-
         baseDocumentEntity.setModifedBy(appointmentForm.getModifed_by());
         long millis=System.currentTimeMillis();
         java.sql.Date date=new java.sql.Date(millis);
         baseDocumentEntity.setModifedDate(date);
-
         AppointmentEntity appointmentEntity1;
         BaseDocumentEntity baseDocumentEntity1;
         try {
@@ -135,7 +137,6 @@ public class AppointmentService implements IAppointmentService {
         }
 
         BaseDocumentDTO baseDocumentDTO = modelMapper.map(baseDocumentEntity1, BaseDocumentDTO.class);
-        System.out.println(baseDocumentEntity1.getCategory().getType() + "123");
         baseDocumentDTO.setType(baseDocumentEntity1.getCategory().getType());
         AppointmentDTO appointmentDTO = modelMapper.map(appointmentEntity1, AppointmentDTO.class);
         appointmentDTO.setBaseDocumentDTO(baseDocumentDTO);
@@ -157,7 +158,6 @@ public class AppointmentService implements IAppointmentService {
                                      BaseDocumentEntity baseDocumentEntity){
         appointmentEntity.setSecurityLevel(appointmentForm.getSecurityLevel());
         appointmentEntity.setUrgencyLevel(appointmentForm.getUrgencyLevel());
-
         baseDocumentEntity.setCode(appointmentForm.getCode());
         baseDocumentEntity.setName(appointmentForm.getName());
         baseDocumentEntity.setContent(appointmentForm.getContent());
@@ -169,7 +169,8 @@ public class AppointmentService implements IAppointmentService {
         baseDocumentEntity.setForwardTime(appointmentForm.getForwardTime());
         baseDocumentEntity.setOtherInfo(appointmentForm.getOtherInfo());
 
-        CategoryEntity categoryEntity = categoryRepository.findCategoryEntityByNameAndType("Giấy mời", "Giấy mời");
+        CategoryEntity categoryEntity =
+                categoryRepository.findCategoryEntityByNameAndType("Giấy mời", "Giấy mời");
         System.out.println(categoryEntity.getType());
 
         baseDocumentEntity.setCategory(categoryEntity);

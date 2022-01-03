@@ -12,7 +12,6 @@ import lombok.Setter;
 public class AppointmentEntity {
 
 	@Id
-    @GeneratedValue
     private Long id;
 
 	@OneToOne
