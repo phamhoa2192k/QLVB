@@ -24,13 +24,10 @@ public class DocumentEntity {
 
 	@OneToOne
     @JoinColumn(name = "id")
-	BaseDocumentEntity baseDocumentEntity;
+	private BaseDocumentEntity baseDocumentEntity;
 
     @Column(name = "deadline")
-    private Timestamp deadline;
-
-    @Column(name = "attached_document")
-    private String attachedDocument;
+    private LocalDateTime deadline;
 
     @Column(name = "security_level")
     private String securityLevel;

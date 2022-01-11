@@ -12,11 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DocumentDTO extends BaseDocumentDTO{
 
-    private BaseDocumentDTO baseDocumentDTO;
-
-    private Timestamp deadline;
-
-    private String attachedDocument;
+    private LocalDateTime deadline;
 
     private String securityLevel;
 

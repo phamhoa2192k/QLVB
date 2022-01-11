@@ -59,4 +59,8 @@ public class UserEntity extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "department_id")
 	private DepartmentEntity department;
+	
+	@OneToOne(mappedBy = "assignee")
+	@JsonIgnore
+	private BaseDocumentEntity baseDocumentEntity;
 }
