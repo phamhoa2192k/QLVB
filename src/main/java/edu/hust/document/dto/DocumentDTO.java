@@ -1,6 +1,6 @@
 package edu.hust.document.dto;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,11 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DocumentDTO extends BaseDocumentDTO{
 
-    private BaseDocumentDTO baseDocumentDTO;
-
-    private Timestamp deadline;
-
-    private String attachedDocument;
+    private LocalDateTime deadline;
 
     private String securityLevel;
 

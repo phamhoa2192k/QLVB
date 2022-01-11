@@ -67,7 +67,6 @@ public class DocumentToSendService implements IDocumentToSendService {
         }
         baseDocumentDTO.setType(documentEntity.getBaseDocumentEntity().getCategory().getType());
         baseDocumentDTO.setHandlingDTO(handlingDTOList);
-        documentDTO.setBaseDocumentDTO(baseDocumentDTO);
         return  documentDTO;
     }
 
@@ -100,7 +99,6 @@ public class DocumentToSendService implements IDocumentToSendService {
         BaseDocumentDTO baseDocumentDTO = modelMapper.map(baseDocumentEntity1, BaseDocumentDTO.class);
         baseDocumentDTO.setType(baseDocumentEntity1.getCategory().getType());
         DocumentDTO documentDTO = modelMapper.map(documentEntity1, DocumentDTO.class);
-        documentDTO.setBaseDocumentDTO(baseDocumentDTO);
 
         return documentDTO;
     }
@@ -128,7 +126,6 @@ public class DocumentToSendService implements IDocumentToSendService {
         BaseDocumentDTO baseDocumentDTO = modelMapper.map(baseDocumentEntity1, BaseDocumentDTO.class);
         baseDocumentDTO.setType(baseDocumentEntity1.getCategory().getType());
         DocumentDTO documentDTO = modelMapper.map(documentEntity1, DocumentDTO.class);
-        documentDTO.setBaseDocumentDTO(baseDocumentDTO);
 
         return documentDTO;
     }
@@ -137,22 +134,16 @@ public class DocumentToSendService implements IDocumentToSendService {
                                      BaseDocumentEntity baseDocumentEntity, String categoryName){
 
         documentEntity.setDeadline(documentForm.getDeadline());
-        documentEntity.setAttachedDocument(documentForm.getAttachedDocument());
         documentEntity.setSecurityLevel(documentForm.getSecurityLevel());
         documentEntity.setUrgencyLevel(documentForm.getUrgencyLevel());
-        baseDocumentEntity.setCode(documentForm.getCode());
         baseDocumentEntity.setName(documentForm.getName());
         baseDocumentEntity.setContent(documentForm.getContent());
         baseDocumentEntity.setAgencyCode(documentForm.getAgencyCode());
         baseDocumentEntity.setNumber(documentForm.getNumber());
-        baseDocumentEntity.setSignerName(documentForm.getSignerName());
-        baseDocumentEntity.setSignerPosition(documentForm.getSignerPosition());
         baseDocumentEntity.setIssuanceTime(documentForm.getIssuanceTime());
-        baseDocumentEntity.setForwardTime(documentForm.getForwardTime());
-        baseDocumentEntity.setOtherInfo(documentForm.getOtherInfo());
 
         CategoryEntity categoryEntity =
-                categoryRepository.findCategoryEntityByNameAndType(categoryName, documentForm.getType());
+                categoryRepository.findCategoryEntityById(documentForm.getCategoryId());
 
         baseDocumentEntity.setCategory(categoryEntity);
     }
@@ -165,7 +156,6 @@ public class DocumentToSendService implements IDocumentToSendService {
             BaseDocumentEntity baseDocumentEntity = documentEntity.getBaseDocumentEntity();
             BaseDocumentDTO baseDocumentDTO = modelMapper.map(baseDocumentEntity, BaseDocumentDTO.class);
             baseDocumentDTO.setType(baseDocumentEntity.getCategory().getType());
-            documentDTO.setBaseDocumentDTO(baseDocumentDTO);
             documentDTOList.add(documentDTO);
         }
         return  documentDTOList;

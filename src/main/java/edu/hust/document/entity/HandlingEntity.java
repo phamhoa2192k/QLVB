@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +28,7 @@ public class HandlingEntity {
 	private Long id;
 	
 	@Column(name = "time")
-	private Timestamp time;
+	private LocalDateTime time;
 	
 	@Column(name = "note")
 	private String note;

@@ -11,32 +11,30 @@ import java.util.List;
 @NoArgsConstructor
 public class BaseDocumentDTO extends BaseDTO{
 
-    private String code;
-
     private String name;
 
     private String content;
 
-    private String agencyCode;
-
     private String number;
 
-    private String signerName;
+    private String agencyCode;
 
-    private String signerPosition;
+    private String symbol;
 
     private String issuanceTime;
-
-    private String forwardTime;
-
-    private String otherInfo;
 
     private String type;
 
     private String status;
 
     private List<HandlingDTO> handlingDTO;
-    
+
     private String categoryCode;
+
+    private Long assigneeId;
+
+    private int numberOfPage;
+
+    private String file;
 
 }
