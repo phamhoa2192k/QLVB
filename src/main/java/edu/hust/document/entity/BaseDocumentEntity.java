@@ -23,46 +23,39 @@ import lombok.Setter;
 @Table(name = "base_document")
 public class BaseDocumentEntity extends BaseEntity {
 	
-	@Column(name = "code")
-	private String code;
-	
 	@Column(name = "name")
 	private String name;
 	
 	@Column(name = "content")
 	private String content;
 	
-	@Column(name = "agency_code")
-	private String agencyCode;
-	
 	@Column(name = "number")
 	private String number;
 	
-	@Column(name = "signer_name")
-	private String signerName;
+	@Column(name = "agency_code")
+	private String agencyCode;
 	
-	@Column(name = "signer_position")
-	private String signerPosition;
+	@Column(name = "symbol")
+	private String symbol;
 	
 	@Column(name = "issuance_time")
-	private String issuanceTime;
-	
-	@Column(name = "forward_time")
-	private String forwardTime;
-	
-	@Column(name = "other_info")
-	private String otherInfo;
+	private Date issuanceTime;
 
 	@Column(name = "status")
 	private String status;
+	
+	@Column(name = "number_of_page")
+	private String numberOfPage;
+	
+	@Column(name = "file", columnDefinition = "TEXT")
+	private String file;
 
-	@JsonBackReference
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
 
-	@JsonManagedReference
 	@OneToMany(mappedBy = "baseDocument")
+	@JsonIgnore
 	private Set<HandlingEntity> handlings;
 	
 	@OneToOne(mappedBy = "baseDocumentEntity")
@@ -72,5 +65,9 @@ public class BaseDocumentEntity extends BaseEntity {
 	@OneToOne(mappedBy = "baseDocumentEntity")
 	@JsonIgnore
     private AppointmentEntity appointmentEntity;
+	
+	@OneToOne
+	@JoinColumn(name = "user_id")
+    private UserEntity assignee;
 	
 }

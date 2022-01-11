@@ -9,27 +9,19 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BaseDocumentDTO extends BaseDTO{
-
-    private String code;
+public class BaseDocumentDTO extends BaseDTO {
 
     private String name;
 
     private String content;
 
-    private String agencyCode;
-
     private String number;
-
-    private String signerName;
-
-    private String signerPosition;
+    
+    private String agencyCode;
+    
+    private String symbol;
 
     private String issuanceTime;
-
-    private String forwardTime;
-
-    private String otherInfo;
 
     private String type;
 
@@ -38,5 +30,11 @@ public class BaseDocumentDTO extends BaseDTO{
     private List<HandlingDTO> handlingDTO;
     
     private String categoryCode;
+    
+    private Long assigneeId;
+    
+    private int numberOfPage;
+    
+    private String file;
 
 }
