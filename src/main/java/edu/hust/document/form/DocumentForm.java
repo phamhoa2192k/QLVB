@@ -31,13 +31,15 @@ public class DocumentForm {
 
     private String agencyCode;
 
-    private String numberOfPage;
+    private Integer numberOfPage;
 
     private String symbol;
 
     private Date issuanceTime;
 
     private String file;
+
+    private Long assigneeId;
 
     private Long categoryId;
 }

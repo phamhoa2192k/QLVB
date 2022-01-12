@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,7 +20,7 @@ public class AppointmentForm {
 
     private String modifed_by;
 
-    private String code;
+    private String symbol;
 
     private String name;
 
@@ -28,15 +30,13 @@ public class AppointmentForm {
 
     private String number;
 
-    private String signerName;
+    private Integer numberOfPage;
 
-    private String signerPosition;
+    private Date issuanceTime;
 
-    private String issuanceTime;
+    private String file;
 
-    private String forwardTime;
-
-    private String otherInfo;
+    private Long categoryId;
 
 
 }
