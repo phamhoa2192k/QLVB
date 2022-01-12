@@ -36,5 +36,10 @@ public interface DocumentRepository extends JpaRepository<DocumentEntity, Long> 
             "where c.name like ?1 and b.status like ?2 and b.assignee.id = ?3")
     List<DocumentEntity> findDocumentEntityByCategaryNameAndBaseDocumentEntityStatusAndUserId(String categoryName, String status,
                                                                                      Long userId);
+																					 
+	@Query("select d from DocumentEntity d "
+    		+ "inner join BaseDocumentEntity b on d.id = b.id " 
+            + " where b.assignee.id = ?1")
+    List<DocumentEntity> findDocumentEntityByAssignee(Long assigneeId);																				 
 	
 }

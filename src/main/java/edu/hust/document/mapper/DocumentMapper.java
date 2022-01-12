@@ -10,10 +10,10 @@ public class DocumentMapper {
 	
 	public DocumentEntity toEntity(DocumentDTO documentDTO) {
 		DocumentEntity documentEntity = new DocumentEntity();
+		
 		documentEntity.setDeadline(documentDTO.getDeadline());
 		documentEntity.setSecurityLevel(documentDTO.getSecurityLevel());
 		documentEntity.setUrgencyLevel(documentDTO.getUrgencyLevel());
-		//documentEntity.setStatus(documentDTO.getStatus());
 		
 		return documentEntity;
 	}
@@ -22,7 +22,6 @@ public class DocumentMapper {
 		documentEntity.setDeadline(documentDTO.getDeadline());
 		documentEntity.setSecurityLevel(documentDTO.getSecurityLevel());
 		documentEntity.setUrgencyLevel(documentDTO.getUrgencyLevel());
-	//	documentEntity.setStatus(documentDTO.getStatus());
 		
 		return documentEntity;
 	}

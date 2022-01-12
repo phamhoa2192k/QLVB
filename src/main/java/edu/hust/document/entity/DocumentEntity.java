@@ -23,7 +23,7 @@ public class DocumentEntity {
     private Long id;
 
 	@OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "base_document_id")
 	private BaseDocumentEntity baseDocumentEntity;
 
     @Column(name = "deadline")
