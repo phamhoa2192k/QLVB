@@ -99,4 +99,14 @@ public class UserService implements IUserService {
 				});
 	}
 
+	@Override
+	public List<UserEntity> findUsersByDepartmentId(Long id) {
+		return userRepository.findAllByDepartmentId(id);
+	}
+
+	@Override
+	public List<UserEntity> findAllManagers() {
+		return userRepository.findAllManagers();
+	}
+
 }

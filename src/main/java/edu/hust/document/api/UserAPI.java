@@ -2,6 +2,10 @@ package edu.hust.document.api;
 
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,8 +35,8 @@ public class UserAPI {
 		return userService.findAll();
 	}
 	
-	@GetMapping(params = {"userId"})
-	public UserEntity getUserById(@RequestParam Long userId) {
+	@GetMapping("/{userId}")
+	public UserEntity getUserById(@PathVariable @Valid @NotNull @Min(1) Long userId) {
 		return userService.findUserById(userId);
 	}
 	
@@ -49,5 +53,15 @@ public class UserAPI {
 	@DeleteMapping
 	public void deleteUser(@RequestBody long[] ids) {
 		userService.delete(ids);
+	}
+	
+	@GetMapping("/all/{departmentId}")
+	public List<UserEntity> getUsersByDepartmentId(@PathVariable @Valid @NotNull @Min(1) Long departmentId) {
+		return userService.findUsersByDepartmentId(departmentId);
+	}
+	
+	@GetMapping("/managers")
+	public List<UserEntity> getAllManagers() {
+		return userService.findAllManagers();
 	}
 }
