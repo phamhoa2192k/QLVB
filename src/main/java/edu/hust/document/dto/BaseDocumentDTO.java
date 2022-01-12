@@ -35,10 +35,4 @@ public class BaseDocumentDTO extends BaseDTO {
     
     private String file;
 
-    private Long assigneeId;
-
-    private int numberOfPage;
-
-    private String file;
-
 }

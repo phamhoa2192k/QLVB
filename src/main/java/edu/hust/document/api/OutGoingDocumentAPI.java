@@ -11,13 +11,25 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/outgoingdocument")
-public class OutGoingDocument {
+public class OutGoingDocumentAPI {
     @Autowired
     private IOutGoingDocumentService outGoingDocumentService;
 
     @GetMapping(value = "/findAll")
     public ResponseEntity<Object> findAll() {
         List<DocumentDTO> documentDTOList = outGoingDocumentService.findAll();
+        return ResponseEntity.ok(documentDTOList);
+    }
+
+    @GetMapping(value = "/findAll/clericalassistant")
+    public ResponseEntity<Object> findAllForClericalAssistant() {
+        List<DocumentDTO> documentDTOList = outGoingDocumentService.findAllForClericalAssistant();
+        return ResponseEntity.ok(documentDTOList);
+    }
+
+    @GetMapping(value = "/findAll/employee/{id}")
+    public ResponseEntity<Object> findAllForEmployee(@PathVariable Long id) {
+        List<DocumentDTO> documentDTOList = outGoingDocumentService.findAllForEmployee(id);
         return ResponseEntity.ok(documentDTOList);
     }
 
