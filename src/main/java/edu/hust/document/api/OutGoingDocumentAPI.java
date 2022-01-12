@@ -33,6 +33,12 @@ public class OutGoingDocumentAPI {
         return ResponseEntity.ok(documentDTOList);
     }
 
+    @GetMapping(value = "/findAll/leader")
+    public ResponseEntity<Object> findAllForLeader() {
+        List<DocumentDTO> documentDTOList = outGoingDocumentService.findAllForLeader();
+        return ResponseEntity.ok(documentDTOList);
+    }
+
     @GetMapping(value = "/search")
     public ResponseEntity<Object> findByNameLike(@RequestParam(name = "name") String name) {
         List<DocumentDTO> documentDTOList = outGoingDocumentService.findLikeByName(name);
