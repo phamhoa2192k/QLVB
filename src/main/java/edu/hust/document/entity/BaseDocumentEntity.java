@@ -21,31 +21,31 @@ import lombok.Setter;
 @Entity
 @Table(name = "base_document")
 public class BaseDocumentEntity extends BaseEntity {
-
+	
 	@Column(name = "name")
 	private String name;
 
 	@Column(name = "content")
 	private String content;
-
+	
 	@Column(name = "number")
 	private String number;
-
+	
 	@Column(name = "agency_code")
 	private String agencyCode;
-
+	
 	@Column(name = "symbol")
 	private String symbol;
-
+	
 	@Column(name = "issuance_time")
 	private Date issuanceTime;
 
 	@Column(name = "status")
 	private String status;
-
+	
 	@Column(name = "number_of_page")
-	private Integer numberOfPage;
-
+	private String numberOfPage;
+	
 	@Column(name = "file", columnDefinition = "TEXT")
 	private String file;
 
@@ -68,5 +68,9 @@ public class BaseDocumentEntity extends BaseEntity {
 	@OneToOne
 	@JoinColumn(name = "user_id")
 	private UserEntity assignee;
+	
+	@OneToOne
+	@JoinColumn(name = "user_id")
+    private UserEntity assignee;
 	
 }

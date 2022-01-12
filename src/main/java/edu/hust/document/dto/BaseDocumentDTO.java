@@ -9,7 +9,7 @@ import java.sql.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BaseDocumentDTO extends BaseDTO{
+public class BaseDocumentDTO extends BaseDTO {
 
     private String name;
 
@@ -28,6 +28,12 @@ public class BaseDocumentDTO extends BaseDTO{
     private String status;
 
     private String categoryCode;
+    
+    private Long assigneeId;
+    
+    private int numberOfPage;
+    
+    private String file;
 
     private Long assigneeId;
 
