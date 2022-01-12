@@ -58,18 +58,18 @@ public class AppointmentService implements IAppointmentService {
         AppointmentDTO appointmentDTO = modelMapper.map(appointmentEntity, AppointmentDTO.class);
         BaseDocumentDTO baseDocumentDTO = modelMapper.map(baseDocumentEntity, BaseDocumentDTO.class);
 
-        Set<HandlingEntity> handlingEntitySet = baseDocumentEntity.getHandlings();
-        List<HandlingDTO> handlingDTOList = new ArrayList<>();
-        for (HandlingEntity handlingEntity:
-                handlingEntitySet) {
-            HandlingDTO handlingDTO = modelMapper.map(handlingEntity, HandlingDTO.class);
-            UserDTO userDTO = modelMapper.map(handlingEntity.getUser(), UserDTO.class);
-            userDTO.setDepartmentCode(handlingEntity.getUser().getDepartment().getCode());
-            handlingDTO.setUserDTO(userDTO);
-            handlingDTOList.add(handlingDTO);
-        }
+//        Set<HandlingEntity> handlingEntitySet = baseDocumentEntity.getHandlings();
+//        List<HandlingDTO> handlingDTOList = new ArrayList<>();
+//        for (HandlingEntity handlingEntity:
+//                handlingEntitySet) {
+//            HandlingDTO handlingDTO = modelMapper.map(handlingEntity, HandlingDTO.class);
+//            UserDTO userDTO = modelMapper.map(handlingEntity.getUser(), UserDTO.class);
+//            userDTO.setDepartmentCode(handlingEntity.getUser().getDepartment().getCode());
+//            handlingDTO.setUserDTO(userDTO);
+//            handlingDTOList.add(handlingDTO);
+//        }
         baseDocumentDTO.setType(appointmentEntity.getBaseDocumentEntity().getCategory().getType());
-        baseDocumentDTO.setHandlingDTO(handlingDTOList);
+        //baseDocumentDTO.setHandlingDTO(handlingDTOList);
 
         appointmentDTO.setBaseDocumentDTO(baseDocumentDTO);
 
@@ -158,16 +158,11 @@ public class AppointmentService implements IAppointmentService {
                                      BaseDocumentEntity baseDocumentEntity){
         appointmentEntity.setSecurityLevel(appointmentForm.getSecurityLevel());
         appointmentEntity.setUrgencyLevel(appointmentForm.getUrgencyLevel());
-        baseDocumentEntity.setCode(appointmentForm.getCode());
         baseDocumentEntity.setName(appointmentForm.getName());
         baseDocumentEntity.setContent(appointmentForm.getContent());
         baseDocumentEntity.setAgencyCode(appointmentForm.getAgencyCode());
         baseDocumentEntity.setNumber(appointmentForm.getNumber());
-        baseDocumentEntity.setSignerName(appointmentForm.getSignerName());
-        baseDocumentEntity.setSignerPosition(appointmentForm.getSignerPosition());
         baseDocumentEntity.setIssuanceTime(appointmentForm.getIssuanceTime());
-        baseDocumentEntity.setForwardTime(appointmentForm.getForwardTime());
-        baseDocumentEntity.setOtherInfo(appointmentForm.getOtherInfo());
 
         CategoryEntity categoryEntity =
                 categoryRepository.findCategoryEntityByNameAndType("Giấy mời", "Giấy mời");

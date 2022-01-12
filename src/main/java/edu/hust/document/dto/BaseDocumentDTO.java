@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.sql.Date;
 
 @Data
 @AllArgsConstructor
@@ -16,25 +16,29 @@ public class BaseDocumentDTO extends BaseDTO {
     private String content;
 
     private String number;
-    
+
     private String agencyCode;
-    
+
     private String symbol;
 
-    private String issuanceTime;
+    private Date issuanceTime;
 
     private String type;
 
     private String status;
 
-    private List<HandlingDTO> handlingDTO;
-    
     private String categoryCode;
     
     private Long assigneeId;
     
     private int numberOfPage;
     
+    private String file;
+
+    private Long assigneeId;
+
+    private int numberOfPage;
+
     private String file;
 
 }

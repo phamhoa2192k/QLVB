@@ -4,7 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
+import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -12,9 +13,7 @@ import java.sql.Timestamp;
 public class DocumentForm {
     private Long id;
 
-    private Timestamp deadline;
-
-    private String attachedDocument;
+    private LocalDateTime deadline;
 
     private String securityLevel;
 
@@ -24,25 +23,23 @@ public class DocumentForm {
 
     private String modifed_by;
 
-    private String code;
-
     private String name;
 
     private String content;
 
-    private String agencyCode;
-
     private String number;
 
-    private String signerName;
+    private String agencyCode;
 
-    private String signerPosition;
+    private Integer numberOfPage;
 
-    private String issuanceTime;
+    private String symbol;
 
-    private String forwardTime;
+    private Date issuanceTime;
 
-    private String otherInfo;
+    private String file;
 
-    private String type;
+    private Long assigneeId;
+
+    private Long categoryId;
 }
