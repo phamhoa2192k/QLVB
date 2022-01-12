@@ -41,6 +41,29 @@ public class OutGoingDocumentService implements IOutGoingDocumentService {
     }
 
     @Override
+    public List<DocumentDTO> findAllForClericalAssistant() {
+        List<DocumentEntity> documentEntityList =
+                documentRepository.findDocumentEntityByCategaryNameAndBaseDocumentEntityStatus("Văn bản đi",
+                        "Chờ cấp số");
+        return  setListDTO(documentEntityList);
+    }
+
+    @Override
+    public List<DocumentDTO> findAllForEmployee(Long EmployeeId) {
+        List<DocumentEntity> documentEntityList =
+                documentRepository.findDocumentEntityByCategaryNameAndBaseDocumentEntityStatusAndUserId("Văn bản đi",
+                        "Chờ chỉnh sửa", EmployeeId);
+        return  setListDTO(documentEntityList);
+    }
+
+    @Override
+    public List<DocumentDTO> findAllForLeader() {
+        List<DocumentEntity> documentEntityList =
+                documentRepository.findDocumentEntityByCategaryName("Văn bản đi");
+        return  setListDTO(documentEntityList);
+    }
+
+    @Override
     public List<DocumentDTO> findLikeByName(String name) {
         List<DocumentEntity> documentEntityList =
                 documentRepository.findDocumentEntityByCategaryNameAndDocumentName("Văn bản đi", name);

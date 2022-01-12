@@ -44,7 +44,7 @@ public class BaseDocumentEntity extends BaseEntity {
 	private String status;
 	
 	@Column(name = "number_of_page")
-	private String numberOfPage;
+	private Integer numberOfPage;
 	
 	@Column(name = "file", columnDefinition = "TEXT")
 	private String file;
@@ -68,9 +68,5 @@ public class BaseDocumentEntity extends BaseEntity {
 	@OneToOne
 	@JoinColumn(name = "user_id")
 	private UserEntity assignee;
-	
-	@OneToOne
-	@JoinColumn(name = "user_id")
-    private UserEntity assignee;
 	
 }
