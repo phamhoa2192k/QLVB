@@ -53,13 +53,32 @@ public class OutGoingDocumentService implements IOutGoingDocumentService {
         List<DocumentEntity> documentEntityList =
                 documentRepository.findDocumentEntityByCategaryNameAndBaseDocumentEntityStatusAndUserId("Văn bản đi",
                         "Chờ chỉnh sửa", EmployeeId);
+
+        List<DocumentEntity> documentEntityList1 =
+                documentRepository.findDocumentEntityByCategaryNameAndBaseDocumentEntityStatusAndUserId("Văn bản đi",
+                        "Chờ cấp số", EmployeeId);
+
+        documentEntityList.addAll(documentEntityList1);
         return  setListDTO(documentEntityList);
     }
 
     @Override
     public List<DocumentDTO> findAllForLeader() {
         List<DocumentEntity> documentEntityList =
-                documentRepository.findDocumentEntityByCategaryName("Văn bản đi");
+                documentRepository.findDocumentEntityByCategaryNameAndBaseDocumentEntityStatus("Văn bản đi",
+                        "Đã chỉnh sửa");
+
+        List<DocumentEntity> documentEntityList1 =
+                documentRepository.findDocumentEntityByCategaryNameAndBaseDocumentEntityStatus("Văn bản đi",
+                        "Đã cấp số");
+
+        List<DocumentEntity> documentEntityList2 =
+                documentRepository.findDocumentEntityByCategaryNameAndBaseDocumentEntityStatus("Văn bản đi",
+                        "Hoàn thành");
+
+        documentEntityList.addAll(documentEntityList1);
+        documentEntityList.addAll(documentEntityList2);
+
         return  setListDTO(documentEntityList);
     }
 
