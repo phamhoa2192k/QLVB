@@ -69,7 +69,7 @@ public class IncomingDocumentService implements IncomingDocumentInterface {
 		baseDocumentEntity.setCategory(categoryEntity);
 		
 		baseDocumentEntity = baseDocumentRepository.save(baseDocumentEntity);
-		documentEntity.setBaseDocumentEntity(baseDocumentEntity);
+		//documentEntity.setBaseDocumentEntity(baseDocumentEntity);
 		documentEntity.setId(baseDocumentEntity.getId());
 		
 		return documentRepository.save(documentEntity);
