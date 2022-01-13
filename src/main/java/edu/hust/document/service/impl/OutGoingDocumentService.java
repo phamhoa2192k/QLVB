@@ -290,7 +290,6 @@ public class OutGoingDocumentService implements IOutGoingDocumentService {
         documentDTO.setAgencyCode(documentEntity.getBaseDocumentEntity().getAgencyCode());
         documentDTO.setSymbol(documentEntity.getBaseDocumentEntity().getSymbol());
         documentDTO.setIssuanceTime(documentEntity.getBaseDocumentEntity().getIssuanceTime());
-        documentDTO.setCategoryCode(documentEntity.getBaseDocumentEntity().getCategory().getCode());
 
         UserEntity user = documentEntity.getBaseDocumentEntity().getAssignee();
         if (user != null) {
