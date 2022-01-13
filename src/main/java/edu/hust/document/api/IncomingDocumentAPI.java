@@ -70,7 +70,7 @@ public class IncomingDocumentAPI {
 	}
 
 	@GetMapping("/all")
-	public List<DocumentEntity> getDocumentById() {
+	public List<DocumentEntity> getAll() {
 		return incomingDocumentService.findAll();
 	}
 
