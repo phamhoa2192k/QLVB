@@ -2,6 +2,7 @@ package edu.hust.document.api;
 
 import edu.hust.document.dto.DocumentDTO;
 import edu.hust.document.form.DocumentForm;
+import edu.hust.document.form.HandlingForm;
 import edu.hust.document.service.IOutGoingDocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -69,15 +70,15 @@ public class OutGoingDocumentAPI {
         return ResponseEntity.ok(documentDTO);
     }
 
-    @PutMapping(value = "/accept/{id}")
-    public ResponseEntity<Object> accept(@PathVariable Long id) {
-        DocumentDTO documentDTO = outGoingDocumentService.accept(id);
+    @PutMapping(value = "/accept")
+    public ResponseEntity<Object> accept(@RequestBody HandlingForm handlingForm) {
+        DocumentDTO documentDTO = outGoingDocumentService.accept(handlingForm);
         return ResponseEntity.ok(documentDTO);
     }
 
-    @PutMapping(value = "/refuse/{id}")
-    public ResponseEntity<Object> refuse(@PathVariable Long id) {
-        DocumentDTO documentDTO = outGoingDocumentService.refuse(id);
+    @PutMapping(value = "/refuse")
+    public ResponseEntity<Object> refuse(@RequestBody HandlingForm handlingForm) {
+        DocumentDTO documentDTO = outGoingDocumentService.refuse(handlingForm);
         return ResponseEntity.ok(documentDTO);
     }
 }

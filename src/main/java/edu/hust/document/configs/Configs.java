@@ -14,4 +14,11 @@ public class Configs {
 	public static final String STATUS_WAIT_FOR_HANDLE_AGAIN = "Chờ xử lý lại";
 	public static final String STATUS_INITIAL= "Tiếp nhận ";
 
+	public static final String OUTGOING_DOCUMENT_TYPE = "Văn bản đi";
+	public static final String STATUS_WAIT_FOR_ASSIGN_NUMBER = "Chờ cấp số";
+	public static final String STATUS_ASSIGNED_NUMBER = "Đã cấp số";
+	public static final String STATUS_WAIT_FOR_UPDATE = "Chờ chỉnh sửa";
+	public static final String STATUS_UPDATED = "Đã chỉnh sửa";
+	public static final String ACTION_UPDATE = "Chỉnh sửa";
+	public static final String ACTION_ASSIGN_NUMBER = "Cấp số";
 }
