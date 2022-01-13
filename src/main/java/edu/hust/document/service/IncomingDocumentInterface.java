@@ -18,5 +18,6 @@ public interface IncomingDocumentInterface {
 	public void handleDocument(HandlingDTO handlingDTO);
 	public List<HandlingEntity> getAllHandlingsByDocumentId(Long documentId);
 	public void uploadFile(FileUpload fileUpload);
+	public List<DocumentEntity> findAll();
 
 }

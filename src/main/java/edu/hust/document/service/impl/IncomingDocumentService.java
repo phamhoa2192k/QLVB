@@ -179,5 +179,10 @@ public class IncomingDocumentService implements IncomingDocumentInterface {
 		baseDocumentEntity.setFile(fileUpload.getFile());
 		baseDocumentRepository.save(baseDocumentEntity);
 	}
+
+	@Override
+	public List<DocumentEntity> findAll() {
+		return documentRepository.findAll();
+	}
 	
 }
