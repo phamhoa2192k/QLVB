@@ -27,7 +27,7 @@ public class BaseDocumentDTO extends BaseDTO {
 
     private String status;
 
-    private String categoryCode;
+    private Long categoryId;
     
     private Long assigneeId;
     

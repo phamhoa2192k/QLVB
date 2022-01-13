@@ -65,11 +65,11 @@ public class IncomingDocumentService implements IncomingDocumentInterface {
 			baseDocumentEntity.setAssignee(assignee);
 		}
 		
-		CategoryEntity categoryEntity = categoryRepository.findCategoryByCodeAndType(documentDTO.getCategoryCode(), documentDTO.getType());
+		CategoryEntity categoryEntity = categoryRepository.findCategoryEntityById(documentDTO.getCategoryId());
 		baseDocumentEntity.setCategory(categoryEntity);
 		
 		baseDocumentEntity = baseDocumentRepository.save(baseDocumentEntity);
-		documentEntity.setBaseDocumentEntity(baseDocumentEntity);
+		//documentEntity.setBaseDocumentEntity(baseDocumentEntity);
 		documentEntity.setId(baseDocumentEntity.getId());
 		
 		return documentRepository.save(documentEntity);
@@ -77,7 +77,7 @@ public class IncomingDocumentService implements IncomingDocumentInterface {
 
 	@Override
 	public DocumentEntity updateDocument(DocumentDTO documentDTO, Long documentId) {
-		CategoryEntity categoryEntity = categoryRepository.findCategoryByCodeAndType(documentDTO.getCategoryCode(), documentDTO.getType());
+		CategoryEntity categoryEntity = categoryRepository.findCategoryEntityById(documentDTO.getCategoryId());
 		BaseDocumentEntity baseDocumentEntity = baseDocumentRepository.findById(documentId)
 				.orElseThrow(() -> {
 					return new ResourceNotFoundException(documentId, BaseDocumentEntity.class);
