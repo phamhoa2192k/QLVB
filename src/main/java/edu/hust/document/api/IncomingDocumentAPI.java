@@ -68,7 +68,10 @@ public class IncomingDocumentAPI {
 	public void uploadFile(@RequestBody FileUpload fileUpload) {
 		incomingDocumentService.uploadFile(fileUpload);
 	}
-	
-	
+
+	@GetMapping("/all")
+	public List<DocumentEntity> getDocumentById() {
+		return incomingDocumentService.findAll();
+	}
 
 }
