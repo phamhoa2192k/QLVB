@@ -1,18 +1,18 @@
 package edu.hust.document.service.impl;
 
+import edu.hust.document.configs.Configs;
 import edu.hust.document.dto.BaseDocumentDTO;
 import edu.hust.document.dto.DocumentDTO;
 import edu.hust.document.entity.*;
 import edu.hust.document.form.DocumentForm;
-import edu.hust.document.repository.BaseDocumentRepository;
-import edu.hust.document.repository.CategoryRepository;
-import edu.hust.document.repository.DocumentRepository;
-import edu.hust.document.repository.UserRepository;
+import edu.hust.document.form.HandlingForm;
+import edu.hust.document.repository.*;
 import edu.hust.document.service.IOutGoingDocumentService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,50 +31,58 @@ public class OutGoingDocumentService implements IOutGoingDocumentService {
     private UserRepository userRepository;
 
     @Autowired
+    private HandlingRepository handlingRepository;
+
+    @Autowired
     private ModelMapper modelMapper;
 
     @Override
     public List<DocumentDTO> findAll() {
         List<DocumentEntity> documentEntityList =
-                documentRepository.findDocumentEntityByCategaryName("Văn bản đi");
+                documentRepository.findDocumentEntityByCategaryName(Configs.OUTGOING_DOCUMENT_TYPE);
         return  setListDTO(documentEntityList);
     }
 
     @Override
     public List<DocumentDTO> findAllForClericalAssistant() {
         List<DocumentEntity> documentEntityList =
-                documentRepository.findDocumentEntityByCategaryNameAndBaseDocumentEntityStatus("Văn bản đi",
-                        "Chờ cấp số");
+                documentRepository.findDocumentEntityByCategaryNameAndBaseDocumentEntityStatus(Configs.OUTGOING_DOCUMENT_TYPE,
+                        Configs.STATUS_WAIT_FOR_ASSIGN_NUMBER);
         return  setListDTO(documentEntityList);
     }
 
     @Override
     public List<DocumentDTO> findAllForEmployee(Long EmployeeId) {
         List<DocumentEntity> documentEntityList =
-                documentRepository.findDocumentEntityByCategaryNameAndBaseDocumentEntityStatusAndUserId("Văn bản đi",
-                        "Chờ chỉnh sửa", EmployeeId);
+                documentRepository.findDocumentEntityByCategaryNameAndBaseDocumentEntityStatusAndUserId(Configs.OUTGOING_DOCUMENT_TYPE,
+                        Configs.STATUS_WAIT_FOR_UPDATE, EmployeeId);
 
         List<DocumentEntity> documentEntityList1 =
-                documentRepository.findDocumentEntityByCategaryNameAndBaseDocumentEntityStatusAndUserId("Văn bản đi",
-                        "Chờ cấp số", EmployeeId);
+                documentRepository.findDocumentEntityByCategaryNameAndBaseDocumentEntityStatusAndUserId(Configs.OUTGOING_DOCUMENT_TYPE,
+                        Configs.STATUS_WAIT_FOR_ASSIGN_NUMBER, EmployeeId);
+
+        List<DocumentEntity> documentEntityList2 =
+                documentRepository.findDocumentEntityByCategaryNameAndBaseDocumentEntityStatusAndUserId(Configs.OUTGOING_DOCUMENT_TYPE,
+                        Configs.STATUS_UPDATED, EmployeeId);
 
         documentEntityList.addAll(documentEntityList1);
+        documentEntityList.addAll(documentEntityList2);
         return  setListDTO(documentEntityList);
     }
 
     @Override
     public List<DocumentDTO> findAllForLeader() {
         List<DocumentEntity> documentEntityList =
-                documentRepository.findDocumentEntityByCategaryNameAndBaseDocumentEntityStatus("Văn bản đi",
-                        "Đã chỉnh sửa");
+                documentRepository.findDocumentEntityByCategaryNameAndBaseDocumentEntityStatus(Configs.OUTGOING_DOCUMENT_TYPE,
+                        Configs.STATUS_UPDATED);
 
         List<DocumentEntity> documentEntityList1 =
-                documentRepository.findDocumentEntityByCategaryNameAndBaseDocumentEntityStatus("Văn bản đi",
-                        "Đã cấp số");
+                documentRepository.findDocumentEntityByCategaryNameAndBaseDocumentEntityStatus(Configs.OUTGOING_DOCUMENT_TYPE,
+                        Configs.STATUS_ASSIGNED_NUMBER);
 
         List<DocumentEntity> documentEntityList2 =
-                documentRepository.findDocumentEntityByCategaryNameAndBaseDocumentEntityStatus("Văn bản đi",
-                        "Hoàn thành");
+                documentRepository.findDocumentEntityByCategaryNameAndBaseDocumentEntityStatus(Configs.OUTGOING_DOCUMENT_TYPE,
+                        Configs.STATUS_CLOSED);
 
         documentEntityList.addAll(documentEntityList1);
         documentEntityList.addAll(documentEntityList2);
@@ -85,7 +93,7 @@ public class OutGoingDocumentService implements IOutGoingDocumentService {
     @Override
     public List<DocumentDTO> findLikeByName(String name) {
         List<DocumentEntity> documentEntityList =
-                documentRepository.findDocumentEntityByCategaryNameAndDocumentName("Văn bản đi", name);
+                documentRepository.findDocumentEntityByCategaryNameAndDocumentName(Configs.OUTGOING_DOCUMENT_TYPE, name);
         return  setListDTO(documentEntityList);
     }
 
@@ -112,6 +120,7 @@ public class OutGoingDocumentService implements IOutGoingDocumentService {
             baseDocumentEntity1 = baseDocumentRepository.save(baseDocumentEntity);
             documentEntity.setId(baseDocumentEntity1.getId());
             documentEntity1 = documentRepository.save(documentEntity);
+            insertHanling(Configs.ACTION_CREATE, "", baseDocumentEntity1, baseDocumentEntity1.getAssignee());
         }catch (Exception e) {
             return null;
         }
@@ -132,6 +141,7 @@ public class OutGoingDocumentService implements IOutGoingDocumentService {
         BaseDocumentEntity baseDocumentEntity1 = null;
         try {
             baseDocumentEntity1 = baseDocumentRepository.save(baseDocumentEntity);
+            insertHanling(Configs.ACTION_UPDATE, "", baseDocumentEntity1, baseDocumentEntity1.getAssignee());
         }catch (Exception e) {
             return null;
         }
@@ -153,6 +163,8 @@ public class OutGoingDocumentService implements IOutGoingDocumentService {
         BaseDocumentEntity baseDocumentEntity1 = null;
         try {
             baseDocumentEntity1 = baseDocumentRepository.save(baseDocumentEntity);
+            UserEntity user = userRepository.findUserEntityById(documentForm.getAssigneeId());
+            insertHanling(Configs.ACTION_ASSIGN_NUMBER, "", baseDocumentEntity1, user);
         }catch (Exception e) {
             return null;
         }
@@ -165,15 +177,17 @@ public class OutGoingDocumentService implements IOutGoingDocumentService {
     }
 
     @Override
-    public DocumentDTO accept(Long id) {
-        DocumentEntity documentEntity = documentRepository.findDocumentEntityById(id);
+    public DocumentDTO accept(HandlingForm handlingForm) {
+        DocumentEntity documentEntity = documentRepository.findDocumentEntityById(handlingForm.getBaseDocumentId());
         if (documentEntity == null) return null;
         BaseDocumentEntity baseDocumentEntity = documentEntity.getBaseDocumentEntity();
-        baseDocumentEntity.setStatus("Hoàn thành");
+        baseDocumentEntity.setStatus(Configs.STATUS_CLOSED);
 
         BaseDocumentEntity baseDocumentEntity1 = null;
         try {
             baseDocumentEntity1 = baseDocumentRepository.save(baseDocumentEntity);
+            UserEntity user = userRepository.findUserEntityById(handlingForm.getUserId());
+            insertHanling(Configs.ACTION_APPROVE, "", baseDocumentEntity1, baseDocumentEntity1.getAssignee());
         }catch (Exception e) {
             return null;
         }
@@ -186,15 +200,17 @@ public class OutGoingDocumentService implements IOutGoingDocumentService {
     }
 
     @Override
-    public DocumentDTO refuse(Long id) {
-        DocumentEntity documentEntity = documentRepository.findDocumentEntityById(id);
+    public DocumentDTO refuse(HandlingForm handlingForm) {
+        DocumentEntity documentEntity = documentRepository.findDocumentEntityById(handlingForm.getBaseDocumentId());
         if (documentEntity == null) return null;
         BaseDocumentEntity baseDocumentEntity = documentEntity.getBaseDocumentEntity();
-        baseDocumentEntity.setStatus("Chờ chỉnh sửa");
+        baseDocumentEntity.setStatus(Configs.STATUS_WAIT_FOR_UPDATE);
 
         BaseDocumentEntity baseDocumentEntity1 = null;
         try {
             baseDocumentEntity1 = baseDocumentRepository.save(baseDocumentEntity);
+            UserEntity user = userRepository.findUserEntityById(handlingForm.getUserId());
+            insertHanling(Configs.ACTION_REFUSE, handlingForm.getNote(), baseDocumentEntity1, baseDocumentEntity1.getAssignee());
         }catch (Exception e) {
             return null;
         }
@@ -218,8 +234,10 @@ public class OutGoingDocumentService implements IOutGoingDocumentService {
         documentEntity.setSecurityLevel(documentForm.getSecurityLevel());
         documentEntity.setUrgencyLevel(documentForm.getUrgencyLevel());
 
-        baseDocumentEntity.setStatus("Chờ cấp số");
+        baseDocumentEntity.setStatus(Configs.STATUS_WAIT_FOR_ASSIGN_NUMBER);
         baseDocumentEntity.setName(documentForm.getName());
+        baseDocumentEntity.setAgencyCode(documentForm.getAgencyCode());
+        baseDocumentEntity.setSymbol(documentForm.getSymbol());
         baseDocumentEntity.setContent(documentForm.getContent());
         baseDocumentEntity.setNumberOfPage(documentForm.getNumberOfPage());
         baseDocumentEntity.setIssuanceTime(documentForm.getIssuanceTime());
@@ -242,7 +260,7 @@ public class OutGoingDocumentService implements IOutGoingDocumentService {
         java.sql.Date date=new java.sql.Date(millis);
         baseDocumentEntity.setModifedDate(date);
 
-        baseDocumentEntity.setStatus("Đã chỉnh sửa");
+        baseDocumentEntity.setStatus(Configs.STATUS_UPDATED);
         baseDocumentEntity.setFile(documentForm.getFile());
     }
 
@@ -254,10 +272,8 @@ public class OutGoingDocumentService implements IOutGoingDocumentService {
         java.sql.Date date=new java.sql.Date(millis);
         baseDocumentEntity.setModifedDate(date);
 
-        baseDocumentEntity.setStatus("Đã cấp số");
-        baseDocumentEntity.setAgencyCode(documentForm.getAgencyCode());
+        baseDocumentEntity.setStatus(Configs.STATUS_ASSIGNED_NUMBER);
         baseDocumentEntity.setNumber(documentForm.getNumber());
-        baseDocumentEntity.setSymbol(documentForm.getSymbol());
     }
 
     private List<DocumentDTO> setListDTO(List<DocumentEntity> documentEntityList){
@@ -298,5 +314,19 @@ public class OutGoingDocumentService implements IOutGoingDocumentService {
 
         documentDTO.setNumberOfPage(documentEntity.getBaseDocumentEntity().getNumberOfPage());
         documentDTO.setFile(documentEntity.getBaseDocumentEntity().getFile());
+    }
+
+    private void insertHanling(String action, String note, BaseDocumentEntity baseDocumentEntity, UserEntity assignee){
+        HandlingEntity handlingEntity = new HandlingEntity();
+        handlingEntity.setAction(action);
+        handlingEntity.setNote(note);
+
+        LocalDateTime now = LocalDateTime.now();
+        handlingEntity.setTime(now);
+
+        handlingEntity.setBaseDocument(baseDocumentEntity);
+        handlingEntity.setUser(assignee);
+
+        handlingRepository.save(handlingEntity);
     }
 }

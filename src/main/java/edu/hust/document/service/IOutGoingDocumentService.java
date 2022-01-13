@@ -2,6 +2,7 @@ package edu.hust.document.service;
 
 import edu.hust.document.dto.DocumentDTO;
 import edu.hust.document.form.DocumentForm;
+import edu.hust.document.form.HandlingForm;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public interface IOutGoingDocumentService {
 
     DocumentDTO assignNumbers(DocumentForm documentForm);
 
-    DocumentDTO accept(Long id);
+    DocumentDTO accept(HandlingForm handlingForm);
 
-    DocumentDTO refuse(Long id);
+    DocumentDTO refuse(HandlingForm handlingForm);
 }
