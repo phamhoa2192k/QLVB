@@ -16,10 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.hust.document.api.input.DocumentAssignment;
+import edu.hust.document.api.input.DepartmentAssignment;
 import edu.hust.document.api.input.FileUpload;
 import edu.hust.document.dto.DocumentDTO;
-import edu.hust.document.dto.HandlingDTO;
 import edu.hust.document.entity.DocumentEntity;
 import edu.hust.document.service.IncomingDocumentInterface;
 
@@ -27,51 +26,70 @@ import edu.hust.document.service.IncomingDocumentInterface;
 @RestController
 @RequestMapping("/api/incomingdocument")
 public class IncomingDocumentAPI {
-	
+
 	@Autowired
 	private IncomingDocumentInterface incomingDocumentService;
-	
+
 	@PostMapping
 	public DocumentEntity createDocument(@RequestBody DocumentDTO documentDTO) {
 		return incomingDocumentService.createDocument(documentDTO);
 	}
-	
+
 	@PutMapping(value = "/{documentId}")
 	public DocumentEntity updateDocument(
-			@RequestBody DocumentDTO documentDTO, 
+			@RequestBody DocumentDTO documentDTO,
 			@PathVariable("documentId") Long documentId) {
 		return incomingDocumentService.updateDocument(documentDTO, documentId);
 	}
-	
-	
+
 	@GetMapping("/{documentId}")
 	public DocumentEntity getDocumentById(@PathVariable @Valid @NotNull @Min(1) Long documentId) {
 		return incomingDocumentService.findDocumentById(documentId);
-	}
-	
-	@GetMapping("/assign/{assigneeId}")
-	public List<DocumentEntity> getDocumentByAssigneeId(@PathVariable @Valid @NotNull @Min(1) Long assigneeId) {
-		return incomingDocumentService.findDocumentByAssigneeId(assigneeId);
-	}
-	
-	@PostMapping(value = "/assign")
-	public void assign(@RequestBody DocumentAssignment documentAssignment) {
-		incomingDocumentService.assignDocumentForUser(documentAssignment.getDocumentId(), documentAssignment.getAssigneeId());
-	}
-	
-	@PostMapping(value = "/handle")
-	public void handle(@RequestBody HandlingDTO handlingDTO) {
-		incomingDocumentService.handleDocument(handlingDTO);
-	}
-	
-	@PostMapping(value = "/upload")
-	public void uploadFile(@RequestBody FileUpload fileUpload) {
-		incomingDocumentService.uploadFile(fileUpload);
 	}
 
 	@GetMapping("/all")
 	public List<DocumentEntity> getAll() {
 		return incomingDocumentService.findAll();
+	}
+
+	@GetMapping("/all/clericalassistant")
+	public List<DocumentEntity> getDocumentsOfClericalAssistant() {
+		return incomingDocumentService.getDocumentsOfClericalAssistant();
+	}
+
+	@GetMapping("/all/employee/{departmentId}")
+	public List<DocumentEntity> getDocumentsOfEmployee(@PathVariable @Valid @NotNull @Min(1) Long departmentId) {
+		return incomingDocumentService.getDocumentsOfEmployee(departmentId);
+	}
+
+	@GetMapping("/all/leader")
+	public List<DocumentEntity> getDocumentsOfLeader() {
+		return incomingDocumentService.getDocumentsOfLeader();
+	}
+
+	@PutMapping(value = "/handle/assign")
+	public void assignDepartment(@RequestBody DepartmentAssignment departmentAssignment) {
+		incomingDocumentService.assignDepartment(departmentAssignment);
+	}
+
+	@PutMapping(value = "/handle/approve")
+	public void approve(Long documentId) {
+		incomingDocumentService.approveDocument(documentId);
+	}
+
+	@PutMapping(value = "/handle/refuse")
+	public void refuse(Long documentId) {
+		incomingDocumentService.approveDocument(documentId);
+	}
+
+	@PutMapping(value = "/handle/upload")
+	public void uploadFile(@RequestBody FileUpload fileUpload) {
+		incomingDocumentService.uploadFile(fileUpload);
+	}
+
+	@PutMapping(value = "/handle/finishHandling")
+	public void finishHandling(Long documentId) {
+		incomingDocumentService.finishHandling(documentId);
 	}
 
 }

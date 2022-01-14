@@ -48,4 +48,7 @@ public class DepartmentEntity {
 	@Column(name = "phonenumber")
 	private String phonenumber;
 
+	@OneToMany(mappedBy = "department")
+	@JsonIgnore
+	private Set<DocumentEntity> documents;
 }
