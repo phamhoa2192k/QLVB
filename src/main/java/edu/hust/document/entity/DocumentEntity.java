@@ -1,14 +1,8 @@
 package edu.hust.document.entity;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -35,5 +29,8 @@ public class DocumentEntity {
     @Column(name = "urgency_level")
     private String urgencyLevel;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "assigned_department_id")
+    private DepartmentEntity department;
 
 }
