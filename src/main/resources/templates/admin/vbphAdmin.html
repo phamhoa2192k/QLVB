@@ -6,15 +6,25 @@
   <title>Admin|Quản lí văn bản</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+   <!-- Google Font: Source Sans Pro -->
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+   <!-- Font Awesome -->
+   <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+   <!-- SweetAlert2 -->
+   <link rel="stylesheet" href="/plugins/sweetalert2/sweetalert2.min.css">
+   <!-- Toastr -->
+   <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
+   <!-- Theme style -->
+   <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+   <link rel="stylesheet" href="/plugins/datatables/jquery.dataTables.min.css">
+   <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
   <!-- Navbar -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+  </div>
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -49,7 +59,6 @@
           </form>
         </div>
       </li>
-      
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
@@ -71,7 +80,8 @@
         <div class="info">
           <a href="#" class="d-block" id="currentUser"></a>
         </div>
-      </div>
+      </div>  
+
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -98,6 +108,7 @@
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Quản lí phòng ban
+                <!-- <span class="right badge badge-danger">New</span> -->
               </p>
             </a>
           </li>
@@ -142,12 +153,18 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
+                Giấy mời
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
                 Công việc nội bộ
               </p>
             </a>
           </li>
-          
-      
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -163,7 +180,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Quản lí văn bản đến</h1>
+            <h1>Quản lí văn bản</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -184,56 +201,13 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <!-- <h3 class="card-title">Responsive Hover Table</h3> -->
-
-                <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                    <div class="input-group-append">
-                      <button type="submit" class="btn btn-default">
-                        <i class="fas fa-search"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                <button type="button" class="btn btn-default"  data-toggle="modal" data-target="#modal-themvanban">
+                  <i class="fas fa-edit"></i>Thêm mới văn bản
+                </button>
               </div>
               <!-- /.card-header -->
-              <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Tên văn bản</th>
-                      <th>Loại văn bản</th>
-                      <th>Ngày tạo</th>
-                      <th>Trạng thái</th>
-                      <th></th>
-                      <th></th>
-
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>183</td>
-                      <td>Quyết định thăng chức</td>
-                      <td>Quyết định</td>
-                      <th>16/1/2021</th>
-                      <td><span class="tag tag-success">Vừa tiếp nhận</span></td>
-                      <td>                                
-                        <button style="padding: 0; cursor: pointer;" type="button" class="btn" data-toggle="modal" data-target="#modal-chitietvanban">
-                          chi tiết
-                        </button>
-                      </td>
-                      <td>                                
-                        <button style="padding: 0; cursor: pointer;" type="button" class="btn" data-toggle="modal" data-target="#modal-lichsuxuli">
-                          lịch sử
-                        </button>
-                      </td>
-                    </tr>
-                    
-                  </tbody>
-                </table>
+              <div class="card-body">
+                <table id="listDocuments" class="table"></table>
               </div>
               <!-- /.card-body -->
             </div>
@@ -262,86 +236,134 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
-<div class="modal fade" id="modal-chitietvanban">
-  <div class="modal-dialog" style="max-width: 700px;">
-    <div class="modal-content" style="max-width: 700px;">
-      <form action="/document-update" method="post">
+<div class="modal fade" id="modal-themvanban">
+  <div class="modal-dialog" style="max-width: 900px;">
+    <div class="modal-content">
+      <form action="#" method="post" id="newOutGoingDocument">
 
         <div class="modal-header">
-          <h4 class="modal-title">Thông tin chi tiết văn bản</h4>
+          <h4 class="modal-title">Thêm mới văn bản</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <div class="card card-primary">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="newOutGoingDocumentName">Tên văn bản</label>
+                  <input type="text" class="form-control" id="newOutGoingDocumentName" placeholder="Nhập tên văn bản">
+                </div>
+                <div class="form-group">
+                  <label for="newOutGoingDocumentAgencyCode">Mã định danh cơ quan tổ chức phát hành </label>
+                  <input type="text" class="form-control" id="newOutGoingDocumentAgencyCode" placeholder="Nhập mã cơ quan phát hành">
+                </div>
+                <div class="form-group">
+                  <label for="newOutGoingDocumentSymbol">Kí hiệu văn bản</label>
+                  <input type="text" class="form-control" id="newOutGoingDocumentSymbol" placeholder="Nhập kí hiệu văn bản">
+                </div>
+                <div class="form-group">
+                  <label for="newOutGoingDocumentType">Loại văn bản</label>
+                  <select class="form-select" aria-label="Default select example" id="newOutGoingDocumentType">
+                    <option selected>Chọn loại văn bản</option>
+                    <option value="31">Nghị quyết</option>
+                    <option value="32">Quyết định</option>
+                    <option value="37">Thông báo</option>
+                    <option value="33">Chỉ thị</option>
+                    <option value="35">Quy định</option>
+                    <option value="36">Thông cáo</option>
+                    <option value="38">Hướng dẫn</option>
+                    <option value="39">Chương trình</option>
+                    <option value="40">Kế hoạch</option>
+                    <option value="41">Phương án</option>
+                    <option value="42">Đề án</option>
+                    <option value="43">Dự án</option>
+                    <option value="44">Báo cáo</option>
+                    <option value="45">Biên bản</option>
+                    <option value="46">Tờ trình</option>
+                    <option value="47">Hợp đồng</option>
+                    <option value="48">Công văn</option>
+                    <option value="49">Công điện</option>
+                    <option value="50">Bản ghi nhớ</option>
+                    <option value="51">Bản thoả thuận</option>
+                    <option value="52">Giấy uỷ quyền</option>
+                    <option value="53">Giấy giới thiệu</option>
+                    <option value="54">Giấy nghỉ phép</option>
+                    <option value="55">Phiếu gửi</option>
+                    <option value="56">Phiếu chuyển</option>
+                    <option value="57">Phiếu báo</option>
+                    <option value="58">Thư công</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="newOutGoingDocumentIssuanceTime">Ngày phát hành</label>
+                  <input type="datetime" class="form-control" id="newOutGoingDocumentIssuanceTime" placeholder="Nhập ngày phát hành">
+                </div>
+                <div class="form-group">
+                  <label for="newOutGoingDocumentNumberOfPage">Số trang</label>
+                  <input type="number" class="form-control" id="newOutGoingDocumentNumberOfPage" placeholder="Nhập số trang">
+                </div>
+                <!--<div class="form-group">
+                  <label for="exampleInputPassword1">Số trang</label>
+                  <input type="text" class="" id="exampleInputPassword1" placeholder="Nhập số trang">
+                </div>-->
+                
+                <div class="row">
+                  <div class="col-sm-6">
+                    <!-- radio -->
+                    <div class="form-group">
+                      <label>Độ mật</label>
 
-            <!-- /.card-header -->
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="securityLevel" value="Mật">
+                        <label class="form-check-label">Mật</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="securityLevel" value="Tối mật" checked>
+                        <label class="form-check-label">Tối mật</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="securityLevel" value="Tuyệt mật">
+                        <label class="form-check-label">Tuyệt mật</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <!-- radio -->
+                    <div class="form-group">
+                      <label>Độ khẩn</label>
 
-              <div class="card-body table-responsive">
-                <table class="table table-hover text-nowrap">
-                  <tr>
-                    <th>Tên văn bản</th>
-                    <th>Quyết định thăng chức</th>
-                  </tr>
-                  <tr>
-                    <th>Mã định danh CQ/TC phát hành </th>
-                    <th>000.00.00.G15</th>
-                  </tr>
-                  <tr>
-                    <th>Mã định danh văn bản</th>
-                    <th>Quyết định thăng chức</th>
-                  </tr>
-                  <tr>
-                    <th>Kí hiệu văn bản</th>
-                    <th>Quyết định thăng chức</th>
-                  </tr>
-                  <tr>
-                    <th>Loại văn bản</th>
-                    <th>Quyết định thăng chức</th>
-                  </tr>
-                  <tr>
-                    <th>Số trang</th>
-                    <th>Quyết định thăng chức</th>
-                  </tr>
-                  <tr>
-                    <th>Ngày phát hành</th>
-                    <th>Quyết định thăng chức</th>
-                  </tr>
-                  <tr>
-                    <th>Têp văn bản</th>
-                    <th>Quyết định thăng chức</th>
-                  </tr>
-                  <tr>
-                    <th>Trích yếu nội dung</th>
-                    <th>Quyết định thăng chức</th>
-                  </tr>
-                  <tr>
-                    <th>Hồ sơ gửi kèm</th>
-                    <th>Quyết định thăng chức</th>
-                  </tr>
-                  <tr>
-                    <th>Thời hạn xử lí</th>
-                    <th>Quyết định thăng chức</th>
-                  </tr>
-                  
-                </table>
-                                              
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="urgencyLevel" value="Khẩn">
+                        <label class="form-check-label">Khẩn</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="urgencyLevel" value="Thượng khẩn" checked>
+                        <label class="form-check-label">Thượng khẩn</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="urgencyLevel" value="Hoả tốc">
+                        <label class="form-check-label">Hỏa tốc</label>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                
+                <div class="form-group">
+                  <label for="newOutGoingDocumentContent">Trích yếu nội dung</label>
+                  <input type="text" class="form-control" id="newOutGoingDocumentContent" placeholder="Nhập nội dụng">
+                </div>
+                <div class="form-group">
+                  <label for="newOutGoingDocumentFile">Tài liệu</label>
+                  <input type="text" class="form-control" id="newOutGoingDocumentFile" placeholder="Nhập link tài liệu">
                 </div>
               </div>
-              <!-- /.card-body -->
-
-              <!-- <button type="submit" class="btn btn-primary">Add new</button> -->
-
           </div>
         </div>
         <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Sửa</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+          <button type="submit" class="btn btn-primary">Thêm mới</button>
         </div>
       </form>
 
@@ -350,83 +372,28 @@
   </div>
   <!-- /.modal-dialog -->
 </div>
-<div class="modal fade" id="modal-lichsuxuli">
-  <div class="modal-dialog" style="max-width: 800px;">
+
+
+<div class="modal fade" id="modal-delete">
+  <div class="modal-dialog">
     <div class="modal-content">
-      <form action="/add-department" method="post">
+      <form action="/delete" method="post">
 
         <div class="modal-header">
-          <h4 class="modal-title">Lịch sử xử lí văn bản</h4>
+          <h4 class="modal-title">Xóa</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <div class="row">
-            <div class="col-md-12">
-              <!-- The time line -->
-              <div class="timeline">
-                <!-- timeline time label -->
-                <div class="time-label">
-                  <span class="bg-red">10 Feb. 2014</span>
-                </div>
-                <!-- /.timeline-label -->
-                <!-- timeline item -->
-                <div>
-                  <i class="fas fa-envelope bg-blue"></i>
-                  <div class="timeline-item">
-                    <span class="time"><i class="fas fa-clock"></i> 12:05</span>
-                    <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-  
-                    <div class="timeline-body">
-                      Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                      weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                      jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                      quora plaxo ideeli hulu weebly balihoo...
-                    </div>
-                    <div class="timeline-footer">
-                      <a class="btn btn-primary btn-sm">Read more</a>
-                      <a class="btn btn-danger btn-sm">Delete</a>
-                    </div>
-                  </div>
-                </div>
-                <!-- END timeline item -->
-                <!-- timeline item -->
-                <div>
-                  <i class="fas fa-user bg-green"></i>
-                  <div class="timeline-item">
-                    <span class="time"><i class="fas fa-clock"></i> 5 mins ago</span>
-                    <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request</h3>
-                  </div>
-                </div>
-                <!-- END timeline item -->
-                <!-- timeline item -->
-                <div>
-                  <i class="fas fa-comments bg-yellow"></i>
-                  <div class="timeline-item">
-                    <span class="time"><i class="fas fa-clock"></i> 27 mins ago</span>
-                    <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-                    <div class="timeline-body">
-                      Take me to your leader!
-                      Switzerland is small and neutral!
-                      We are more like Germany, ambitious and misunderstood!
-                    </div>
-                    <!-- <div class="timeline-footer">
-                      <a class="btn btn-warning btn-sm">View comment</a>
-                    </div> -->
-                  </div>
-                </div>
-                <!-- END timeline item -->
-                <!-- timeline time label -->
-                
-              </div>
-            </div>
-            <!-- /.col -->
-          </div>
+         
+          <p>Bạn có chắc chắn muốn xóa ?</p>
+
+              
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <!-- <button type="submit" class="btn btn-primary">Add new</button> -->
+          <button type="submit" class="btn btn-danger">Delete</button>
         </div>
       </form>
 
@@ -441,7 +408,16 @@
 <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/dist/js/adminlte.min.js"></script>
+<!-- bs-custom-file-input -->
+<script src="/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<script src="/plugins/datatables/jquery.dataTables.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/dist/js/demo.js"></script>
+<script src="/dist/js/pages/admin/vbphAdmin.js"></script>
+<script>
+  $(function () {
+    bsCustomFileInput.init();
+  });
+  </script>
 </body>
 </html>

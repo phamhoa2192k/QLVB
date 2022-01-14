@@ -5,6 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 class BasicUserController {
+
+	@GetMapping("/user/index")
+	public String getIndex(){
+		return "user/index";
+	}
+
 	@GetMapping("/user/vbdUser")
 	public String getVBDPage(){
 		return "user/vbdUser";
@@ -15,9 +21,14 @@ class BasicUserController {
 		return "user/vbphUser";
 	} 
 
-	@GetMapping("/user/documentDetail**")
+	@GetMapping("/user/outgoingDocumentDetail**")
 	public String getdocumentDetail(){
-		return "user/documentDetail";
+		return "user/outgoingDocumentDetail";
+	}
+
+	@GetMapping("/user/incomingDocumentDetail**")
+	public String getIncomingDocumentDetail(){
+		return "user/incomingDocumentDetail";
 	}
 
 }

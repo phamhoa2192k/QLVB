@@ -105,7 +105,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/admin/vbdAdmin" class="nav-link active">
+            <a href="/admin/vbdAdmin" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Văn bản đến
@@ -125,7 +125,7 @@
             </ul> -->
           </li>
           <li class="nav-item">
-            <a href="/admin/vbphAdmin" class="nav-link">
+            <a href="/admin/vbphAdmin" class="nav-link active">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Văn bản phát hành
@@ -173,7 +173,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <a href="/admin/vbdAdmin">Trở lại</a>
+            <a href="/admin/vbphAdmin">Trở lại</a>
             <h1>Chi tiết văn bản</h1>
           </div>
           <div class="col-sm-6">
@@ -211,49 +211,48 @@
                           <table class="table table-hover text-nowrap">
                             <tr>
                               <th>Tên văn bản</th>
-                              <th>Quyết định thăng chức</th>
+                              <th id="receivedDocumentName"></th>
                             </tr>
                             <tr>
                               <th>Mã định danh CQ/TC phát hành </th>
-                              <th>000.00.00.G15</th>
+                              <th id="receivedDocumentAgencyCode"></th>
                             </tr>
                             <tr>
-                              <th>Mã định danh văn bản</th>
-                              <th>Quyết định thăng chức</th>
+                              <th>Số văn bản</th>
+                              <th id="receivedDocumentNumber"></th>
                             </tr>
                             <tr>
                               <th>Kí hiệu văn bản</th>
-                              <th>Quyết định thăng chức</th>
+                              <th id="receivedDocumentCode"></th>
                             </tr>
                             <tr>
                               <th>Loại văn bản</th>
-                              <th>Quyết định thăng chức</th>
-                            </tr>
-                            <tr>
-                              <th>Số trang</th>
-                              <th>Quyết định thăng chức</th>
+                              <th id="receivedDocumentType"></th>
                             </tr>
                             <tr>
                               <th>Ngày phát hành</th>
-                              <th>Quyết định thăng chức</th>
-                            </tr>
-                            <tr>
-                              <th>Têp văn bản</th>
-                              <th>Quyết định thăng chức</th>
+                              <th id="receivedDocumentIssuanceTime"></th>
                             </tr>
                             <tr>
                               <th>Trích yếu nội dung</th>
-                              <th>Quyết định thăng chức</th>
+                              <th id="receivedDocumentContent"></th>
                             </tr>
                             <tr>
                               <th>Hồ sơ gửi kèm</th>
-                              <th>Quyết định thăng chức</th>
+                              <th><a id="receivedDocumentAttachedDocument">Nhấn để mở</a></th>
                             </tr>
                             <tr>
                               <th>Thời hạn xử lí</th>
-                              <th>Quyết định thăng chức</th>
+                              <th id="receivedDocumentDeadline"></th>
                             </tr>
-                            
+                            <tr>
+                              <th>Độ bảo mật</th>
+                              <th id="receivedDocumentSecurityLevel"></th>
+                            </tr>
+                            <tr>
+                              <th>Độ khẩn</th>
+                              <th id="receivedDocumentUrgencyLevel"></th>
+                            </tr>
                           </table>
                                                         
                           <!-- <div class="form-check">
@@ -264,20 +263,24 @@
                         <!-- /.card-body -->
           
                         <!-- <button type="submit" class="btn btn-primary">Add new</button> -->
-          
+                        
                     </div>
-                  <!-- </div> -->
-                  <div class="modal-footer justify-content-between">
-                    <div>
-                      <button type="button" class="btn btn-danger" id="rejectButton">Từ chối</button>
-                      <button type="button" class="btn btn-success" id="approveButton">Phê duyệt</button>
-                      <button type="button" class="btn btn-warning" id="sucessButton">Hoàn thành</button>
-                    </div>
-                    <button type="button" class="btn btn-default"  data-toggle="modal" data-target="#modal-phanxuli" id="chooseNextButton" disabled>
-                      <i class="fas fa-edit"></i>Chỉ định người xử lý
+                    <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modal-assignnumber">
+                      Cấp số
                     </button>
-                    <button type="submit" class="btn btn-primary" id="changeButton">Sửa</button>
-                  </div>
+
+                    <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#modal-accept">
+                      Phê duyệt
+                    </button>
+
+                    <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#modal-reject">
+                      Từ chối
+                    </button>
+
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-handle">
+                      Xử lý
+                    </button>
+                  <!-- </div> -->
                 </form>
               </div>
               <div class="col-sm-6">
@@ -291,15 +294,14 @@
                     <div class="row">
                       <div class="col-md-12">
                         <!-- The time line -->
-                        <div class="timeline">
+                        <div class="timeline" id="timeline">
                           <!-- timeline time label -->
+
                           <div class="time-label">
-                            <span class="bg-red">10 Feb. 2014</span>
+                            <span class="bg-red">Dòng thời gian</span>
                           </div>
-                          <!-- /.timeline-label -->
-                          <!-- timeline item -->
-                          <div>
-                            <i class="fas fa-envelope bg-blue"></i>
+                                                  <!---  <div>
+                            <i class="fas fa-user bg-green"></i>
                             <div class="timeline-item">
                               <span class="time"><i class="fas fa-clock"></i> 12:05</span>
                               <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
@@ -310,14 +312,8 @@
                                 jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
                                 quora plaxo ideeli hulu weebly balihoo...
                               </div>
-                              <!-- <div class="timeline-footer">
-                                <a class="btn btn-primary btn-sm">Read more</a>
-                                <a class="btn btn-danger btn-sm">Delete</a>
-                              </div> -->
                             </div>
                           </div>
-                          <!-- END timeline item -->
-                          <!-- timeline item -->
                           <div>
                             <i class="fas fa-user bg-green"></i>
                             <div class="timeline-item">
@@ -325,16 +321,9 @@
                               <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request</h3>
                             </div>
                           </div>
-                          <!-- END timeline item -->
-                          <!-- timeline item -->
-                          
-                          <!-- END timeline item -->
-                          <!-- timeline time label -->
-                         
-                          <!-- END timeline item -->
                           <div>
                             <i class="fas fa-clock bg-gray"></i>
-                          </div>
+                          </div> -->
                         </div>
                       </div>
                       <!-- /.col -->
@@ -357,57 +346,6 @@
     <!-- /.content -->
   </div>
 
-  <div class="modal fade" id="modal-phanxuli">
-    <div class="modal-dialog">
-      <div class="modal-content">
-  
-          <form action="#" method="post">
-  
-            <div class="modal-header">
-              <h4 class="modal-title">Phân xử lí văn bản</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="card card-primary">
-    
-                <!-- /.card-header -->
-                <!-- form start -->
-                  <div class="card-body">
-                    
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Chỉ định người xử lí</label>
-                      <select class=" form-control select2" aria-label="Default select example" id="userNext">
-                        <option selected>Chọn</option>
-                        <option value="loai1">Nguyễn văn a</option>
-                        <option value="2">ông b</option>
-                        <option value="3">ông c</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Lời nhắn</label>
-                      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Nhập ngày phát hành">
-                    </div>
-                  </div>
-                  <!-- /.card-body -->
-    
-                  <!-- <button type="submit" class="btn btn-primary">Add new</button> -->
-    
-              </div>
-            </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Chỉ định</button>
-            </div>
-          </form>
-  
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
@@ -423,7 +361,112 @@
   <!-- /.control-sidebar -->
 </div>  
 <!-- ./wrapper -->
+<div class="modal fade" id="modal-assignnumber">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="assignNumberForm">
+        <div class="modal-header">
+          <h4 class="modal-title">Cấp số</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <label for="outGoingDocumentNumber">Vui lòng điền số cho văn bản</p>
+          <input type="text" class="form-control" placeholder="Điền số cho văn bản" id="outGoingDocumentNumber"/>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+          <button type="submit" class="btn btn-success">Cấp số</button>
+        </div>
+      </form>
 
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+
+<div class="modal fade" id="modal-accept">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="acceptForm">
+        <div class="modal-header">
+          <h4 class="modal-title">Phê duyệt</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Bạn có chắc chắn muốn phê duyệt?</p>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            <button type="submit" class="btn btn-success">Phê duyệt</button>
+        </div>
+      </form>
+
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="modal-reject">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="rejectForm">
+        <div class="modal-header">
+          <h4 class="modal-title">Từ chối</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <label for="reasonReject">Lý do từ chối</p>
+          <input type="text" placeholder="Nhập lý do từ chối" id="reasonReject" class="form-control"/>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+          <button type="submit" class="btn btn-success">Từ chối</button>
+        </div>
+      </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+
+</div>
+<!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="modal-handle">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <form id="handleForm">
+      <div class="modal-header">
+        <h4 class="modal-title">Upload file</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label for="fileHandle">Upload</p>
+        <input type="text" placeholder="Upload lại file" id="fileHandle" class="form-control"/>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+        <button type="submit" class="btn btn-success">Upload</button>
+      </div>
+    </form>
+  </div>
+  <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div>
 <!-- jQuery -->
 <script src="/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -432,6 +475,6 @@
 <script src="/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/dist/js/demo.js"></script>
-<script src="/dist/js/pages/admin/documentDetail.js"></script>
+<script src="/dist/js/pages/admin/outgoingDocumentDetail.js"></script>
 </body>
 </html>

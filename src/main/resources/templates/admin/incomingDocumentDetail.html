@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>User | Document Detail</title>
+  <title>Admin | Document Detail</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -22,7 +22,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="/user/index" class="nav-link">Home</a>
+        <a href="/admin/index" class="nav-link">Home</a>
       </li>
     </ul>
 
@@ -77,8 +77,35 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+              with font-awesome or any other icon font library -->
+          <li class="nav-item menu-open">
+            <a href="/admin/index" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+              </p>
+            </a>
+            <!-- <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="./index.html" class="nav-link active">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Dashboard v1</p>
+                </a>
+              </li>
+            </ul> -->
+          </li>
           <li class="nav-item">
-            <a href="/user/vbdUser" class="nav-link active">
+            <a href="/admin/qlpbAdmin" class="nav-link ">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Quản lí phòng ban
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/vbdAdmin" class="nav-link active">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Văn bản đến
@@ -98,7 +125,7 @@
             </ul> -->
           </li>
           <li class="nav-item">
-            <a href="/user/vbphUser" class="nav-link">
+            <a href="/admin/vbphAdmin" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Văn bản phát hành
@@ -146,7 +173,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <a href="/user/vbdUser">Trở lại</a>
+            <a href="/admin/vbdAdmin">Trở lại</a>
             <h1>Chi tiết văn bản</h1>
           </div>
           <div class="col-sm-6">
@@ -155,7 +182,7 @@
               </button> -->
                
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="/user/index">Home</a></li>
+              <li class="breadcrumb-item"><a href="/admin/index">Home</a></li>
               <li class="breadcrumb-item active">Văn bản đến</li>
               <li>
                 
@@ -184,49 +211,48 @@
                           <table class="table table-hover text-nowrap">
                             <tr>
                               <th>Tên văn bản</th>
-                              <th>Quyết định thăng chức</th>
+                              <th id="receivedDocumentName"></th>
                             </tr>
                             <tr>
                               <th>Mã định danh CQ/TC phát hành </th>
-                              <th>000.00.00.G15</th>
+                              <th id="receivedDocumentAgentCode"></th>
                             </tr>
                             <tr>
-                              <th>Mã định danh văn bản</th>
-                              <th>Quyết định thăng chức</th>
+                              <th>Số văn bản</th>
+                              <th id="receivedDocumentNumber"></th>
                             </tr>
                             <tr>
                               <th>Kí hiệu văn bản</th>
-                              <th>Quyết định thăng chức</th>
+                              <th id="receivedDocumentCode"></th>
                             </tr>
                             <tr>
                               <th>Loại văn bản</th>
-                              <th>Quyết định thăng chức</th>
+                              <th id="receivedDocumentType"></th>
                             </tr>
                             <tr>
-                              <th>Số trang</th>
-                              <th>Quyết định thăng chức</th>
-                            </tr>
-                            <tr>
-                              <th>Ngày phát hành</th>
-                              <th>Quyết định thăng chức</th>
-                            </tr>
-                            <tr>
-                              <th>Têp văn bản</th>
-                              <th>Quyết định thăng chức</th>
+                              <th id="receivedDocumentIssuanceTime">Ngày phát hành</th>
+                              <th></th>
                             </tr>
                             <tr>
                               <th>Trích yếu nội dung</th>
-                              <th>Quyết định thăng chức</th>
+                              <th id="receivedDocumentContent"></th>
                             </tr>
                             <tr>
                               <th>Hồ sơ gửi kèm</th>
-                              <th>Quyết định thăng chức</th>
+                              <th><a id="receivedDocumentAttachedDocument">Nhấn để mở</a></th>
                             </tr>
                             <tr>
                               <th>Thời hạn xử lí</th>
-                              <th>Quyết định thăng chức</th>
+                              <th id="receivedDocumentDeadline"></th>
                             </tr>
-                            
+                            <tr>
+                              <th>Độ bảo mật</th>
+                              <th id="receivedDocumentSecurityLevel"></th>
+                            </tr>
+                            <tr>
+                              <th>Độ khẩn</th>
+                              <th id="receivedDocumentUrgencyLevel"></th>
+                            </tr>
                           </table>
                                                         
                           <!-- <div class="form-check">
@@ -240,17 +266,6 @@
           
                     </div>
                   <!-- </div> -->
-                  <div class="modal-footer justify-content-between">
-                    <div>
-                      <button type="button" class="btn btn-danger" id="rejectButton">Từ chối</button>
-                      <button type="button" class="btn btn-success" id="approveButton">Phê duyệt</button>
-                      <button type="button" class="btn btn-warning" id="sucessButton">Hoàn thành</button>
-                    </div>
-                    <button type="button" class="btn btn-default"  data-toggle="modal" data-target="#modal-phanxuli" id="chooseNextButton" disabled>
-                      <i class="fas fa-edit"></i>Chỉ định người xử lý
-                    </button>
-                    <button type="submit" class="btn btn-primary" id="changeButton">Sửa</button>
-                  </div>
                 </form>
               </div>
               <div class="col-sm-6">
@@ -405,6 +420,6 @@
 <script src="/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/dist/js/demo.js"></script>
-<script src="/dist/js/pages/user/documentDetail.js"></script>
+<script src="/dist/js/pages/admin/documentDetail.js"></script>
 </body>
 </html>

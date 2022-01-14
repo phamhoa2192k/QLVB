@@ -19,17 +19,27 @@ public class BasicAdminController {
 
 	@GetMapping("/admin/profile**")
 	public String getProfileUserPage(){
-		return "/admin/profile";
+		return "admin/profile";
 	}
 
 	@GetMapping("/admin/vbdAdmin")
 	public String getVBDPage(){
-		return "/admin/vbdAdmin";
+		return "admin/vbdAdmin";
 	}
 
-	@GetMapping("/admin/documentDetail")
+	@GetMapping("/admin/incomingDocumentDetail**")
 	public String getDocumentDetailPage(){
-		return "/admin/documentDetail";
+		return "admin/incomingDocumentDetail";
+	}
+
+	@GetMapping("/admin/vbphAdmin")
+	public String getvbphAdmin(){
+		return "admin/vbphAdmin";
+	}
+
+	@GetMapping("/admin/outgoingDocumentDetail**")
+	public String getOutgoingDocumentDetail(){
+		return "admin/outgoingDocumentDetail";
 	}
 
 }

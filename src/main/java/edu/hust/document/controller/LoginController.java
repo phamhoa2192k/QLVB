@@ -26,7 +26,7 @@ public class LoginController {
 				return "redirect:/admin/index";
 			}
 			else if(role.equals("USER")){
-				return "redirect:/user/vbdUser";
+				return "redirect:/user/index";
 			}
 			else
 				return "redirect:/error";

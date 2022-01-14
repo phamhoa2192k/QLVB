@@ -16,7 +16,7 @@
    <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
    <!-- Theme style -->
    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
-   <link rel="stylesheet" href="/plugins/datatables/jquery.dataTables.min.js">
+   <link rel="stylesheet" href="/plugins/datatables/jquery.dataTables.min.css">
    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
@@ -208,46 +208,6 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="listDocuments" class="table"></table>
-                <!-- <table class="table table-hover text-nowrap">
-                 <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Tên văn bản</th>
-                      <th>Loại văn bản</th>
-                      <th>Ngày tạo</th>
-                      <th>Trạng thái</th>
-                      <th></th>
-                      <th></th> 
-                      <th></th>
-
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>183</td>
-                      <td>Quyết định thăng chức</td>
-                      <td>Quyết định</td>
-                      <th>16/1/2021</th>
-                      <td><span class="tag tag-success">Vừa tiếp nhận</span></td>
-                      <td>                                
-                        <button style="padding: 0; cursor: pointer;" type="text" class="btn">
-                          <a href="documentDetail.html">chi tiết</a> 
-                        </button>
-                      </td>
-                      <td>                                
-                        <button style="padding: 0; cursor: pointer;" type="button" class="btn" data-toggle="modal" data-target="#modal-phanxuli">
-                          Phân xử lí
-                        </button>
-                      </td>
-                      <td>                                
-                        <button style="padding: 0; cursor: pointer;" type="button" class="btn" data-toggle="modal" data-target="#modal-delete">
-                          Xóa
-                        </button>
-                      </td>
-                    </tr>
-                    
-                  </tbody>
-                </table>-->
               </div>
               <!-- /.card-body -->
             </div>
@@ -279,7 +239,7 @@
 <div class="modal fade" id="modal-themvanban">
   <div class="modal-dialog" style="max-width: 900px;">
     <div class="modal-content">
-      <form action="#" method="post">
+      <form action="#" method="post" id="newReceivedDocumentForm">
 
         <div class="modal-header">
           <h4 class="modal-title">Thêm mới văn bản</h4>
@@ -289,42 +249,62 @@
         </div>
         <div class="modal-body">
           <div class="card card-primary">
-
-            <!-- /.card-header -->
-            <!-- form start -->
               <div class="card-body">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Tên văn bản</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nhập tên phòng ban">
+                  <label for="newReceivedDocumentFormName">Tên văn bản</label>
+                  <input type="text" class="form-control" id="newReceivedDocumentFormName" placeholder="Nhập tên văn bản">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Mã định danh cơ quan tổ chức phát hành </label>
-                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Nhập mã phòng ban">
+                  <label for="newReceivedDocumentFormAgencyCode">Mã định danh cơ quan tổ chức phát hành </label>
+                  <input type="text" class="form-control" id="newReceivedDocumentFormAgencyCode" placeholder="Nhập mã cơ quan phát hành">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Mã định danh văn bản</label>
-                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Nhập số điện thoại">
+                  <label for="newReceivedDocumentFormNumber">Số văn bản</label>
+                  <input type="text" class="form-control" id="newReceivedDocumentNumber" placeholder="Nhập mã định danh văn bản">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Kí hiệu văn bản</label>
-                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Nhập địa chỉ">
+                  <label for="newReceivedDocumentFormSymbol">Kí hiệu văn bản</label>
+                  <input type="text" class="form-control" id="newReceivedDocumentSymbol" placeholder="Nhập kí hiệu văn bản">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Loại văn bản</label>
-                  <select class="form-select" aria-label="Default select example">
+                  <label for="c">Loại văn bản</label>
+                  <select class="form-select" aria-label="Default select example" id="newReceivedDocumentFormType">
                     <option selected>Chọn loại văn bản</option>
-                    <option value="loai1">Quyết định</option>
-                    <option value="2">Thông báo</option>
-                    <option value="3">Nghị quyết</option>
+                    <option value="4">Quyết định</option>
+                    <option value="9">Thông báo</option>
+                    <option value="5">Chỉ thị</option>
+                    <option value="7">Quy định</option>
+                    <option value="8">Thông cáo</option>
+                    <option value="10">Hướng dẫn</option>
+                    <option value="11">Chương trình</option>
+                    <option value="12">Kế hoạch</option>
+                    <option value="13">Phương án</option>
+                    <option value="14">Đề án</option>
+                    <option value="15">Dự án</option>
+                    <option value="16">Báo cáo</option>
+                    <option value="17">Biên bản</option>
+                    <option value="18">Tờ trình</option>
+                    <option value="19">Hợp đồng</option>
+                    <option value="20">Công văn</option>
+                    <option value="21">Công điện</option>
+                    <option value="22">Bản ghi nhớ</option>
+                    <option value="23">Bản thoả thuận</option>
+                    <option value="24">Giấy uỷ quyền</option>
+                    <option value="25">Giấy giới thiệu</option>
+                    <option value="26">Giấy nghỉ phép</option>
+                    <option value="27">Phiếu gửi</option>
+                    <option value="28">Phiếu chuyển</option>
+                    <option value="29">Phiếu báo</option>
+                    <option value="30">Thư công</option>
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Ngày phát hành</label>
-                  <input type="datetime" class="form-control" id="exampleInputPassword1" placeholder="Nhập ngày phát hành">
+                  <label for="newReceivedDocumentFormIssuanceTime">Ngày phát hành</label>
+                  <input type="datetime" class="form-control" id="newReceivedDocumentFormIssuanceTime" placeholder="Nhập ngày phát hành">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Số trang</label>
-                  <input type="text" class="" id="exampleInputPassword1" placeholder="Nhập số trang">
+                  <label for="newReceivedDocumentFormNumberOfPage">Số trang</label>
+                  <input type="number" class="" id="newReceivedDocumentFormNumberOfPage" placeholder="Nhập số trang">
                 </div>
                 
                 <div class="row">
@@ -334,15 +314,15 @@
                       <label>Độ mật</label>
 
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radio2">
+                        <input class="form-check-input" type="radio" name="securityLevel" value="Mật">
                         <label class="form-check-label">Mật</label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radio2" checked>
+                        <input class="form-check-input" type="radio" name="securityLevel" value="Tối mật" checked>
                         <label class="form-check-label">Tối mật</label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radio2">
+                        <input class="form-check-input" type="radio" name="securityLevel" value="Tuyệt mật">
                         <label class="form-check-label">Tuyệt mật</label>
                       </div>
                     </div>
@@ -353,15 +333,15 @@
                       <label>Độ khẩn</label>
 
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radio1">
+                        <input class="form-check-input" type="radio" name="urgencyLevel" value="Khẩn">
                         <label class="form-check-label">Khẩn</label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radio1" checked>
+                        <input class="form-check-input" type="radio" name="urgencyLevel" value="Thượng khẩn" checked>
                         <label class="form-check-label">Thượng khẩn</label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radio1">
+                        <input class="form-check-input" type="radio" name="urgencyLevel" value="Hoả tốc">
                         <label class="form-check-label">Hỏa tốc</label>
                       </div>
                     </div>
@@ -370,26 +350,14 @@
                 </div>
                 
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Trích yếu nội dung</label>
-                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Nhập địa chỉ">
+                  <label for="newReceivedDocumentFormContent">Trích yếu nội dung</label>
+                  <input type="text" class="form-control" id="newReceivedDocumentFormContent" placeholder="Nhập nội dụng">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputFile">Tài liệu</label>
-                  <div class="input-group">
-                    <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="exampleInputFile">
-                      <label class="custom-file-label" for="exampleInputFile">Chọn file</label>
-                    </div>
-                    <div class="input-group-append">
-                      <span class="input-group-text">Tải lên</span>
-                    </div>
-                  </div>
+                  <label for="newReceivedDocumentFile">Tài liệu</label>
+                  <input type="text" class="form-control" id="newReceivedDocumentFile" placeholder="Nhập link tài liệu">
                 </div>
               </div>
-              <!-- /.card-body -->
-
-              <!-- <button type="submit" class="btn btn-primary">Add new</button> -->
-
           </div>
         </div>
         <div class="modal-footer justify-content-between">
@@ -441,7 +409,7 @@
 <script src="/dist/js/adminlte.min.js"></script>
 <!-- bs-custom-file-input -->
 <script src="/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-<script src="/plugins//datatables/jquery.dataTables.min.js"></script>
+<script src="/plugins/datatables/jquery.dataTables.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/dist/js/demo.js"></script>
 <script src="/dist/js/pages/admin/vbdAdmin.js"></script>
