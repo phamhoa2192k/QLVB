@@ -36,7 +36,6 @@ public class HandlingEntity {
 	@Column(name = "action")
 	private String action;
 
-	@JsonBackReference
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
 	private UserEntity user;

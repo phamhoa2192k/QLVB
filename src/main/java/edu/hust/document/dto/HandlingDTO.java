@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class HandlingDTO {
+    private Long id;
 
     private LocalDateTime time;
 
@@ -21,5 +22,7 @@ public class HandlingDTO {
     private Long handlingUserId;
     
     private Long documentId;
+
+    private String handlingUserName;
 
 }

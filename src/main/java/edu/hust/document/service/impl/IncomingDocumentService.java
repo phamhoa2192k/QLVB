@@ -182,7 +182,7 @@ public class IncomingDocumentService implements IncomingDocumentInterface {
 
 	@Override
 	public List<DocumentEntity> findAll() {
-		return documentRepository.findAll();
+		return documentRepository.findDocumentEntityByCategaryName(Configs.INCOMING_DOCUMENT_TYPE);
 	}
 	
 }
