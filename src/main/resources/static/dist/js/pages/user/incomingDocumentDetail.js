@@ -46,7 +46,7 @@ function sendHanleDocument(data){
 		},
 		body: JSON.stringify(data)
 	})
-	.then(window.location.href = "/admin/vbphAdmin")
+	.then(window.location.href = "/user/vbdUser")
 	.catch(console.log);
 }
 
@@ -71,7 +71,7 @@ $("#acceptForm").submit(async function (e) {
 		body: JSON.stringify(handle)
 	})
 		.catch(console.log);
-	window.location.href = "/admin/vbdAdmin";
+	window.location.href = "/user/vbdUser";
 });
 
 $("#rejectForm").submit(async function (e) { 
@@ -96,7 +96,7 @@ $("#rejectForm").submit(async function (e) {
 		body: JSON.stringify(handle)
 	})
 		.catch(console.log);
-	window.location.href = "/admin/vbdAdmin";
+	window.location.href = "/user/vbdUser";
 });
 
 $("#handleForm").submit(async function (e) { 
@@ -133,7 +133,7 @@ $("#handleForm").submit(async function (e) {
 	await fetch(INCOMING_DOCUMENT_API + "handle/finishHandling?documentId=" + getId(),{
 		method:"PUT"
 	})
-	window.location.href = "/admin/vbdAdmin";
+	window.location.href = "/user/vbdUser";
 });
 
 function sendHanleDocument(data){
@@ -144,32 +144,7 @@ function sendHanleDocument(data){
 		},
 		body: JSON.stringify(data)
 	})
-	.then(window.location.href = "/admin/vbphAdmin")
-	.catch(console.log);
-}
-
-
-function sendAcceptDocument(data){
-	fetch(INCOMING_DOCUMENT_API + "accept", {
-		method:"PUT",
-		headers:{
-			"Content-Type": "application/json"
-		},
-		body: JSON.stringify(data)
-	})
-	.then(window.location.href = "/admin/vbphAdmin")
-	.catch(console.log);
-}
-
-function sendRejectDocument(data){
-	fetch(INCOMING_DOCUMENT_API + "refuse", {
-		method:"PUT",
-		headers:{
-			"Content-Type": "application/json"
-		},
-		body: JSON.stringify(data)
-	})
-	.then(window.location.href = "/admin/vbphAdmin")
+	.then(window.location.href = "/user/vbdUser")
 	.catch(console.log);
 }
 
@@ -216,11 +191,12 @@ $("#assignForm").submit(async function (e) {
 		body: JSON.stringify(handle)
 	})
 		.catch(console.log);
-	window.location.href = "/admin/vbdAdmin";
+	window.location.href = "/user/vbdUser";
 });
 
 
 async function setRole(){
+	var position = (await getCurrentUser()).position;
 	var doc = await getReceivedDocumentById(getId());
 	var status = doc.baseDocumentEntity.status;
 	console.log(doc);
@@ -243,6 +219,22 @@ async function setRole(){
 		$("button[data-target='#modal-accept'").hide();
 		$("button[data-target='#modal-reject'").hide();
 		$("button[data-target='#modal-handle'").hide();
+	}
+
+	if(position == "Lãnh đạo"){
+		$("button[data-target='#modal-handle'").hide();
+	}
+
+	if(position == "Văn thư"){
+		$("button[data-target='#modal-assign'").hide();
+		$("button[data-target='#modal-accept'").hide();
+		$("button[data-target='#modal-reject'").hide();
+		$("button[data-target='#modal-handle'").hide();
+	}
+
+	if(position == "Nhân viên"){
+		$("button[data-target='#modal-accept'").hide();
+		$("button[data-target='#modal-reject'").hide();
 	}
 }
 

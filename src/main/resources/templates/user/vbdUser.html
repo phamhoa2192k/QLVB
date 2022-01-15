@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin|Quản lí văn bản</title>
+  <title>User|Quản lí văn bản</title>
 
   <!-- Google Font: Source Sans Pro -->
    <!-- Google Font: Source Sans Pro -->
@@ -32,7 +32,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="/admin/index" class="nav-link">Home</a>
+        <a href="/user/index" class="nav-link">Home</a>
       </li>
     </ul>
 
@@ -88,7 +88,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="/admin/index" class="nav-link">
+            <a href="/user/index" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -104,16 +104,7 @@
             </ul> -->
           </li>
           <li class="nav-item">
-            <a href="/admin/qlpbAdmin" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Quản lí phòng ban
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/admin/vbdAdmin" class="nav-link">
+            <a href="/user/vbdUser" class="nav-link active">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Văn bản đến
@@ -132,7 +123,7 @@
             </ul> -->
           </li>
           <li class="nav-item">
-            <a href="/admin/vbphAdmin" class="nav-link active">
+            <a href="/user/vbphUser" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Văn bản phát hành
@@ -180,12 +171,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Quản lí văn bản</h1>
+            <h1>Quản lí văn bản đến</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="/admin/index">Home</a></li>
-              <li class="breadcrumb-item active">Văn bản phát hành</li>
+              <li class="breadcrumb-item"><a href="/user/index">Home</a></li>
+              <li class="breadcrumb-item active">Văn bản đến</li>
             </ol>
           </div>
         </div>
@@ -239,7 +230,7 @@
 <div class="modal fade" id="modal-themvanban">
   <div class="modal-dialog" style="max-width: 900px;">
     <div class="modal-content">
-      <form action="#" method="post" id="newOutGoingDocument">
+      <form action="#" method="post" id="newReceivedDocumentForm">
 
         <div class="modal-header">
           <h4 class="modal-title">Thêm mới văn bản</h4>
@@ -251,62 +242,61 @@
           <div class="card card-primary">
               <div class="card-body">
                 <div class="form-group">
-                  <label for="newOutGoingDocumentName">Tên văn bản</label>
-                  <input type="text" class="form-control" id="newOutGoingDocumentName" placeholder="Nhập tên văn bản">
+                  <label for="newReceivedDocumentFormName">Tên văn bản</label>
+                  <input type="text" class="form-control" id="newReceivedDocumentFormName" placeholder="Nhập tên văn bản">
                 </div>
                 <div class="form-group">
-                  <label for="newOutGoingDocumentAgencyCode">Mã định danh cơ quan tổ chức phát hành </label>
-                  <input type="text" class="form-control" id="newOutGoingDocumentAgencyCode" placeholder="Nhập mã cơ quan phát hành">
+                  <label for="newReceivedDocumentFormAgencyCode">Mã định danh cơ quan tổ chức phát hành </label>
+                  <input type="text" class="form-control" id="newReceivedDocumentFormAgencyCode" placeholder="Nhập mã cơ quan phát hành">
                 </div>
                 <div class="form-group">
-                  <label for="newOutGoingDocumentSymbol">Kí hiệu văn bản</label>
-                  <input type="text" class="form-control" id="newOutGoingDocumentSymbol" placeholder="Nhập kí hiệu văn bản">
+                  <label for="newReceivedDocumentFormNumber">Số văn bản</label>
+                  <input type="text" class="form-control" id="newReceivedDocumentFormNumber" placeholder="Nhập mã định danh văn bản">
                 </div>
                 <div class="form-group">
-                  <label for="newOutGoingDocumentType">Loại văn bản</label>
-                  <select class="form-select" aria-label="Default select example" id="newOutGoingDocumentType">
+                  <label for="newReceivedDocumentFormSymbol">Kí hiệu văn bản</label>
+                  <input type="text" class="form-control" id="newReceivedDocumentFormSymbol" placeholder="Nhập kí hiệu văn bản">
+                </div>
+                <div class="form-group">
+                  <label for="c">Loại văn bản</label>
+                  <select class="form-select" aria-label="Default select example" id="newReceivedDocumentFormType">
                     <option selected>Chọn loại văn bản</option>
-                    <option value="31">Nghị quyết</option>
-                    <option value="32">Quyết định</option>
-                    <option value="37">Thông báo</option>
-                    <option value="33">Chỉ thị</option>
-                    <option value="35">Quy định</option>
-                    <option value="36">Thông cáo</option>
-                    <option value="38">Hướng dẫn</option>
-                    <option value="39">Chương trình</option>
-                    <option value="40">Kế hoạch</option>
-                    <option value="41">Phương án</option>
-                    <option value="42">Đề án</option>
-                    <option value="43">Dự án</option>
-                    <option value="44">Báo cáo</option>
-                    <option value="45">Biên bản</option>
-                    <option value="46">Tờ trình</option>
-                    <option value="47">Hợp đồng</option>
-                    <option value="48">Công văn</option>
-                    <option value="49">Công điện</option>
-                    <option value="50">Bản ghi nhớ</option>
-                    <option value="51">Bản thoả thuận</option>
-                    <option value="52">Giấy uỷ quyền</option>
-                    <option value="53">Giấy giới thiệu</option>
-                    <option value="54">Giấy nghỉ phép</option>
-                    <option value="55">Phiếu gửi</option>
-                    <option value="56">Phiếu chuyển</option>
-                    <option value="57">Phiếu báo</option>
-                    <option value="58">Thư công</option>
+                    <option value="4">Quyết định</option>
+                    <option value="9">Thông báo</option>
+                    <option value="5">Chỉ thị</option>
+                    <option value="7">Quy định</option>
+                    <option value="8">Thông cáo</option>
+                    <option value="10">Hướng dẫn</option>
+                    <option value="11">Chương trình</option>
+                    <option value="12">Kế hoạch</option>
+                    <option value="13">Phương án</option>
+                    <option value="14">Đề án</option>
+                    <option value="15">Dự án</option>
+                    <option value="16">Báo cáo</option>
+                    <option value="17">Biên bản</option>
+                    <option value="18">Tờ trình</option>
+                    <option value="19">Hợp đồng</option>
+                    <option value="20">Công văn</option>
+                    <option value="21">Công điện</option>
+                    <option value="22">Bản ghi nhớ</option>
+                    <option value="23">Bản thoả thuận</option>
+                    <option value="24">Giấy uỷ quyền</option>
+                    <option value="25">Giấy giới thiệu</option>
+                    <option value="26">Giấy nghỉ phép</option>
+                    <option value="27">Phiếu gửi</option>
+                    <option value="28">Phiếu chuyển</option>
+                    <option value="29">Phiếu báo</option>
+                    <option value="30">Thư công</option>
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="newOutGoingDocumentIssuanceTime">Ngày phát hành</label>
-                  <input type="date" class="form-control" id="newOutGoingDocumentIssuanceTime" placeholder="Nhập ngày phát hành">
+                  <label for="newReceivedDocumentFormIssuanceTime">Ngày phát hành</label>
+                  <input type="date" class="form-control" id="newReceivedDocumentFormIssuanceTime" placeholder="Nhập ngày phát hành">
                 </div>
                 <div class="form-group">
-                  <label for="newOutGoingDocumentNumberOfPage">Số trang</label>
-                  <input type="number" class="form-control" id="newOutGoingDocumentNumberOfPage" placeholder="Nhập số trang">
+                  <label for="newReceivedDocumentFormNumberOfPage">Số trang</label>
+                  <input type="number" class="" id="newReceivedDocumentFormNumberOfPage" placeholder="Nhập số trang">
                 </div>
-                <!--<div class="form-group">
-                  <label for="exampleInputPassword1">Số trang</label>
-                  <input type="text" class="" id="exampleInputPassword1" placeholder="Nhập số trang">
-                </div>-->
                 
                 <div class="row">
                   <div class="col-sm-6">
@@ -351,12 +341,12 @@
                 </div>
                 
                 <div class="form-group">
-                  <label for="newOutGoingDocumentContent">Trích yếu nội dung</label>
-                  <input type="text" class="form-control" id="newOutGoingDocumentContent" placeholder="Nhập nội dụng">
+                  <label for="newReceivedDocumentFormContent">Trích yếu nội dung</label>
+                  <input type="text" class="form-control" id="newReceivedDocumentFormContent" placeholder="Nhập nội dụng">
                 </div>
                 <div class="form-group">
-                  <label for="newOutGoingDocumentFile">Tài liệu</label>
-                  <input type="text" class="form-control" id="newOutGoingDocumentFile" placeholder="Nhập link tài liệu">
+                  <label for="newReceivedDocumentFile">Tài liệu</label>
+                  <input type="text" class="form-control" id="newReceivedDocumentFile" placeholder="Nhập link tài liệu">
                 </div>
               </div>
           </div>
@@ -413,7 +403,7 @@
 <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/dist/js/demo.js"></script>
-<script src="/dist/js/pages/admin/vbphAdmin.js"></script>
+<script src="/dist/js/pages/user/vbdUser.js"></script>
 <script>
   $(function () {
     bsCustomFileInput.init();

@@ -196,6 +196,7 @@ public class IncomingDocumentService implements IncomingDocumentInterface {
 		List<DocumentEntity> results = documentRepository.findDocumentEntityByCategaryNameAndBaseDocumentEntityStatus(Configs.INCOMING_DOCUMENT_TYPE, Configs.STATUS_WAIT_FOR_HANDLE);
 		results.addAll(documentRepository.findDocumentEntityByCategaryNameAndBaseDocumentEntityStatus(Configs.INCOMING_DOCUMENT_TYPE, Configs.STATUS_INITIAL));
 		results.addAll(documentRepository.findDocumentEntityByCategaryNameAndBaseDocumentEntityStatus(Configs.INCOMING_DOCUMENT_TYPE, Configs.STATUS_HANDLED));
+		results.addAll(documentRepository.findDocumentEntityByCategaryNameAndBaseDocumentEntityStatus(Configs.INCOMING_DOCUMENT_TYPE, Configs.STATUS_CLOSED));
 		return results;
 	}
 

@@ -137,7 +137,7 @@ function setTimelines(timelines){
 												<span class="time"><i class="fas fa-clock"></i> ${time}</span>
 												<h3 class="timeline-header"><a href="#">${username}</a> ${action}</h3>
 												<div class="timeline-body">
-													${note}
+													${note?note:""}
 												</div>
 											</div>
 										</div>`;

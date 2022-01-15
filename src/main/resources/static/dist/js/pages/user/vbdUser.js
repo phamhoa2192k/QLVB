@@ -1,7 +1,19 @@
 const INCOMING_DOCUMENT_API = "/api/incomingdocument/";
 
 async function getListIncomingDocument(){
-	var receivedDocuments = await fetch(INCOMING_DOCUMENT_API + "all").then(data => data.json()).catch(console.log);
+	var receivedDocuments;
+	var role = (await getCurrentUser()).position;
+	console.log(role);
+	var departmentId = (await getCurrentUser()).departmentId;
+	if(role == "Văn thư"){
+		receivedDocuments = await fetch(INCOMING_DOCUMENT_API + "all/clericalassistant").then(data => data.json()).catch(console.log);
+	}
+	if(role == "Lãnh đạo"){
+		receivedDocuments = await fetch(INCOMING_DOCUMENT_API + "all/leader").then(data => data.json()).catch(console.log);
+	}
+	if(role == "Nhân viên"){
+		receivedDocuments = await fetch(INCOMING_DOCUMENT_API + "all/employee/" + departmentId).then(data => data.json()).catch(console.log);
+	} 
 	console.log("incoming docs: ", receivedDocuments);
 	return receivedDocuments;
 }
@@ -60,7 +72,7 @@ function setIncomingDocuments(incomingDocuments){
 				title: "Chi tiết",
 				render: function (data, type, row) {
 					return `<button style="padding: 0;" type="button" class="btn">
-									<a href="/admin/incomingDocumentDetail?id=${row.id}" style="cursor: pointer;"><i class="fas fa-edit"></i></a>
+									<a href="/user/incomingDocumentDetail?id=${row.id}" style="cursor: pointer;"><i class="fas fa-edit"></i></a>
 									</button>`
 				}
 			}
@@ -71,6 +83,10 @@ function setIncomingDocuments(incomingDocuments){
 $(document).ready(async function () {
 	var listDocument = await getListIncomingDocument();
 	setIncomingDocuments(listDocument);
+	var user = await getCurrentUser();
+	if(user.position != "Văn thư"){
+		$("button[data-target='#modal-themvanban']").hide();
+	}
 });
 
 $("#newReceivedDocumentForm").submit(function (e) { 
