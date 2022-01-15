@@ -12,7 +12,7 @@ public class Configs {
 	public static final String STATUS_WAIT_FOR_HANDLE = "Chờ xử lý";
 	public static final String STATUS_HANDLED = "Đã xử lý";
 	public static final String STATUS_WAIT_FOR_HANDLE_AGAIN = "Chờ xử lý lại";
-	public static final String STATUS_INITIAL= "Tiếp nhận ";
+	public static final String STATUS_INITIAL= "Tiếp nhận";
 
 	public static final String OUTGOING_DOCUMENT_TYPE = "Văn bản đi";
 	public static final String STATUS_WAIT_FOR_ASSIGN_NUMBER = "Chờ cấp số";

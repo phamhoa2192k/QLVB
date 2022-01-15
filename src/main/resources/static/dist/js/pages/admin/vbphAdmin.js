@@ -48,7 +48,8 @@ function setOutGoingDocument(documents) {
 	});
 }
 
-function getNewOutGoingDocument(){
+async function getNewOutGoingDocument(){
+	var assigneeId = (await getCurrentUser()).id;
 	var security = $("input[name=securityLevel]:checked").val();
 	var urgency = $("input[name=urgencyLevel]:checked").val();
 	var doc = {
@@ -63,8 +64,8 @@ function getNewOutGoingDocument(){
 		"numberOfPage": $("#newOutGoingDocumentNumberOfPage").val(),
 		"symbol":  $("#newOutGoingDocumentSymbol").val(),
 		"issuanceTime":  $("#newOutGoingDocumentIssuanceTime").val(), //"2022-01-13T10:01:36.924Z",
-		"file": "string",
-	//	"assigneeId": 0,
+		"file": $("#newOutGoingDocumentFile").val(),
+		"assigneeId": assigneeId,
 		"categoryId": $("#newOutGoingDocumentType").val()
 	};
 	console.log("new doc", doc);
@@ -76,8 +77,8 @@ $(document).ready(async function () {
 	setOutGoingDocument(allDocuments);
 });
 
-$("#newOutGoingDocument").submit(function (e) { 
+$("#newOutGoingDocument").submit(async function (e) { 
 	e.preventDefault();
-	var doc = getNewOutGoingDocument();
+	var doc = await getNewOutGoingDocument();
 	sendNewOutGoingDocument(doc);
 });

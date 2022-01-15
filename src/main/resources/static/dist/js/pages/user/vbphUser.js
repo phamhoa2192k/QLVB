@@ -78,7 +78,7 @@ async function getNewOutGoingDocument(){
 		"numberOfPage": $("#newOutGoingDocumentNumberOfPage").val(),
 		"symbol":  $("#newOutGoingDocumentSymbol").val(),
 		"issuanceTime":  $("#newOutGoingDocumentIssuanceTime").val(), //"2022-01-13T10:01:36.924Z",
-		"file": "string",
+		"file": $("#newOutGoingDocumentFile").val(),
 		"assigneeId": assigneeId,
 		"categoryId": $("#newOutGoingDocumentType").val()
 	};
@@ -91,6 +91,7 @@ $(document).ready(async function () {
 	setOutGoingDocument(allDocuments);
 	await setRole();
 });
+
 $("#newOutGoingDocument").submit(async function (e) {
 	e.preventDefault();
 	var doc = await getNewOutGoingDocument();
