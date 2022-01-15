@@ -19,15 +19,30 @@ async function getListIncomingDocument(){
 }
 
 async function sendNewReceivedDocument(document){
-	fetch( INCOMING_DOCUMENT_API, {
+	var currentUser = await getCurrentUser();
+	var id = await fetch( INCOMING_DOCUMENT_API, {
 		method: "POST",
 		headers:{
 			"Content-Type": "application/json"
 		},
 		body: JSON.stringify(document)
 	})
-		.then(window.location.reload())
-		.catch(console.log);
+		.then(data => data.json())
+		var handle = {
+			"time": new Date().toISOString(),
+			"action": "Tạo",
+			"handlingUserId": currentUser.id,
+			"documentId": id.id
+		};
+		await fetch(HANDLING_API + "handle",{
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(handle)
+		})
+			.catch(console.log);
+		window.location.reload();
 }
 
 function getNewInfomationFromFormNewReceivedDocument(){
