@@ -79,7 +79,7 @@ public class IncomingDocumentAPI {
 
 	@PutMapping(value = "/handle/refuse")
 	public void refuse(Long documentId) {
-		incomingDocumentService.approveDocument(documentId);
+		incomingDocumentService.refuseDocument(documentId);
 	}
 
 	@PutMapping(value = "/handle/upload")
