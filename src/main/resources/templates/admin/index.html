@@ -250,7 +250,8 @@
         <!-- Main row -->
         <div class="row">
            <!-- Văn bản đến chart-->
-            <div class="col-sm-6 card card-danger">
+           <div class="col-md-6">
+            <div class="card card-danger">
               <div class="card-header">
                 <h3 class="card-title">Văn bản đến</h3>
                 <div class="card-tools">
@@ -267,9 +268,30 @@
               </div>
               <!-- /.card-body -->
             </div>
+
+            <div class="card card-warning">
+              <div class="card-header">
+                <h3 class="card-title">Hồ sơ một cửa</h3>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+              <!-- /.card-body -->
+            </div>
               
-            <!-- Văn bản phát hành chart-->
-            <div class="col-sm-6 card card-success">
+            </div>
+
+           <div class="col-md-6">
+             <!-- Văn bản phát hành chart-->
+            <div class="card card-success">
               <div class="card-header">
                 <h3 class="card-title">Văn bản phát hành</h3>
                 <div class="card-tools">
@@ -286,28 +308,8 @@
               </div>
               <!-- /.card-body -->
             </div>
-        </div>
-        <div class="row">
-           <!-- Văn bản phăt hành chart-->
-           <div class="col-sm-6 card card-warning">
-            <div class="card-header">
-              <h3 class="card-title">Hồ sơ một cửa</h3>
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                  <i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="remove">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-            <div class="card-body">
-              <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-            </div>
-            <!-- /.card-body -->
-          </div>
                      <!-- Văn bản đến chart-->
-           <div class="col-sm-6 card card-primary">
+           <div class="card card-primary">
             <div class="card-header">
               <h3 class="card-title">Giấy mời</h3>
               <div class="card-tools">
@@ -324,8 +326,7 @@
             </div>
             <!-- /.card-body -->
           </div>
-        </div>
-
+      </div>
       </div>
     </section>
     <!-- /.content -->
@@ -359,7 +360,7 @@
 <script src="/dist/js/adminlte.js"></script>
 
 <script src="/dist/js/pages/dashboard.js"></script>
-
+<script src="/dist/js/demo.js"></script>
 <script src="/dist/js/pages/dashboard/incomingChart.js"></script>
 <script src="/dist/js/pages/dashboard/outgoingChart.js"></script>
 <script src="/dist/js/pages/admin/dashboard.js"></script>

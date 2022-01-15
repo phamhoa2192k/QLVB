@@ -38,8 +38,9 @@ $(document).ready(async function () {
 	var allOutgoingDocument = await getAllOutgoingDocument();
 	var totalDocument = allIncomingDocument.length + allOutgoingDocument.length;
 	var totalProcessed = getNumberOfProcessed(allIncomingDocument,allOutgoingDocument);
-    var percent = ((totalProcessed/totalDocument)*100).toFixed(2);
-
+  var percent = ((totalProcessed/totalDocument)*100).toFixed(2);
+	var currentUser = await getCurrentUser();
+	$("#currentUser").text(currentUser.fullName);
 	$("#numberOfDepartment").text(allDepartment.length);
 	$("#numberOfUser").text(allUser.length);
 	$("#numberOfDocument").text(totalDocument);
