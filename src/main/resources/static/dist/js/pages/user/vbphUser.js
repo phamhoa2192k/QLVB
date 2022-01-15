@@ -8,7 +8,7 @@ async function getAllOutGoingDocument() {
 		.catch(console.log);
 	console.log("all outgoing doc: " , allDocuments);
 	switch(currentUser.position){
-		case "Lãnh đạo": 
+		case "Lãnh đạo":
 			allDocuments = allDocuments.filter(value => value.status == "Đã cấp số" | value.status == "Đã chỉnh sửa" | value.status == "Hoàn thành");
 			break;
 		case "Nhân viên":
@@ -31,8 +31,8 @@ function sendNewOutGoingDocument(doc){
 		},
 		body:JSON.stringify(doc)
 	})
-	.then(window.location.reload())
-	.catch(console.log);
+		.then(window.location.reload())
+		.catch(console.log);
 }
 
 function setOutGoingDocument(documents) {
@@ -62,7 +62,8 @@ function setOutGoingDocument(documents) {
 	});
 }
 
-function getNewOutGoingDocument(){
+async function getNewOutGoingDocument(){
+	var assigneeId = (await getCurrentUser()).id;
 	var security = $("input[name=securityLevel]:checked").val();
 	var urgency = $("input[name=urgencyLevel]:checked").val();
 	var doc = {
@@ -78,7 +79,7 @@ function getNewOutGoingDocument(){
 		"symbol":  $("#newOutGoingDocumentSymbol").val(),
 		"issuanceTime":  $("#newOutGoingDocumentIssuanceTime").val(), //"2022-01-13T10:01:36.924Z",
 		"file": "string",
-	//	"assigneeId": 0,
+		"assigneeId": assigneeId,
 		"categoryId": $("#newOutGoingDocumentType").val()
 	};
 	console.log("new doc", doc);
@@ -90,10 +91,9 @@ $(document).ready(async function () {
 	setOutGoingDocument(allDocuments);
 	await setRole();
 });
-
-$("#newOutGoingDocument").submit(function (e) { 
+$("#newOutGoingDocument").submit(async function (e) {
 	e.preventDefault();
-	var doc = getNewOutGoingDocument();
+	var doc = await getNewOutGoingDocument();
 	sendNewOutGoingDocument(doc);
 });
 
@@ -107,7 +107,7 @@ async function setRole(){
 		case "Văn thư":
 			$("button[data-target='#modal-themvanban']").hide();
 			break;
-		default: 	
+		default:
 			break;
 	}
 }
