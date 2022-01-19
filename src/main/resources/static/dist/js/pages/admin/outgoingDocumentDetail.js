@@ -15,7 +15,7 @@ function sendAssignNumber(data){
 		},
 		body: JSON.stringify(data)
 	})
-	.then(window.location.reload())
+	.then(() => window.location.reload())
 	.catch(console.log);
 }
 
@@ -27,7 +27,7 @@ function sendAcceptDocument(data){
 		},
 		body: JSON.stringify(data)
 	})
-	.then(window.location.href = "/admin/vbphAdmin")
+	.then(() => window.location.href = "/admin/vbphAdmin")
 	.catch(console.log);
 }
 
@@ -39,7 +39,7 @@ function sendRejectDocument(data){
 		},
 		body: JSON.stringify(data)
 	})
-	.then(window.location.href = "/admin/vbphAdmin")
+	.then(() => window.location.href = "/admin/vbphAdmin")
 	.catch(console.log);
 }
 
@@ -77,8 +77,11 @@ function setOutGoingDocumentDetail(doc){
 
 $("#assignNumberForm").submit(async function (e) { 
 	e.preventDefault();
-	var data = await getAssignNumber();
-	sendAssignNumber(data);
+	if($("#outGoingDocumentNumber").val() > 0){
+		var data = await getAssignNumber();
+		sendAssignNumber(data);
+	}
+	
 });
 
 $("#acceptForm").submit(async function (e) { 
@@ -120,7 +123,7 @@ function sendHanleDocument(data){
 		},
 		body: JSON.stringify(data)
 	})
-	.then(window.location.href = "/admin/vbphAdmin")
+	.then(() => window.location.href = "/admin/vbphAdmin")
 	.catch(console.log);
 }
 

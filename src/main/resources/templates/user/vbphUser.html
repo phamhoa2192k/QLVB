@@ -18,6 +18,7 @@
    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
    <link rel="stylesheet" href="/plugins/datatables/jquery.dataTables.min.css">
    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+   <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -110,17 +111,6 @@
                 Văn bản đến
               </p>
             </a>
-            <!-- <ul class="nav nav-treeview">
-
-              <li class="nav-item">
-                <a href="simple.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Văn bản đã xử lí</p>
-                </a>
-              </li>
-
-
-            </ul> -->
           </li>
           <li class="nav-item">
             <a href="/user/vbphUser" class="nav-link active">
@@ -243,19 +233,15 @@
               <div class="card-body">
                 <div class="form-group">
                   <label for="newOutGoingDocumentName">Tên văn bản</label>
-                  <input type="text" class="form-control" id="newOutGoingDocumentName" placeholder="Nhập tên văn bản">
+                  <input type="text" class="form-control" id="newOutGoingDocumentName" placeholder="Nhập tên văn bản" required> 
                 </div>
                 <div class="form-group">
                   <label for="newOutGoingDocumentAgencyCode">Mã định danh cơ quan tổ chức phát hành </label>
-                  <input type="text" class="form-control" id="newOutGoingDocumentAgencyCode" placeholder="Nhập mã cơ quan phát hành">
-                </div>
-                <div class="form-group">
-                  <label for="newOutGoingDocumentSymbol">Kí hiệu văn bản</label>
-                  <input type="text" class="form-control" id="newOutGoingDocumentSymbol" placeholder="Nhập kí hiệu văn bản">
+                  <input type="text" class="form-control" id="newOutGoingDocumentAgencyCode" placeholder="Nhập mã cơ quan phát hành" readonly value="UBND">
                 </div>
                 <div class="form-group">
                   <label for="newOutGoingDocumentType">Loại văn bản</label>
-                  <select class="form-select" aria-label="Default select example" id="newOutGoingDocumentType">
+                  <select class="form-select" aria-label="Default select example" id="newOutGoingDocumentType" required>
                     <option selected>Chọn loại văn bản</option>
                     <option value="31">Nghị quyết</option>
                     <option value="32">Quyết định</option>
@@ -287,12 +273,16 @@
                   </select>
                 </div>
                 <div class="form-group">
+                  <label for="newOutGoingDocumentSymbol">Kí hiệu văn bản</label>
+                  <input type="text" class="form-control" id="newOutGoingDocumentSymbol" placeholder="Nhập kí hiệu văn bản" readonly>
+                </div>
+                <div class="form-group">
                   <label for="newOutGoingDocumentIssuanceTime">Ngày phát hành</label>
-                  <input type="date" class="form-control" id="newOutGoingDocumentIssuanceTime" placeholder="Nhập ngày phát hành">
+                  <input type="date" class="form-control" id="newOutGoingDocumentIssuanceTime" placeholder="Nhập ngày phát hành" required>
                 </div>
                 <div class="form-group">
                   <label for="newOutGoingDocumentNumberOfPage">Số trang</label>
-                  <input type="number" class="form-control" id="newOutGoingDocumentNumberOfPage" placeholder="Nhập số trang">
+                  <input type="number" class="form-control" id="newOutGoingDocumentNumberOfPage" placeholder="Nhập số trang" required>
                 </div>
                 <!--<div class="form-group">
                   <label for="exampleInputPassword1">Số trang</label>
@@ -343,11 +333,11 @@
                 
                 <div class="form-group">
                   <label for="newOutGoingDocumentContent">Trích yếu nội dung</label>
-                  <input type="text" class="form-control" id="newOutGoingDocumentContent" placeholder="Nhập nội dụng">
+                  <textarea type="text" class="form-control" id="newOutGoingDocumentContent" placeholder="Nhập nội dụng" rows="4" cols="40" required ></textarea>
                 </div>
                 <div class="form-group">
                   <label for="newOutGoingDocumentFile">Tài liệu</label>
-                  <input type="text" class="form-control" id="newOutGoingDocumentFile" placeholder="Nhập link tài liệu">
+                  <input type="file" class="form-control" id="newOutGoingDocumentFile" placeholder="Nhập link tài liệu" required>
                 </div>
               </div>
           </div>
@@ -402,13 +392,14 @@
 <!-- bs-custom-file-input -->
 <script src="/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/plugins/toastr/toastr.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/dist/js/demo.js"></script>
 <script src="/dist/js/pages/user/vbphUser.js"></script>
 <script>
-  $(function () {
-    bsCustomFileInput.init();
-  });
+  // $(function () {
+  //   bsCustomFileInput.init();
+  // });
   </script>
 </body>
 </html>

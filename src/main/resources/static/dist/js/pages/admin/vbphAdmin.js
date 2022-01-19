@@ -17,7 +17,7 @@ function sendNewOutGoingDocument(doc){
 		},
 		body:JSON.stringify(doc)
 	})
-	.then(window.location.reload())
+	.then(() => window.location.reload())
 	.catch(console.log);
 }
 

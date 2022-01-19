@@ -18,6 +18,7 @@
    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
    <link rel="stylesheet" href="/plugins/datatables/jquery.dataTables.min.css">
    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+   <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -243,23 +244,19 @@
               <div class="card-body">
                 <div class="form-group">
                   <label for="newReceivedDocumentFormName">Tên văn bản</label>
-                  <input type="text" class="form-control" id="newReceivedDocumentFormName" placeholder="Nhập tên văn bản">
+                  <input type="text" class="form-control" id="newReceivedDocumentFormName" placeholder="Nhập tên văn bản" required>
                 </div>
                 <div class="form-group">
                   <label for="newReceivedDocumentFormAgencyCode">Mã định danh cơ quan tổ chức phát hành </label>
-                  <input type="text" class="form-control" id="newReceivedDocumentFormAgencyCode" placeholder="Nhập mã cơ quan phát hành">
+                  <input type="text" class="form-control" id="newReceivedDocumentFormAgencyCode" placeholder="Nhập mã cơ quan phát hành" required>
                 </div>
                 <div class="form-group">
                   <label for="newReceivedDocumentFormNumber">Số văn bản</label>
-                  <input type="text" class="form-control" id="newReceivedDocumentFormNumber" placeholder="Nhập mã định danh văn bản">
+                  <input type="number" class="form-control" id="newReceivedDocumentFormNumber" placeholder="Nhập mã định danh văn bản" required>
                 </div>
                 <div class="form-group">
-                  <label for="newReceivedDocumentFormSymbol">Kí hiệu văn bản</label>
-                  <input type="text" class="form-control" id="newReceivedDocumentFormSymbol" placeholder="Nhập kí hiệu văn bản">
-                </div>
-                <div class="form-group">
-                  <label for="c">Loại văn bản</label>
-                  <select class="form-select" aria-label="Default select example" id="newReceivedDocumentFormType">
+                  <label for="newReceivedDocumentFormType">Loại văn bản</label>
+                  <select class="form-select" aria-label="Default select example" id="newReceivedDocumentFormType" required>
                     <option selected>Chọn loại văn bản</option>
                     <option value="4">Quyết định</option>
                     <option value="9">Thông báo</option>
@@ -290,12 +287,16 @@
                   </select>
                 </div>
                 <div class="form-group">
+                  <label for="newReceivedDocumentFormSymbol">Kí hiệu văn bản</label>
+                  <input type="text" class="form-control col-3" id="newReceivedDocumentFormSymbol" placeholder="Nhập kí hiệu văn bản" readonly>
+                </div>
+                <div class="form-group">
                   <label for="newReceivedDocumentFormIssuanceTime">Ngày phát hành</label>
-                  <input type="date" class="form-control" id="newReceivedDocumentFormIssuanceTime" placeholder="Nhập ngày phát hành">
+                  <input type="date" class="form-control" id="newReceivedDocumentFormIssuanceTime" placeholder="Nhập ngày phát hành" required>
                 </div>
                 <div class="form-group">
                   <label for="newReceivedDocumentFormNumberOfPage">Số trang</label>
-                  <input type="number" class="" id="newReceivedDocumentFormNumberOfPage" placeholder="Nhập số trang">
+                  <input type="number" class="" id="newReceivedDocumentFormNumberOfPage" placeholder="Nhập số trang" required>
                 </div>
                 
                 <div class="row">
@@ -342,11 +343,11 @@
                 
                 <div class="form-group">
                   <label for="newReceivedDocumentFormContent">Trích yếu nội dung</label>
-                  <input type="text" class="form-control" id="newReceivedDocumentFormContent" placeholder="Nhập nội dụng">
+                  <textarea type="text" class="form-control" id="newReceivedDocumentFormContent" rows="4" cols="40" placeholder="Nội dung" required></textarea>
                 </div>
                 <div class="form-group">
                   <label for="newReceivedDocumentFile">Tài liệu</label>
-                  <input type="text" class="form-control" id="newReceivedDocumentFile" placeholder="Nhập link tài liệu">
+                  <input type="file" class="form-control" id="newReceivedDocumentFile" placeholder="Nhập link tài liệu" required>
                 </div>
               </div>
           </div>
@@ -401,6 +402,7 @@
 <!-- bs-custom-file-input -->
 <script src="/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/plugins/toastr/toastr.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/dist/js/demo.js"></script>
 <script src="/dist/js/pages/user/vbdUser.js"></script>

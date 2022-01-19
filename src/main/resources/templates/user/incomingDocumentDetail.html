@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -181,27 +182,21 @@
             </ol>
           </div>
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
     </section>
-
-    <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <div class="card card-primary card-outline">
           <div class="card-body">
             <div class="row">
-              <div class="col-sm-6">
+              <div class="col-sm-7">
                 <form action="/" method="post">
-        
-                  <!-- <div class="modal-body"> -->
                     <div class="card card-primary">
-          
-                      <!-- /.card-header -->
-          
-                        <div class=" table-responsive">
-                          <table class="table table-hover text-nowrap">
+  
+                        <div class="">
+                          <table class="table" style="word-break: normal;">
                             <tr>
-                              <th>Tên văn bản</th>
+                              <th class="col-sm-3">Tên văn bản</th>
                               <th id="receivedDocumentName"></th>
                             </tr>
                             <tr>
@@ -244,25 +239,10 @@
                               <th>Độ khẩn</th>
                               <th id="receivedDocumentUrgencyLevel"></th>
                             </tr>
-                          </table>
-                                                        
-                          <!-- <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                          </div> -->
+                          </table> 
                         </div>
-                        <!-- /.card-body -->
-          
-                        <!-- <button type="submit" class="btn btn-primary">Add new</button> -->
-          
                     </div>
-                  <!-- </div> -->
                 </form>
-                <!--
-                <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modal-update">
-                  Sửa
-                </button> -->
-
                 <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#modal-assign">
                   Chỉ định
                 </button>
@@ -274,68 +254,25 @@
                 <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#modal-reject">
                   Từ chối
                 </button>
-
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-handle">
                   Xử lý
                 </button>
-
               </div>
-              <div class="col-sm-6">
-                <!-- <form action="/add-department" method="post"> -->
-        
-                  <!-- <div class=""> -->
+              <div class="col-sm-5">
                     <h4 class="modal-title">Lịch sử xử lí văn bản</h4>
-                    
-                  <!-- </div> -->
                   <div class="modal-body">
                     <div class="row">
                       <div class="col-md-12">
-                        <!-- The time line -->
                         <div class="timeline" id="timeline">
                           <!-- timeline time label -->
                           <div class="time-label">
                             <span class="bg-red">Dòng thời gian</span>
                           </div>
-                          <!-- /.timeline-label -->
-                          <!-- timeline item -->
-                         <!-- <div>
-                            <i class="fas fa-envelope bg-blue"></i>
-                            <div class="timeline-item">
-                              <span class="time"><i class="fas fa-clock"></i> 12:05</span>
-                              <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-            
-                              <div class="timeline-body">
-                                Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                                weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                                jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                                quora plaxo ideeli hulu weebly balihoo...
-                              </div>
-                         <div class="timeline-footer">
-                                <a class="btn btn-primary btn-sm">Read more</a>
-                                <a class="btn btn-danger btn-sm">Delete</a>
-                              </div> 
-                            </div>
-                          </div>
-                          <div>
-                            <i class="fas fa-user bg-green"></i>
-                            <div class="timeline-item">
-                              <span class="time"><i class="fas fa-clock"></i> 5 mins ago</span>
-                              <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request</h3>
-                            </div>
-                          </div>
-                          <div>
-                            <i class="fas fa-clock bg-gray"></i>
-                          </div> -->
                         </div>
                       </div>
                       <!-- /.col -->
                     </div>
                   </div>
-                  <!-- <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Add new</button> -->
-                  <!--</div> -->
-                <!-- </form> -->
               </div>
             </div>
             
@@ -374,7 +311,7 @@
                     </div>
                     <div class="form-group">
                       <label for="noteAssign">Lời nhắn</label>
-                      <input type="text" class="form-control" id="noteAssign" placeholder="Nhập lời nhắn">
+                      <textarea type="text" class="form-control" id="noteAssign" placeholder="Nhập lời nhắn" rows="4" cols="10" required></textarea>
                     </div>
                   </div>
     
@@ -444,7 +381,7 @@
         </div>
         <div class="modal-body">
           <label for="reasonReject">Lý do từ chối</p>
-          <input type="text" placeholder="Nhập lý do từ chối" id="reasonReject" class="form-control"/>
+          <textarea type="text" placeholder="Nhập lý do từ chối" id="reasonReject" class="form-control" rows="4" cols="70" required></textarea>
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
@@ -469,7 +406,7 @@
         </div>
         <div class="modal-body">
           <label for="fileHandle">Upload</p>
-          <input type="text" placeholder="Upload lại file" id="fileHandle" class="form-control"/>
+          <input type="file" placeholder="Upload lại file" id="fileHandle" class="form-control" required/>
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
@@ -487,6 +424,7 @@
 <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/dist/js/adminlte.min.js"></script>
+<script src="/plugins/toastr/toastr.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/dist/js/demo.js"></script>
 <script src="/dist/js/pages/user/incomingDocumentDetail.js"></script>

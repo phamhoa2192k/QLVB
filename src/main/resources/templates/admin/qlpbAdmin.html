@@ -477,11 +477,15 @@
                     
                     <div class="form-group">
                       <label>Chức vụ</label>
-                      <input type="text" class="form-control" placeholder="Nhập chức vụ" required id="formNewUserPosition">
+                      <select id="formNewUserPosition" class="form-control">
+                        <option value="Lãnh đạo">Lãnh đạo</option>
+                        <option value="Văn thư">Văn thư</option>
+                        <option value="Nhân viên">Nhân viên</option>
+                      </select>
                     </div>
 
                     <label>Quyền sử dụng hệ thống</label>
-                    <select class="form-select form-control select2 " style="width: 100%;" id="formNewUserRole" required multiple>
+                    <select class="form-control" style="width: 100%;" id="formNewUserRole" required multiple>
                       <option value="ADMIN">Admin</option>
                       <option value="USER">Người dùng</option>
                     </select>
