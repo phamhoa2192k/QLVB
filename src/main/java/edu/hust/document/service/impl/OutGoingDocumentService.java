@@ -187,7 +187,7 @@ public class OutGoingDocumentService implements IOutGoingDocumentService {
         try {
             baseDocumentEntity1 = baseDocumentRepository.save(baseDocumentEntity);
             UserEntity user = userRepository.findUserEntityById(handlingForm.getUserId());
-            insertHanling(Configs.ACTION_APPROVE, "", baseDocumentEntity1, baseDocumentEntity1.getAssignee());
+            insertHanling(Configs.ACTION_APPROVE, "", baseDocumentEntity1, user);
         }catch (Exception e) {
             return null;
         }
