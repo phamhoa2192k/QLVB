@@ -178,11 +178,14 @@ async function setRole(){
 	console.log(role);
 	if(doc.status == "Chờ cấp số"){
 		$("button[data-target='#modal-handle']").hide();
+		$("button[data-target='#modal-accept']").hide();
+        $("button[data-target='#modal-reject']").hide();
 	}
 
 	if(doc.status == "Chờ chỉnh sửa"){
 		$("button[data-target='#modal-accept']").hide();
 		$("button[data-target='#modal-reject']").hide();
+		$("button[data-target='#modal-assignnumber']").hide();
 	}
 
 	if(doc.status == "Hoàn thành"){
@@ -192,15 +195,18 @@ async function setRole(){
 		$("button[data-target='#modal-assignnumber']").hide();
 		}
 
-		if(doc.status == "Đã cấp số"){
-		$("button[data-target='#modal-assignnumber']").hide();
-		}
+    if(doc.status == "Đã cấp số"){
+        $("button[data-target='#modal-assignnumber']").hide();
+    }
+
+    if(doc.status == "Đã chỉnh sửa"){
+        $("button[data-target='#modal-assignnumber']").hide();
+    }
 
 	switch(role){
 		case "Lãnh đạo": 
-		$("button[data-target='#modal-accept']").hide();
-		$("button[data-target='#modal-reject']").hide();
-			break;
+		    $("button[data-target='#modal-handle']").hide();
+		break;
 		case "Nhân viên":
 			if(user.id === assignId){
 				$("button[data-target='#modal-accept']").hide();

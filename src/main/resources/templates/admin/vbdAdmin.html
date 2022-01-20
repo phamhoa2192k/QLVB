@@ -94,14 +94,7 @@
                 Dashboard
               </p>
             </a>
-            <!-- <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./index.html" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v1</p>
-                </a>
-              </li>
-            </ul> -->
+
           </li>
           <li class="nav-item">
             <a href="/admin/qlpbAdmin" class="nav-link">
@@ -119,17 +112,7 @@
                 Văn bản đến
               </p>
             </a>
-            <!-- <ul class="nav nav-treeview">
 
-              <li class="nav-item">
-                <a href="simple.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Văn bản đã xử lí</p>
-                </a>
-              </li>
-
-
-            </ul> -->
           </li>
           <li class="nav-item">
             <a href="/admin/vbphAdmin" class="nav-link">
@@ -201,9 +184,9 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <button type="button" class="btn btn-default"  data-toggle="modal" data-target="#modal-themvanban">
-                  <i class="fas fa-edit"></i>Thêm mới văn bản
-                </button>
+<!--                <button type="button" class="btn btn-default"  data-toggle="modal" data-target="#modal-themvanban">-->
+<!--                  <i class="fas fa-edit"></i>Thêm mới văn bản-->
+<!--                </button>-->
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -256,7 +239,7 @@
                 </div>
                 <div class="form-group">
                   <label for="newReceivedDocumentFormAgencyCode">Mã định danh cơ quan tổ chức phát hành </label>
-                  <input type="text" class="form-control" id="newReceivedDocumentFormAgencyCode" placeholder="Nhập mã cơ quan phát hành">
+                  <input type="text" class="form-control" id="newReceivedDocumentFormAgencyCode" placeholder="Ủy ban nhân dân VD : UBND">
                 </div>
                 <div class="form-group">
                   <label for="newReceivedDocumentFormNumber">Số văn bản</label>
@@ -264,7 +247,7 @@
                 </div>
                 <div class="form-group">
                   <label for="newReceivedDocumentFormSymbol">Kí hiệu văn bản</label>
-                  <input type="text" class="form-control" id="newReceivedDocumentFormSymbol" placeholder="Nhập kí hiệu văn bản">
+                  <input type="text" class="form-control" id="newReceivedDocumentFormSymbol" placeholder="Kí hiệu văn bản">
                 </div>
                 <div class="form-group">
                   <label for="c">Loại văn bản</label>
@@ -351,11 +334,11 @@
                 
                 <div class="form-group">
                   <label for="newReceivedDocumentFormContent">Trích yếu nội dung</label>
-                  <input type="text" class="form-control" id="newReceivedDocumentFormContent" placeholder="Nhập nội dụng">
+                  <textarea type="text" class="form-control" id="newReceivedDocumentFormContent" rows="4" cols="40" placeholder="Nội dung" required></textarea>
                 </div>
                 <div class="form-group">
                   <label for="newReceivedDocumentFile">Tài liệu</label>
-                  <input type="text" class="form-control" id="newReceivedDocumentFile" placeholder="Nhập link tài liệu">
+                  <input type="file"  id="newReceivedDocumentFile" placeholder="Nhập link tài liệu">
                 </div>
               </div>
           </div>

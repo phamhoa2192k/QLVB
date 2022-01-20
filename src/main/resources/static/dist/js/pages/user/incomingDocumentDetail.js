@@ -202,6 +202,9 @@ async function setRole(){
 
 	if(status == "Đã xử lý"){
 		$("button[data-target='#modal-assign'").hide();
+		if(position == "Nhân viên"){
+            $("button[data-target='#modal-handle'").hide();
+        }
 	}
 
 	if(status == "Hoàn thành"){
