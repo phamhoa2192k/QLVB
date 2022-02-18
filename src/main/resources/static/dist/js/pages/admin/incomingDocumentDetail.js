@@ -46,7 +46,7 @@ function sendHanleDocument(data){
 		},
 		body: JSON.stringify(data)
 	})
-	.then(window.location.href = "/admin/vbphAdmin")
+	.then(() =>window.location.href = "/admin/vbphAdmin")
 	.catch(console.log);
 }
 
@@ -144,7 +144,7 @@ function sendHanleDocument(data){
 		},
 		body: JSON.stringify(data)
 	})
-	.then(window.location.href = "/admin/vbphAdmin")
+	.then(() => window.location.href = "/admin/vbphAdmin")
 	.catch(console.log);
 }
 
@@ -157,7 +157,7 @@ function sendAcceptDocument(data){
 		},
 		body: JSON.stringify(data)
 	})
-	.then(window.location.href = "/admin/vbphAdmin")
+	.then(() => window.location.href = "/admin/vbphAdmin")
 	.catch(console.log);
 }
 
@@ -169,7 +169,7 @@ function sendRejectDocument(data){
 		},
 		body: JSON.stringify(data)
 	})
-	.then(window.location.href = "/admin/vbphAdmin")
+	.then(() => window.location.href = "/admin/vbphAdmin")
 	.catch(console.log);
 }
 

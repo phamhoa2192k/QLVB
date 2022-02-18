@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -190,18 +191,15 @@
         <div class="card card-primary card-outline">
           <div class="card-body">
             <div class="row">
-              <div class="col-sm-6">
+              <div class="col-sm-7">
                 <form action="/" method="post">
         
                   <!-- <div class="modal-body"> -->
                     <div class="card card-primary">
-          
-                      <!-- /.card-header -->
-          
-                        <div class=" table-responsive">
-                          <table class="table table-hover text-nowrap">
+                        <div class="">
+                          <table class="table" style="word-break: normal;">
                             <tr>
-                              <th>Tên văn bản</th>
+                              <th class="col-sm-3">Tên văn bản</th>
                               <th id="receivedDocumentName"></th>
                             </tr>
                             <tr>
@@ -274,7 +272,7 @@
                   <!-- </div> -->
                 </form>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-5">
                 <!-- <form action="/add-department" method="post"> -->
         
                   <!-- <div class=""> -->
@@ -363,8 +361,8 @@
           </button>
         </div>
         <div class="modal-body">
-          <label for="outGoingDocumentNumber">Vui lòng điền số cho văn bản</p>
-          <input type="text" class="form-control" placeholder="Điền số cho văn bản" id="outGoingDocumentNumber"/>
+          <label for="outGoingDocumentNumber">Vui lòng điền số cho văn bản</label>
+          <input type="number" class="form-control" placeholder="Điền số cho văn bản" id="outGoingDocumentNumber" required/>
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
@@ -415,8 +413,8 @@
           </button>
         </div>
         <div class="modal-body">
-          <label for="reasonReject">Lý do từ chối</p>
-          <input type="text" placeholder="Nhập lý do từ chối" id="reasonReject" class="form-control"/>
+          <label for="reasonReject">Lý do từ chối</label>
+          <textarea type="text" placeholder="Nhập lý do từ chối" id="reasonReject" class="form-control" rows="4" cols="70" required></textarea>
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
@@ -445,8 +443,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <label for="fileHandle">Upload</p>
-        <input type="text" placeholder="Upload lại file" id="fileHandle" class="form-control"/>
+        <label for="fileHandle">Upload</label>
+        <input type="file" placeholder="Upload lại file" id="fileHandle" class="form-control" required/>
       </div>
       <div class="modal-footer justify-content-between">
         <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
@@ -464,6 +462,7 @@
 <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/dist/js/adminlte.min.js"></script>
+<script src="/plugins/toastr/toastr.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/dist/js/demo.js"></script>
 <script src="/dist/js/pages/user/outgoingDocumentDetail.js"></script>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin</title>
+  <title>User | Quản lý văn bản</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.min.css">
+  <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -118,7 +119,7 @@
                 Văn bản phát hành
               </p>
             </a>
-          </li>
+          </li>          
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
@@ -197,24 +198,6 @@
               </div>
               <!-- /.card-body -->
             </div>
-
-            <div class="card card-warning">
-              <div class="card-header">
-                <h3 class="card-title">Hồ sơ một cửa</h3>
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="card-body">
-                <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-              </div>
-              <!-- /.card-body -->
-            </div>
               
             </div>
             <div class="col-md-6">
@@ -237,23 +220,7 @@
             <!-- /.card-body -->
           </div>
                      <!-- Văn bản đến chart-->
-           <div class="card card-primary">
-            <div class="card-header">
-              <h3 class="card-title">Giấy mời</h3>
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                  <i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="remove">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-            <div class="card-body">
-              <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-            </div>
-            <!-- /.card-body -->
-          </div></div>
+          </div>
         </div>
       </div>
     </section>
@@ -285,6 +252,7 @@
 <script src="/plugins/sparklines/sparkline.js"></script>
 <!-- AdminLTE App -->
 <script src="/dist/js/adminlte.js"></script>
+<script src="/plugins/toastr/toastr.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->

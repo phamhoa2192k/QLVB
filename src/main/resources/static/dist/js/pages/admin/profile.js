@@ -55,7 +55,7 @@ function handleDeleteUser(id){
 			"Content-Type": "application/json"
 		},
 		body:JSON.stringify([id])
-	}).then(console.log).then(window.location.href = "/admin/qlpbAdmin");
+	}).then(console.log).then(() => window.location.href = "/admin/qlpbAdmin");
 }
 
 function setUserInformation(user){

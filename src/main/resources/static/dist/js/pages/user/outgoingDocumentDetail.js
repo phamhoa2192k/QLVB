@@ -15,7 +15,7 @@ function sendAssignNumber(data){
 		},
 		body: JSON.stringify(data)
 	})
-	.then(window.location.reload())
+	.then(() => window.location.reload())
 	.catch(console.log);
 }
 
@@ -27,7 +27,7 @@ function sendAcceptDocument(data){
 		},
 		body: JSON.stringify(data)
 	})
-	.then(window.location.href = "/user/vbphUser")
+	.then(() => window.location.href = "/user/vbphUser")
 	.catch(console.log);
 }
 
@@ -39,7 +39,7 @@ function sendRejectDocument(data){
 		},
 		body: JSON.stringify(data)
 	})
-	.then(window.location.href = "/user/vbphUser")
+	.then(() => window.location.href = "/user/vbphUser")
 	.catch(console.log);
 }
 
@@ -70,6 +70,7 @@ function setOutGoingDocumentDetail(doc){
 	$("#receivedDocumentIssuanceTime").text(base.issuanceTime);
 	$("#receivedDocumentContent").text(base.content);
 	$("#receivedDocumentAttachedDocument").attr("href", doc.file);
+	$("#receivedDocumentAttachedDocument").attr("download", "file.docx");
 	$("#receivedDocumentDeadline").text(doc.deadline);
 	$("#receivedDocumentSecurityLevel").text(doc.securityLevel);
 	$("#receivedDocumentUrgencyLevel").text(doc.urgencyLevel);
@@ -77,8 +78,13 @@ function setOutGoingDocumentDetail(doc){
 
 $("#assignNumberForm").submit(async function (e) { 
 	e.preventDefault();
-	var data = await getAssignNumber();
-	sendAssignNumber(data);
+	if($("#outGoingDocumentNumber").val() > 0){
+		var data = await getAssignNumber();
+		sendAssignNumber(data);
+	}
+	else {
+		toastr["error"]("Số văn bản không được âm", "Dữ liệu không đúng định dạng");
+	}
 });
 
 $("#acceptForm").submit(async function (e) { 
@@ -98,7 +104,7 @@ $("#rejectForm").submit(async function (e) {
 		baseDocumentId: getId(),
 		note: $("#reasonReject").val()
 	}
-	console.log("accept: ", data);
+	console.log("reject: ", data);
 	sendRejectDocument(data);
 });
 
@@ -106,7 +112,7 @@ $("#handleForm").submit(async function (e) {
 	e.preventDefault();
 	var data = {
 		id: getId(),
-		file: $("#fileHandle").val()
+		file:await (readFileAsDataURL(window.document.querySelector("#fileHandle").files[0])),
 	}
 	console.log("file hanlde: ", data);
 	sendHanleDocument(data);
@@ -120,7 +126,7 @@ function sendHanleDocument(data){
 		},
 		body: JSON.stringify(data)
 	})
-	.then(window.location.href = "/user/vbphUser")
+	.then(() => window.location.href = "/user/vbphUser")
 	.catch(console.log);
 }
 
@@ -166,14 +172,41 @@ $(document).ready(async function () {
 
 async function setRole(){
 	var user = await getCurrentUser();
-	var assignId = (await getOutGoingDocumentById(getId())).assigneeId;
+	var doc = await getOutGoingDocumentById(getId());
+	var assignId = doc.assigneeId;
 	var role = user.position;
 	console.log(role);
+	if(doc.status == "Chờ cấp số"){
+		$("button[data-target='#modal-handle']").hide();
+		$("button[data-target='#modal-accept']").hide();
+        $("button[data-target='#modal-reject']").hide();
+	}
+
+	if(doc.status == "Chờ chỉnh sửa"){
+		$("button[data-target='#modal-accept']").hide();
+		$("button[data-target='#modal-reject']").hide();
+		$("button[data-target='#modal-assignnumber']").hide();
+	}
+
+	if(doc.status == "Hoàn thành"){
+		$("button[data-target='#modal-accept']").hide();
+		$("button[data-target='#modal-reject']").hide();
+		$("button[data-target='#modal-handle']").hide();
+		$("button[data-target='#modal-assignnumber']").hide();
+		}
+
+    if(doc.status == "Đã cấp số"){
+        $("button[data-target='#modal-assignnumber']").hide();
+    }
+
+    if(doc.status == "Đã chỉnh sửa"){
+        $("button[data-target='#modal-assignnumber']").hide();
+    }
+
 	switch(role){
 		case "Lãnh đạo": 
-			$("button[data-target='#modal-assignnumber']").hide();
-			$("button[data-target='#modal-handle']").hide();
-			break;
+		    $("button[data-target='#modal-handle']").hide();
+		break;
 		case "Nhân viên":
 			if(user.id === assignId){
 				$("button[data-target='#modal-accept']").hide();
@@ -195,4 +228,14 @@ async function setRole(){
 		default:
 			break;
 	}
+}
+
+async function readFileAsDataURL(file) {
+	let result_base64 = await new Promise((resolve) => {
+			let fileReader = new FileReader();
+			fileReader.onload = (e) => resolve(fileReader.result);
+			fileReader.readAsDataURL(file);
+	});
+	console.log(result_base64);
+	return result_base64;
 }

@@ -23,6 +23,7 @@ function setReceivedDocumentDetail(doc){
 	$("#receivedDocumentIssuanceTime").text(base.issuanceTime);
 	$("#receivedDocumentContent").text(base.content);
 	$("#receivedDocumentFile").attr("href", base.file);
+	$("#receivedDocumentFile").attr("download", "file.docx");
 	$("#receivedDocumentDeadline").text(base.deadline);
 	$("#receivedDocumentSecurityLevel").text(doc.securityLevel);
 	$("#receivedDocumentUrgencyLevel").text(doc.urgencyLevel);
@@ -46,7 +47,7 @@ function sendHanleDocument(data){
 		},
 		body: JSON.stringify(data)
 	})
-	.then(window.location.href = "/user/vbdUser")
+	.then(() => window.location.href = "/user/vbdUser")
 	.catch(console.log);
 }
 
@@ -104,7 +105,7 @@ $("#handleForm").submit(async function (e) {
 	var currentUser = await getCurrentUser();
 	var data = {
 		documentId: getId(),
-		file: $("#fileHandle").val()
+		file: await readFileAsDataURL(window.document.querySelector("#fileHandle").files[0])
 	}
 	console.log(data);
 	var handle = {
@@ -136,17 +137,6 @@ $("#handleForm").submit(async function (e) {
 	window.location.href = "/user/vbdUser";
 });
 
-function sendHanleDocument(data){
-	fetch(OUTGOING_DOCUMENT_API + "update", {
-		method:"PUT",
-		headers:{
-			"Content-Type": "application/json"
-		},
-		body: JSON.stringify(data)
-	})
-	.then(window.location.href = "/user/vbdUser")
-	.catch(console.log);
-}
 
 async function setOptionDepartment(){
 	var departments = await fetch("/api/department/findAll").then(data => data.json()).catch(console.log);
@@ -212,6 +202,9 @@ async function setRole(){
 
 	if(status == "Đã xử lý"){
 		$("button[data-target='#modal-assign'").hide();
+		if(position == "Nhân viên"){
+            $("button[data-target='#modal-handle'").hide();
+        }
 	}
 
 	if(status == "Hoàn thành"){
@@ -219,6 +212,12 @@ async function setRole(){
 		$("button[data-target='#modal-accept'").hide();
 		$("button[data-target='#modal-reject'").hide();
 		$("button[data-target='#modal-handle'").hide();
+	}
+
+	if(status == "Chờ xử lý lại"){
+		$("button[data-target='#modal-assign'").hide();
+		$("button[data-target='#modal-accept'").hide();
+		$("button[data-target='#modal-reject'").hide();
 	}
 
 	if(position == "Lãnh đạo"){
@@ -233,6 +232,7 @@ async function setRole(){
 	}
 
 	if(position == "Nhân viên"){
+		$("button[data-target='#modal-assign'").hide();
 		$("button[data-target='#modal-accept'").hide();
 		$("button[data-target='#modal-reject'").hide();
 	}
@@ -266,4 +266,15 @@ async function getTimelines(id){
 									.catch(console.log)
 	console.log(timelines);
 	return timelines;
+}
+
+
+async function readFileAsDataURL(file) {
+	let result_base64 = await new Promise((resolve) => {
+			let fileReader = new FileReader();
+			fileReader.onload = (e) => resolve(fileReader.result);
+			fileReader.readAsDataURL(file);
+	});
+	console.log(result_base64);
+	return result_base64;
 }

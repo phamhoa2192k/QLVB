@@ -5,7 +5,7 @@ function guiDuLieuPhongBan(phongban) {
 			"Content-Type": "application/json"
 		},
 		body: JSON.stringify(phongban)
-	}).then(window.location.reload()).catch(console.log);
+	}).then(() => window.location.reload()).catch(console.log);
 }
 
 function guiDuLieuNhanVienMoi(user) {
@@ -15,7 +15,7 @@ function guiDuLieuNhanVienMoi(user) {
 			"Content-Type": "application/json"
 		},
 		body: JSON.stringify(user)
-	}).then(window.location.reload()).catch(console.log);
+	}).then(() => window.location.reload()).catch(console.log);
 }
 
 function sendUpdateDepartment(department) {
@@ -27,7 +27,7 @@ function sendUpdateDepartment(department) {
 		},
 		body: JSON.stringify(department)
 	})
-		.then(window.location.reload())
+		.then(() => window.location.reload())
 		.catch(console.log);
 }
 
@@ -36,7 +36,7 @@ function sendDeleteDepartment() {
 	fetch(`/api/department/delete/${id}`, {
 		method: "DELETE"
 	})
-		.then(window.location.reload())
+		.then(() => window.location.reload())
 		.catch(console.log)
 }
 
@@ -132,7 +132,7 @@ function handleDeleteUser(id) {
 			"Content-Type": "application/json"
 		},
 		body: JSON.stringify([id])
-	}).then(window.location.reload()).catch(console.log);
+	}).then(() => window.location.reload()).catch(console.log);
 }
 
 function handleSendNewDepartment() {
